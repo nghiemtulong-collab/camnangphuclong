@@ -1,0 +1,1462 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Cẩm nang AI nội bộ — ICD Phúc Long</title>
+<meta name="description" content="Tài liệu workshop ứng dụng AI cho các bộ phận — ICD Phúc Long">
+<meta name="theme-color" content="#141310">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@300;400;500;600;700;800&family=Newsreader:opsz,wght@6..72,400;6..72,500;6..72,600;6..72,700&family=JetBrains+Mono:wght@400;500;700&display=swap&subset=vietnamese,latin" rel="stylesheet">
+<style>
+/* ══════════════ TOKENS ══════════════ */
+:root{
+  --bg:#FAF8F4;
+  --bg-2:#F2EEE7;
+  --card:#FFFFFF;
+  --ink:#141310;
+  --ink-2:#3B3730;
+  --mut:#6E675D;
+  --mut-2:#9A9287;
+  --line:#E5DFD5;
+  --line-2:#D2C9BC;
+  --coral:#C4602F;
+  --coral-2:#E0894F;
+  --coral-w:#FBF0E8;
+  --green:#3E6B4E;
+  --green-w:#EDF3EE;
+  --red:#A33A2C;
+  --red-w:#FBEDEA;
+  --blue:#33566E;
+
+  --ser:"Newsreader",Georgia,"Times New Roman",serif;
+  --san:"Be Vietnam Pro",-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;
+  --mono:"JetBrains Mono",ui-monospace,"SFMono-Regular",Menlo,Consolas,monospace;
+
+  --rail:270px;
+  --r:14px;
+  --sh-1:0 1px 2px rgba(20,19,16,.04);
+  --sh-2:0 2px 4px rgba(20,19,16,.03),0 12px 28px -14px rgba(20,19,16,.16);
+  --sh-3:0 4px 8px rgba(20,19,16,.05),0 24px 48px -20px rgba(20,19,16,.26);
+  --ease:cubic-bezier(.22,1,.36,1);
+}
+*{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
+html{-webkit-text-size-adjust:100%}
+body{
+  background:var(--bg);color:var(--ink);
+  font-family:var(--san);font-size:16px;font-weight:400;line-height:1.62;
+  -webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;
+  font-feature-settings:"kern" 1;
+}
+::selection{background:rgba(196,96,47,.16)}
+:focus-visible{outline:2px solid var(--coral);outline-offset:3px;border-radius:4px}
+
+/* subtle paper grain */
+body::before{
+  content:"";position:fixed;inset:0;pointer-events:none;z-index:-1;opacity:.5;
+  background-image:radial-gradient(circle at 1px 1px, rgba(20,19,16,.028) 1px, transparent 0);
+  background-size:22px 22px;
+}
+
+/* ══════════════ SHELL ══════════════ */
+.shell{display:flex;min-height:100vh;position:relative}
+
+/* ---- rail ---- */
+.rail{
+  width:var(--rail);flex:0 0 var(--rail);
+  background:var(--ink);color:#F6F2EC;
+  position:sticky;top:0;height:100vh;
+  display:flex;flex-direction:column;padding-top:28px;
+  overflow:hidden;
+}
+.rail::after{
+  content:"";position:absolute;top:-120px;right:-120px;width:300px;height:300px;
+  background:radial-gradient(circle,rgba(196,96,47,.30),transparent 62%);
+  pointer-events:none;
+}
+.brand{padding:0 26px 24px;border-bottom:1px solid rgba(246,242,236,.09);position:relative;z-index:1}
+.mark{
+  width:38px;height:38px;border-radius:11px;margin-bottom:15px;
+  background:linear-gradient(140deg,var(--coral-2),var(--coral));
+  display:flex;align-items:center;justify-content:center;
+  font-family:var(--ser);font-weight:700;font-size:17px;color:#fff;
+  box-shadow:0 6px 18px -6px rgba(196,96,47,.7);
+}
+.brand h1{font-family:var(--ser);font-size:21px;font-weight:600;line-height:1.22;letter-spacing:-.012em}
+.brand p{font-size:10.5px;color:var(--mut-2);letter-spacing:.19em;text-transform:uppercase;margin-top:9px;font-weight:500}
+
+.navwrap{flex:1;overflow-y:auto;padding:20px 0 26px;position:relative;z-index:1;scrollbar-width:thin}
+.navwrap::-webkit-scrollbar{width:5px}
+.navwrap::-webkit-scrollbar-thumb{background:rgba(246,242,236,.14);border-radius:3px}
+.navlbl{
+  padding:0 26px;margin:18px 0 8px;font-size:9.5px;letter-spacing:.2em;
+  text-transform:uppercase;color:#7B736A;font-weight:600;
+}
+.navlbl:first-child{margin-top:0}
+.nav{list-style:none;padding:0 12px}
+.nav button{
+  width:100%;text-align:left;background:none;border:0;cursor:pointer;
+  font-family:inherit;font-size:14.5px;font-weight:500;color:#B9B1A6;
+  padding:9px 14px;border-radius:9px;
+  display:flex;align-items:center;gap:10px;position:relative;
+  transition:color .2s var(--ease),background .2s var(--ease),transform .2s var(--ease);
+}
+.nav button:hover{color:#fff;background:rgba(246,242,236,.06);transform:translateX(2px)}
+.nav button.on{
+  color:#fff;font-weight:600;
+  background:linear-gradient(90deg,rgba(196,96,47,.26),rgba(196,96,47,.06));
+}
+.nav button.on::before{
+  content:"";position:absolute;left:-12px;top:50%;transform:translateY(-50%);
+  width:3px;height:19px;background:var(--coral-2);border-radius:0 3px 3px 0;
+}
+.nav .dot{width:6px;height:6px;border-radius:50%;flex:0 0 auto;background:#5FA87A;box-shadow:0 0 0 3px rgba(95,168,122,.16)}
+.nav .dot.wait{background:#57504A;box-shadow:none}
+.nav button.soon{color:#7B736A}
+.nav button.soon:hover{color:#9A9287;background:rgba(246,242,236,.035)}
+
+.railfoot{
+  padding:16px 26px 22px;border-top:1px solid rgba(246,242,236,.09);
+  font-size:11.5px;color:#7B736A;line-height:1.6;position:relative;z-index:1;
+}
+
+/* ---- main ---- */
+main{flex:1;min-width:0;position:relative}
+.wrap{max-width:920px;margin:0 auto;padding:0 46px 110px}
+
+.progress{position:fixed;top:0;left:var(--rail);right:0;height:2px;z-index:60;background:transparent}
+.progress i{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--coral),var(--coral-2));transition:width .1s linear}
+
+.topbar{
+  position:sticky;top:0;z-index:45;
+  background:rgba(250,248,244,.82);backdrop-filter:saturate(180%) blur(14px);
+  -webkit-backdrop-filter:saturate(180%) blur(14px);
+  border-bottom:1px solid transparent;transition:border-color .3s var(--ease),box-shadow .3s var(--ease);
+}
+.topbar.stuck{border-bottom-color:var(--line);box-shadow:0 1px 12px rgba(20,19,16,.05)}
+.topbar .in{max-width:920px;margin:0 auto;padding:14px 46px;display:flex;align-items:center;gap:14px}
+.crumb{font-size:11.5px;letter-spacing:.13em;text-transform:uppercase;color:var(--mut);flex:1;min-width:0;
+  overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font-weight:500}
+.crumb b{color:var(--ink);font-weight:700}
+.burger{display:none;background:var(--card);border:1px solid var(--line-2);border-radius:10px;
+  padding:9px 10px;cursor:pointer;line-height:0;box-shadow:var(--sh-1);transition:.2s var(--ease)}
+.burger:active{transform:scale(.94)}
+.burger span{display:block;width:16px;height:1.8px;background:var(--ink);margin:3.6px 0;border-radius:2px;
+  transition:.3s var(--ease)}
+body.menu .burger span:nth-child(1){transform:translateY(5.4px) rotate(45deg)}
+body.menu .burger span:nth-child(2){opacity:0}
+body.menu .burger span:nth-child(3){transform:translateY(-5.4px) rotate(-45deg)}
+/* khi menu mở, nút X nổi lên trên thanh menu để bấm đóng được */
+body.menu .topbar{z-index:80}
+body.menu .burger{
+  position:fixed;top:17px;left:calc(var(--rail) - 64px);z-index:80;
+  background:rgba(246,242,236,.10);border-color:rgba(246,242,236,.24);box-shadow:none;
+}
+body.menu .burger span{background:#F6F2EC}
+
+/* ══════════════ TYPE ══════════════ */
+.hero{padding:66px 0 40px;position:relative}
+.hero::after{content:"";position:absolute;left:0;right:0;bottom:0;height:1px;
+  background:linear-gradient(90deg,var(--line-2),transparent)}
+.kick{font-size:10.5px;letter-spacing:.22em;text-transform:uppercase;color:var(--coral);font-weight:700;
+  display:flex;align-items:center;gap:11px}
+.kick::before{content:"";width:22px;height:1.5px;background:var(--coral);border-radius:2px}
+h2.big{
+  font-family:var(--ser);font-size:clamp(32px,5vw,52px);line-height:1.06;
+  letter-spacing:-.028em;margin:18px 0 0;font-weight:600;
+}
+.hero .sub{font-size:18.5px;color:var(--mut);margin-top:17px;max-width:640px;line-height:1.58;font-weight:300}
+.meta{display:flex;flex-wrap:wrap;gap:9px;margin-top:28px}
+.pill{
+  font-size:12px;letter-spacing:.02em;color:var(--mut);font-weight:500;
+  border:1px solid var(--line-2);border-radius:100px;padding:6px 15px;background:var(--card);
+  box-shadow:var(--sh-1);transition:.24s var(--ease);
+}
+.pill:hover{transform:translateY(-1px);box-shadow:var(--sh-2)}
+.pill.ok{color:var(--green);border-color:rgba(62,107,78,.3);background:var(--green-w)}
+.pill.hot{color:var(--coral);border-color:rgba(196,96,47,.3);background:var(--coral-w)}
+
+section{padding:52px 0;border-bottom:1px solid var(--line)}
+section:last-of-type{border-bottom:0}
+.snum{font-family:var(--mono);font-size:10.5px;letter-spacing:.2em;color:var(--coral);font-weight:700}
+h3{font-family:var(--ser);font-size:30px;line-height:1.2;letter-spacing:-.022em;margin:11px 0 0;font-weight:600}
+h4{font-size:16.5px;font-weight:700;margin:0 0 5px;letter-spacing:-.008em;line-height:1.36}
+.lede{color:var(--mut);margin-top:13px;max-width:660px;font-size:16.5px;font-weight:300;line-height:1.6}
+p{margin-top:14px}
+
+/* ══════════════ CARDS ══════════════ */
+.grid{display:grid;gap:16px;margin-top:26px}
+.g2{grid-template-columns:1fr 1fr}
+.g3{grid-template-columns:repeat(3,1fr)}
+.card{
+  background:var(--card);border:1px solid var(--line);border-radius:var(--r);
+  padding:22px 24px;box-shadow:var(--sh-1);position:relative;overflow:hidden;
+  transition:transform .3s var(--ease),box-shadow .3s var(--ease),border-color .3s var(--ease);
+}
+.card:hover{transform:translateY(-3px);box-shadow:var(--sh-2);border-color:var(--line-2)}
+.card .k{font-family:var(--mono);font-size:10px;letter-spacing:.16em;color:var(--coral);margin-bottom:11px;font-weight:700}
+.card p{font-size:14.8px;color:var(--mut);margin-top:7px;font-weight:300;line-height:1.55}
+.card p b{color:var(--ink-2);font-weight:600}
+.card::before{content:"";position:absolute;left:0;top:0;height:3px;width:100%;transform:scaleX(0);
+  transform-origin:left;transition:transform .4s var(--ease)}
+.card:hover::before{transform:scaleX(1)}
+.card.sig::before{background:linear-gradient(90deg,var(--coral),var(--coral-2))}
+.card.yes::before{background:var(--green)}
+.card.no::before{background:var(--red)}
+.card.sig .k{color:var(--coral)}
+.card.yes .k{color:var(--green)}
+.card.no .k{color:var(--red)}
+
+/* steps */
+.steps{list-style:none;margin-top:26px;counter-reset:st}
+.steps li{position:relative;padding-left:50px;margin-bottom:20px;counter-increment:st}
+.steps li::before{
+  content:counter(st,decimal-leading-zero);position:absolute;left:0;top:0;
+  width:33px;height:33px;border-radius:11px;background:var(--ink);color:#fff;
+  font-family:var(--mono);font-size:11px;font-weight:700;
+  display:flex;align-items:center;justify-content:center;
+  transition:transform .3s var(--ease),background .3s var(--ease);
+}
+.steps li:hover::before{transform:scale(1.08) rotate(-4deg);background:var(--coral)}
+.steps li b{display:block;font-size:16.5px;margin-bottom:3px;font-weight:600}
+.steps li span{color:var(--mut);font-size:15px;font-weight:300}
+.steps.coral li::before{background:linear-gradient(140deg,var(--coral-2),var(--coral))}
+
+/* bullets */
+ul.b{list-style:none;margin-top:15px}
+ul.b li{position:relative;padding-left:21px;margin-bottom:10px;color:var(--ink-2);font-size:15.2px;font-weight:400}
+ul.b li::before{content:"";position:absolute;left:0;top:11px;width:10px;height:2px;background:var(--coral);border-radius:2px}
+ul.b.no li::before{background:var(--red)}
+ul.b.ok li::before{background:var(--green)}
+
+/* ══════════════ PROMPT ══════════════ */
+.prompt{margin-top:24px;border-radius:var(--r);overflow:hidden;box-shadow:var(--sh-2);
+  transition:box-shadow .3s var(--ease)}
+.prompt:hover{box-shadow:var(--sh-3)}
+.prompt .bar{
+  background:#0E0D0B;color:#9A9287;padding:11px 17px;
+  font-family:var(--mono);font-size:10.5px;letter-spacing:.15em;font-weight:500;
+  display:flex;align-items:center;justify-content:space-between;gap:12px;
+}
+.prompt .bar span{text-transform:uppercase;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.copy{
+  background:rgba(246,242,236,.07);border:1px solid rgba(246,242,236,.16);color:#D8D2C8;
+  font-family:var(--mono);font-size:10px;letter-spacing:.11em;font-weight:500;
+  padding:5px 12px;border-radius:7px;cursor:pointer;white-space:nowrap;
+  transition:.24s var(--ease);
+}
+.copy:hover{background:var(--coral);border-color:var(--coral);color:#fff;transform:translateY(-1px)}
+.copy:active{transform:scale(.95)}
+.copy.done{background:var(--green);border-color:var(--green);color:#fff}
+.prompt pre{
+  background:var(--ink);color:#E8E3DA;margin:0;padding:20px 22px;
+  font-family:var(--mono);font-size:12.4px;line-height:1.72;font-weight:400;
+  white-space:pre-wrap;word-break:break-word;
+}
+
+/* ══════════════ NOTE ══════════════ */
+.note{
+  margin-top:24px;border-radius:var(--r);padding:17px 21px 17px 22px;font-size:15.2px;
+  background:var(--coral-w);border:1px solid rgba(196,96,47,.2);position:relative;
+  line-height:1.55;
+}
+.note::before{content:"";position:absolute;left:0;top:14px;bottom:14px;width:3px;
+  background:var(--coral);border-radius:0 3px 3px 0}
+.note b{font-weight:600}
+.note .lbl{font-family:var(--mono);font-size:9.5px;letter-spacing:.17em;color:var(--coral);
+  font-weight:700;display:block;margin-bottom:7px}
+.note.warn{background:var(--red-w);border-color:rgba(163,58,44,.2)}
+.note.warn::before{background:var(--red)}
+.note.warn .lbl{color:var(--red)}
+.note.ok{background:var(--green-w);border-color:rgba(62,107,78,.2)}
+.note.ok::before{background:var(--green)}
+.note.ok .lbl{color:var(--green)}
+
+/* ══════════════ TABLE ══════════════ */
+.tw{margin-top:24px;overflow-x:auto;-webkit-overflow-scrolling:touch;
+  border:1px solid var(--line);border-radius:var(--r);background:var(--card);box-shadow:var(--sh-1)}
+table{width:100%;border-collapse:collapse;font-size:14.8px;min-width:520px}
+th{
+  font-family:var(--mono);font-size:9.5px;letter-spacing:.15em;text-transform:uppercase;
+  color:var(--mut);text-align:left;padding:14px 17px;border-bottom:1px solid var(--line-2);
+  background:var(--bg-2);font-weight:700;white-space:nowrap;
+}
+td{padding:13px 17px;border-bottom:1px solid var(--line);color:var(--ink-2);vertical-align:top;font-weight:300}
+tbody tr{transition:background .2s var(--ease)}
+tr:hover td{background:rgba(196,96,47,.028)}
+tr:last-child td{border-bottom:0}
+td.m{font-family:var(--mono);font-size:13px;color:var(--ink);white-space:nowrap;font-weight:500}
+td.r{text-align:right;font-family:var(--mono);font-size:13px;font-weight:500}
+td b{color:var(--ink);font-weight:600}
+.tag{font-family:var(--mono);font-size:9.5px;letter-spacing:.1em;padding:4px 10px;border-radius:100px;
+  white-space:nowrap;display:inline-block;font-weight:600}
+.tag.g{color:var(--green);background:var(--green-w)}
+.tag.c{color:var(--coral);background:var(--coral-w)}
+.tag.r{color:var(--red);background:var(--red-w)}
+.tag.n{color:var(--mut);background:var(--bg-2)}
+
+/* ══════════════ TIMELINE / FORM / STAT ══════════════ */
+.tl{margin-top:26px;border:1px solid var(--line);border-radius:var(--r);overflow:hidden;
+  background:var(--card);box-shadow:var(--sh-1)}
+.tl .row{display:flex;gap:18px;padding:13px 20px;border-bottom:1px solid var(--line);align-items:baseline;
+  transition:background .2s var(--ease)}
+.tl .row:hover{background:var(--bg-2)}
+.tl .row:last-child{border-bottom:0}
+.tl .row.core{background:var(--coral-w)}
+.tl .t{font-family:var(--mono);font-size:12px;color:var(--mut);flex:0 0 76px;font-weight:600}
+.tl .row.core .t{color:var(--coral)}
+.tl .n{flex:0 0 auto;min-width:184px;font-size:15.2px}
+.tl .row.core .n{font-weight:600}
+.tl .d{color:var(--mut);font-size:14.2px;font-weight:300}
+
+.form{margin-top:24px;background:var(--card);border:1px solid var(--line);border-radius:var(--r);
+  padding:6px 24px;box-shadow:var(--sh-1)}
+.form .ln{display:flex;gap:15px;align-items:baseline;padding:14px 0;border-bottom:1px dashed var(--line);
+  transition:padding-left .24s var(--ease)}
+.form .ln:hover{padding-left:5px}
+.form .ln:last-child{border-bottom:0}
+.form .ln i{font-family:var(--mono);font-style:normal;font-size:11.5px;color:var(--coral);flex:0 0 22px;font-weight:700}
+.form .ln .q{font-size:15.2px;font-weight:400}
+.form .ln .q em{display:block;font-style:normal;color:var(--mut-2);font-size:13.2px;margin-top:3px;font-weight:300}
+
+.stats{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:26px}
+.stat{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:24px;
+  box-shadow:var(--sh-1);transition:transform .3s var(--ease),box-shadow .3s var(--ease)}
+.stat:hover{transform:translateY(-3px);box-shadow:var(--sh-2)}
+.stat .v{font-family:var(--ser);font-size:40px;font-weight:600;line-height:1;letter-spacing:-.028em}
+.stat .v.g{color:var(--green)}
+.stat .v.r{color:var(--red)}
+.stat p{font-size:14.5px;color:var(--mut);margin-top:11px;font-weight:300}
+
+/* ══════════════ HOME / EMPTY ══════════════ */
+.deptgrid{display:grid;grid-template-columns:repeat(2,1fr);gap:16px;margin-top:30px}
+.dcard{
+  background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:24px;
+  text-align:left;cursor:pointer;font-family:inherit;box-shadow:var(--sh-1);
+  transition:transform .3s var(--ease),border-color .3s var(--ease),box-shadow .3s var(--ease);
+  display:block;width:100%;position:relative;overflow:hidden;
+}
+.dcard::after{
+  content:"→";position:absolute;right:24px;bottom:20px;color:var(--coral);font-size:19px;
+  opacity:0;transform:translateX(-8px);transition:.34s var(--ease);
+}
+.dcard:hover{transform:translateY(-4px);border-color:rgba(196,96,47,.4);box-shadow:var(--sh-3)}
+.dcard:hover::after{opacity:1;transform:translateX(0)}
+.dcard.locked{cursor:default;opacity:.58;background:var(--bg-2)}
+.dcard.locked:hover{transform:none;border-color:var(--line);box-shadow:var(--sh-1)}
+.dcard.locked::after{display:none}
+.dcard .hd{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:11px}
+.dcard h4{font-family:var(--ser);font-size:20px;margin:0;font-weight:600;letter-spacing:-.012em}
+.dcard p{font-size:14.5px;color:var(--mut);margin:0;font-weight:300;line-height:1.5}
+
+.empty{text-align:center;padding:100px 20px}
+.empty .ic{
+  width:66px;height:66px;border-radius:20px;background:var(--bg-2);border:1px solid var(--line-2);
+  display:flex;align-items:center;justify-content:center;margin:0 auto 26px;
+  font-family:var(--ser);font-size:24px;color:var(--mut-2);font-weight:600;
+  animation:float 3.4s ease-in-out infinite;
+}
+@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-7px)}}
+.empty h3{margin:0}
+.empty p{max-width:430px;margin:15px auto 0;color:var(--mut);font-weight:300}
+
+/* ══════════════ QR ══════════════ */
+#qrbox{background:#fff;border:1px solid var(--line);border-radius:var(--r);padding:24px;
+  display:inline-block;box-shadow:var(--sh-2);margin-top:24px}
+.urlbox{margin-top:18px;display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+.urlbox input,.urlbox select{
+  font-family:var(--mono);font-size:12.5px;padding:11px 14px;
+  border:1px solid var(--line-2);border-radius:10px;background:var(--card);color:var(--ink);
+  transition:border-color .2s var(--ease),box-shadow .2s var(--ease);
+}
+.urlbox input{flex:1;min-width:230px}
+.urlbox input:focus,.urlbox select:focus{border-color:var(--coral);box-shadow:0 0 0 3px rgba(196,96,47,.12);outline:none}
+.urlbox select{font-family:var(--san);font-size:14.5px;min-width:230px;cursor:pointer}
+.btn{
+  background:var(--ink);color:#fff;border:0;border-radius:10px;padding:11px 19px;
+  font-family:inherit;font-size:14px;font-weight:600;cursor:pointer;
+  transition:.24s var(--ease);box-shadow:var(--sh-1);
+}
+.btn:hover{background:var(--coral);transform:translateY(-1px);box-shadow:var(--sh-2)}
+.btn:active{transform:translateY(0) scale(.98)}
+.btn.ghost{background:var(--card);color:var(--ink);border:1px solid var(--line-2)}
+.btn.ghost:hover{background:var(--bg-2);color:var(--ink);border-color:var(--coral)}
+
+/* ══════════════ ANIMATION ══════════════ */
+@keyframes rise{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:none}}
+.rv{opacity:0}
+.rv.in{animation:rise .62s var(--ease) forwards}
+#view.swap{animation:swapin .38s var(--ease)}
+@keyframes swapin{from{opacity:0;transform:translateY(9px)}to{opacity:1;transform:none}}
+.scrim{opacity:0;pointer-events:none;transition:opacity .28s var(--ease)}
+
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;
+    transition-duration:.01ms!important;scroll-behavior:auto!important}
+  .rv{opacity:1}
+}
+
+/* ══════════════ RESPONSIVE ══════════════ */
+@media (max-width:1040px){
+  .wrap,.topbar .in{padding-left:30px;padding-right:30px}
+}
+@media (max-width:880px){
+  .burger{display:block}
+  .progress{left:0}
+  .rail{position:fixed;left:0;top:0;z-index:70;transform:translateX(-100%);
+    transition:transform .38s var(--ease);box-shadow:0 0 54px rgba(0,0,0,.4)}
+  body.menu .rail{transform:none}
+  .scrim{position:fixed;inset:0;background:rgba(20,19,16,.46);z-index:60;
+    backdrop-filter:blur(2px);-webkit-backdrop-filter:blur(2px)}
+  body.menu .scrim{opacity:1;pointer-events:auto}
+  .g2,.g3,.deptgrid,.stats{grid-template-columns:1fr}
+  .hero{padding:38px 0 30px}
+  section{padding:38px 0}
+  .wrap{padding-bottom:76px}
+  .tl .row{flex-wrap:wrap;gap:5px 16px}
+  .tl .n{min-width:0;flex:1 1 auto}
+  .tl .d{flex:1 1 100%;padding-left:94px}
+  .prompt pre{font-size:11.6px;padding:17px 18px}
+}
+@media (max-width:520px){
+  .wrap,.topbar .in{padding-left:20px;padding-right:20px}
+  .tl .d{padding-left:0}
+  h3{font-size:24px}
+  .steps li{padding-left:44px}
+  .steps li::before{width:29px;height:29px;font-size:10px;border-radius:9px}
+  .stat .v{font-size:34px}
+}
+@media print{
+  .rail,.topbar,.scrim,.copy,.burger,.progress{display:none!important}
+  body{background:#fff}body::before{display:none}
+  .wrap{max-width:none;padding:0}
+  section{break-inside:avoid}
+  .rv{opacity:1;animation:none}
+}
+</style>
+</head>
+<body>
+<div class="progress"><i id="prog"></i></div>
+<div class="scrim" onclick="document.body.classList.remove('menu')"></div>
+<div class="shell">
+
+  <aside class="rail" id="rail">
+    <div class="brand">
+      <div class="mark">PL</div>
+      <h1>Cẩm nang AI<br>nội bộ</h1>
+      <p>ICD Phúc Long</p>
+    </div>
+    <div class="navwrap">
+      <div class="navlbl">Tổng quan</div>
+      <ul class="nav">
+        <li><button data-t="home" class="on">Trang chủ</button></li>
+        <li><button data-t="chung">Luật chung cho mọi bộ phận</button></li>
+      </ul>
+      <div class="navlbl">Đã đào tạo</div>
+      <ul class="nav">
+        <li><button data-t="hcns"><i class="dot"></i>Hành chính · Nhân sự</button></li>
+        <li><button data-t="giaonhan"><i class="dot"></i>Giao nhận</button></li>
+      </ul>
+      <div class="navlbl">Sắp cập nhật</div>
+      <ul class="nav">
+        <li><button data-t="dieudo" class="soon"><i class="dot wait"></i>Điều độ</button></li>
+        <li><button data-t="kythuat" class="soon"><i class="dot wait"></i>Kỹ thuật · Vật tư</button></li>
+        <li><button data-t="trucban" class="soon"><i class="dot wait"></i>Trực ban sản xuất</button></li>
+        <li><button data-t="ketoan" class="soon"><i class="dot wait"></i>Kế toán</button></li>
+      </ul>
+      <div class="navlbl">Tiện ích</div>
+      <ul class="nav">
+        <li><button data-t="qr">Tạo mã QR</button></li>
+      </ul>
+    </div>
+    <div class="railfoot">Mr. Long · M&amp;R Team<br>0367 164 613</div>
+  </aside>
+
+  <main>
+    <div class="topbar" id="topbar">
+      <div class="in">
+        <button class="burger" onclick="document.body.classList.toggle('menu')" aria-label="Menu">
+          <span></span><span></span><span></span>
+        </button>
+        <div class="crumb">Cẩm nang AI nội bộ · <b id="crumb">Trang chủ</b></div>
+      </div>
+    </div>
+    <div class="wrap" id="view"></div>
+  </main>
+</div>
+
+<script>
+const P = (title, body, note) =>
+  `<div class="prompt rv"><div class="bar"><span>${title}</span>
+   <button class="copy" onclick="cp(this)">Sao chép</button></div>
+   <pre>${body.replace(/&/g,'&amp;').replace(/</g,'&lt;')}</pre></div>` +
+  (note ? `<div class="note rv"><span class="lbl">Lưu ý</span>${note}</div>` : '');
+
+const DATA = {
+
+/* ============================== TRANG CHỦ ============================== */
+home: {
+  crumb: "Trang chủ",
+  html: `
+  <div class="hero">
+    <div class="kick">Chương trình ứng dụng AI nội bộ</div>
+    <h2 class="big">Nói cho AI hiểu mình cần gì</h2>
+    <p class="sub">Toàn bộ nội dung đã giảng tại các buổi workshop, để đọc lại bất cứ lúc nào.
+    Chọn bộ phận của mình ở danh sách bên trái.</p>
+    <div class="meta">
+      <span class="pill ok">2 bộ phận đã đào tạo</span>
+      <span class="pill">4 bộ phận sắp cập nhật</span>
+      <span class="pill hot">Miễn phí · ChatGPT hoặc Claude bản Free</span>
+    </div>
+  </div>
+
+  <section>
+    <div class="snum">BẮT ĐẦU TỪ ĐÂY</div>
+    <h3>Chọn bộ phận của mình</h3>
+    <p class="lede">Mỗi bộ phận có nội dung riêng theo đúng công việc đang làm. Nội dung chung
+    thì đọc mục “Luật chung cho mọi bộ phận”.</p>
+    <div class="deptgrid">
+      <button class="dcard" onclick="go('hcns')">
+        <div class="hd"><h4>Hành chính · Nhân sự</h4><span class="tag g">Đã có</span></div>
+        <p>Soạn thông báo, công văn, tin tuyển dụng. Kiểm tra dữ liệu chấm công và lương.</p>
+      </button>
+      <button class="dcard" onclick="go('giaonhan')">
+        <div class="hd"><h4>Giao nhận</h4><span class="tag g">Đã có</span></div>
+        <p>Thống kê tồn bãi, báo cáo hãng tàu, list gửi cảng. Cách nhờ AI làm tool.</p>
+      </button>
+      <button class="dcard locked">
+        <div class="hd"><h4>Điều độ</h4><span class="tag n">Sắp có</span></div>
+        <p>Chờ bộ phận gửi danh sách công việc cần hỗ trợ.</p>
+      </button>
+      <button class="dcard locked">
+        <div class="hd"><h4>Kỹ thuật · Vật tư</h4><span class="tag n">Sắp có</span></div>
+        <p>Chờ bộ phận gửi danh sách công việc cần hỗ trợ.</p>
+      </button>
+      <button class="dcard locked">
+        <div class="hd"><h4>Trực ban sản xuất</h4><span class="tag n">Sắp có</span></div>
+        <p>Chờ bộ phận gửi danh sách công việc cần hỗ trợ.</p>
+      </button>
+      <button class="dcard locked">
+        <div class="hd"><h4>Kế toán</h4><span class="tag n">Sắp có</span></div>
+        <p>Chờ bộ phận gửi danh sách công việc cần hỗ trợ.</p>
+      </button>
+    </div>
+  </section>
+
+  <section>
+    <div class="snum">TRƯỚC KHI ĐỌC</div>
+    <h3>Ba điều đúng cho mọi bộ phận</h3>
+    <div class="grid g3">
+      <div class="card sig"><div class="k">01</div><h4>AI là người phụ việc</h4>
+        <p>Nó làm nhanh, nhưng không chịu trách nhiệm. Người ký tên vẫn là người kiểm.</p></div>
+      <div class="card sig"><div class="k">02</div><h4>Không đưa dữ liệu thật</h4>
+        <p>Chỉ đưa cái khung và quy tắc. Không đưa số liệu, tên người, tên khách hàng.</p></div>
+      <div class="card sig"><div class="k">03</div><h4>Nói rõ thì mới đúng</h4>
+        <p>AI không đọc được suy nghĩ. Mình nói thiếu thì nó đoán, mà đoán thì sai.</p></div>
+    </div>
+    <div class="note"><span class="lbl">Câu dễ nhớ</span>
+      Giao việc cho AI y như giao việc cho một nhân viên mới rất nhanh nhưng chưa biết gì
+      về công ty mình.</div>
+  </section>`
+},
+
+/* ============================== LUẬT CHUNG ============================== */
+chung: {
+  crumb: "Luật chung cho mọi bộ phận",
+  html: `
+  <div class="hero">
+    <div class="kick">Áp dụng cho tất cả</div>
+    <h2 class="big">Luật chung cho mọi bộ phận</h2>
+    <p class="sub">Ba phần dưới đây không phụ thuộc bộ phận nào. Đọc một lần, dùng mãi.</p>
+  </div>
+
+  <section>
+    <div class="snum">PHẦN 01</div>
+    <h3>Cách hiểu đơn giản nhất về AI</h3>
+    <p class="lede">Xem AI như một nhân viên mới rất nhanh, nhưng chưa biết việc nội bộ.</p>
+    <div class="grid g2">
+      <div class="card yes"><div class="k">AI LÀM RẤT NHANH</div>
+        <ul class="b ok">
+          <li>Đọc và hiểu tên cột, tên trường dữ liệu</li>
+          <li>Viết công thức, viết bản nháp văn bản</li>
+          <li>Tạo tool, viết hướng dẫn sử dụng</li>
+          <li>Báo lỗi khi thiếu dữ liệu</li>
+        </ul>
+      </div>
+      <div class="card no"><div class="k">AI KHÔNG TỰ BIẾT</div>
+        <ul class="b no">
+          <li>Quy định nội bộ của công ty</li>
+          <li>Trường hợp ngoại lệ chỉ người trong nghề biết</li>
+          <li>Ô nào trong file mẫu được phép điền</li>
+          <li>Số liệu cuối cùng có đúng hay không</li>
+        </ul>
+      </div>
+    </div>
+    <div class="note"><span class="lbl">Nói ngắn gọn</span>
+      AI là người phụ việc, không phải người chịu trách nhiệm.</div>
+  </section>
+
+  <section>
+    <div class="snum">PHẦN 02</div>
+    <h3>Luật an toàn dữ liệu</h3>
+    <p class="lede">Phần bắt buộc. Không có ngoại lệ, kể cả khi đang gấp.</p>
+    <div class="grid g2">
+      <div class="card no"><div class="k">✕ KHÔNG ĐƯA LÊN AI</div>
+        <ul class="b no">
+          <li>Nguyên file export từ hệ thống</li>
+          <li>Số container, số booking, số bill, số seal</li>
+          <li>Tên khách hàng, tên chủ hàng, email đối tác</li>
+          <li>CCCD, mã số thuế, tài khoản ngân hàng</li>
+          <li>Bảng lương thật, hồ sơ kỷ luật, thông tin sức khỏe</li>
+          <li>Bất kỳ dữ liệu nào truy ngược được tới một cá nhân</li>
+        </ul>
+      </div>
+      <div class="card yes"><div class="k">✓ ĐƯỢC PHÉP ĐƯA</div>
+        <ul class="b ok">
+          <li>Tên cột, tên trường dữ liệu</li>
+          <li>Quy tắc đếm, quy tắc quy đổi</li>
+          <li>Cấu trúc bảng, cấu trúc văn bản</li>
+          <li>Dữ liệu giả lập đã thay đổi hoàn toàn</li>
+        </ul>
+      </div>
+    </div>
+    <div class="note warn"><span class="lbl">Câu nói dễ hiểu</span>
+      “Không đưa ruột file cho AI. Mình chỉ nói cái khung và luật đếm.”</div>
+  </section>
+
+  <section>
+    <div class="snum">PHẦN 03</div>
+    <h3>Ba lớp, đừng trộn vào nhau</h3>
+    <p class="lede">Lỗi phổ biến nhất: nhét tất cả vào một câu rồi mong AI đoán đúng.</p>
+    <div class="grid g3">
+      <div class="card sig"><div class="k">LỚP 1</div><h4>Context công việc</h4>
+        <p>Vai trò, lĩnh vực, loại việc, đối tượng nhận, ranh giới.</p>
+        <p style="color:var(--coral);font-weight:600">Dán 01 lần ở đầu chat</p></div>
+      <div class="card"><div class="k">LỚP 2</div><h4>Nhiệm vụ cụ thể</h4>
+        <p>Việc cần AI làm và thế nào là làm xong.</p>
+        <p style="color:var(--mut);font-weight:600">Mỗi việc một lần</p></div>
+      <div class="card yes"><div class="k">LỚP 3</div><h4>Dữ liệu và quy tắc</h4>
+        <p>Tên cột, mẫu văn bản, quy tắc nghiệp vụ, bảng giả lập.</p>
+        <p style="color:var(--green);font-weight:600">Theo từng trường hợp</p></div>
+    </div>
+    <div class="note"><span class="lbl">Điểm chốt</span>
+      Context giúp AI trả lời đúng nghề — nhưng <b>không thay thế</b> quy tắc nghiệp vụ.
+      Context càng dài không đồng nghĩa càng tốt.</div>
+  </section>
+
+  <section>
+    <div class="snum">PHẦN 04</div>
+    <h3>Khi AI hỏi lại, đừng sợ</h3>
+    <p class="lede">AI hỏi lại là tốt. Nó đang tránh làm sai.</p>
+    <div class="tw"><table>
+      <tr><th>AI hỏi</th><th>Mình trả lời thế nào</th></tr>
+      <tr><td>“Cột nào là hãng tàu?”</td><td>Nói đúng tên cột, ví dụ <b>hangtau</b>.</td></tr>
+      <tr><td>“Mã 4500 tính là gì?”</td><td>4500 tính vào nhóm <b>40HC</b>.</td></tr>
+      <tr><td>“Số liệu này lấy ở đâu?”</td><td>Nói rõ tên file và tên sheet.</td></tr>
+      <tr><td>“Kết quả điền vào ô nào?”</td><td>Mở file mẫu, bấm vào ô, nhìn tên ô ở góc trên bên trái.</td></tr>
+    </table></div>
+    <div class="note ok"><span class="lbl">Nhớ câu này</span>
+      “AI hỏi lại không phải vì AI dở. Nó hỏi vì nó không được phép đoán.”</div>
+  </section>`
+},
+
+/* ============================== HCNS ============================== */
+hcns: {
+  crumb: "Hành chính · Nhân sự",
+  html: `
+  <div class="hero">
+    <div class="kick">Workshop đã tổ chức · 24/07/2026</div>
+    <h2 class="big">Hành chính · Nhân sự</h2>
+    <p class="sub">Context trước — Prompt sau. Bộ prompt và dữ liệu thực hành đầy đủ.</p>
+    <div class="meta">
+      <span class="pill">60 phút</span>
+      <span class="pill">Mr. Long — M&amp;R Team</span>
+      <span class="pill hot">ChatGPT Free hoặc Claude Free</span>
+    </div>
+  </div>
+
+  <section>
+    <div class="snum">MỤC TIÊU</div>
+    <h3>Kết thúc buổi học, bạn có gì?</h3>
+    <p class="lede">Không phải “biết về AI” — mà là bộ công cụ dùng lại được từ tuần sau.</p>
+    <ol class="steps">
+      <li><b>Context Card của riêng bạn</b><span>Khối bối cảnh ngắn, dán một lần đầu chat, dùng xuyên suốt.</span></li>
+      <li><b>Phân biệt được 3 lớp</b><span>Context công việc — Prompt nhiệm vụ — Dữ liệu đầu vào.</span></li>
+      <li><b>Hai nghiệp vụ đã thực hành</b><span>Soạn thông báo (A1) và tuyển dụng (B1) — làm thật, hai lượt.</span></li>
+      <li><b>Biết rõ giới hạn</b><span>Chấm công, lương, thưởng, TNCN: AI làm được gì, tuyệt đối không làm gì.</span></li>
+      <li><b>Nộp tối thiểu 3 thứ</b><span>01 Context Card · 01 prompt hoàn chỉnh · 01 đầu ra đã tự kiểm tra.</span></li>
+    </ol>
+  </section>
+
+  <section>
+    <div class="snum">TRƯỚC KHI GÕ CHỮ ĐẦU TIÊN</div>
+    <h3>Quy tắc bắt buộc của HCNS</h3>
+    <div class="grid g2">
+      <div class="card no"><div class="k">✕ KHÔNG NHẬP DỮ LIỆU THẬT</div>
+        <ul class="b no">
+          <li>CCCD, mã số thuế, tài khoản ngân hàng</li>
+          <li>Bảng lương thật, mức lương cá nhân</li>
+          <li>Hồ sơ kỷ luật, thông tin sức khỏe</li>
+          <li>Dữ liệu có thể truy ngược đến một cá nhân</li>
+        </ul>
+        <p>Dữ liệu trong lớp phải giả lập hoàn toàn.</p>
+      </div>
+      <div class="card sig"><div class="k">! AI KHÔNG ĐƯỢC TỰ TẠO</div>
+        <ul class="b">
+          <li>Số văn bản, căn cứ pháp lý, người ký</li>
+          <li>Mức lương, chính sách phúc lợi</li>
+          <li>Công thức lương, quy tắc OT, biểu thuế</li>
+          <li>Bất kỳ thông tin nào chưa được cung cấp</li>
+        </ul>
+        <p>Thiếu dữ liệu → AI phải ghi <b>[CHƯA CÓ DỮ LIỆU]</b> hoặc <b>[CẦN HCNS XÁC NHẬN]</b>.</p>
+      </div>
+    </div>
+    <div class="note warn"><span class="lbl">Nguyên tắc gốc</span>
+      Kết quả AI chỉ là <b>BẢN NHÁP</b>. Người phụ trách HCNS kiểm tra và chịu trách nhiệm nội dung cuối.</div>
+  </section>
+
+  <section>
+    <div class="snum">PHẠM VI</div>
+    <h3>Năm vấn đề bộ phận đã gửi</h3>
+    <p class="lede">Ưu tiên xử lý đầy đủ 02 vấn đề AI Free đáp ứng tốt. Ba vấn đề dữ liệu chỉ mở khi còn thời gian.</p>
+    <div class="tw"><table>
+      <tr><th>#</th><th>Vấn đề</th><th>Mức đáp ứng</th><th>Phạm vi</th></tr>
+      <tr><td class="m">1</td><td><b>Soạn thảo công văn, quyết định</b></td><td><span class="tag g">Tốt nhất</span></td><td>Demo + thực hành + kiểm tra đầu ra</td></tr>
+      <tr><td class="m">2</td><td><b>Tuyển dụng</b></td><td><span class="tag g">Tốt</span></td><td>Demo + thực hành + kiểm tra đầu ra</td></tr>
+      <tr><td class="m">3</td><td>Kiểm tra dữ liệu chấm công</td><td><span class="tag c">Có điều kiện</span></td><td>Chỉ phát hiện bất thường; không chốt công/OT</td></tr>
+      <tr><td class="m">4</td><td>Tổng hợp lương 12 tháng trước TNCN</td><td><span class="tag c">Có điều kiện</span></td><td>Chỉ kiểm tra thiếu / trùng / bất thường</td></tr>
+      <tr><td class="m">5</td><td>Đối chiếu tính lương, thưởng</td><td><span class="tag c">Có điều kiện</span></td><td>Chỉ đối chiếu mẫu nhỏ theo công thức được cấp</td></tr>
+    </table></div>
+  </section>
+
+  <section>
+    <div class="snum">BƯỚC 1</div>
+    <h3>Context Card — dán một lần đầu chat</h3>
+    <p class="lede">Chỉ mô tả môi trường làm việc và ranh giới. Không chứa dữ liệu cá nhân hoặc vụ việc.</p>
+    ${P("PROMPT 0 — CONTEXT CARD HCNS",
+`CONTEXT CÔNG VIỆC
+
+1. Vai trò
+Tôi làm [CHỨC DANH/VAI TRÒ] thuộc bộ phận Hành chính – Nhân sự.
+
+2. Môi trường làm việc
+Doanh nghiệp hoạt động trong lĩnh vực cảng, depot và logistics.
+
+3. Phạm vi công việc
+Tôi thường thực hiện: soạn thông báo/công văn, tuyển dụng, chấm công
+và hỗ trợ tổng hợp dữ liệu nhân sự.
+
+4. Đối tượng nhận kết quả
+Ban lãnh đạo, trưởng bộ phận, CBNV, khách hàng, hãng tàu, đại lý,
+đơn vị vận tải, đối tác hoặc ứng viên.
+
+5. Yêu cầu đầu ra
+- Viết bằng tiếng Việt, rõ ràng, trang trọng, đúng đối tượng.
+- Trình bày theo cấu trúc văn bản hành chính khi được yêu cầu.
+- Luôn kèm danh sách thông tin còn thiếu.
+
+6. Nguyên tắc kiểm soát
+- Kết quả của bạn là BẢN NHÁP, không phải văn bản chính thức.
+- Không tự tạo số văn bản, căn cứ pháp lý, người ký, mức lương,
+  chính sách hoặc bất kỳ số liệu nào tôi chưa cung cấp.
+- Thiếu thông tin thì ghi [CHƯA CÓ DỮ LIỆU] hoặc [CẦN HCNS XÁC NHẬN].
+- Tôi không cung cấp dữ liệu cá nhân thật.`)}
+  </section>
+
+  <section>
+    <div class="snum">BƯỚC 2</div>
+    <h3>Bài so sánh nhanh</h3>
+    <p class="lede">Chạy cùng một yêu cầu hai lần, đánh dấu điểm khác biệt.</p>
+    ${P("LẦN 1 — CHƯA CÓ CONTEXT",
+`Viết một thông báo tuyển dụng nhân viên giao nhận.`)}
+    ${P("LẦN 2 — SAU KHI DÁN CONTEXT CARD",
+`Dựa trên context công việc đã cung cấp, hãy soạn thông báo tuyển dụng
+nhân viên giao nhận. Trước khi soạn, hãy hỏi tôi tối đa 07 câu để thu
+thập dữ liệu còn thiếu. Không được tự suy đoán mức lương, ca làm việc
+hoặc yêu cầu kinh nghiệm.`)}
+    <div class="tw"><table>
+      <tr><th>Tiêu chí so sánh</th><th>Không context</th><th>Có context</th></tr>
+      <tr><td>Văn phong phù hợp doanh nghiệp</td><td></td><td></td></tr>
+      <tr><td>Đúng đối tượng nhận</td><td></td><td></td></tr>
+      <tr><td>Có tự suy đoán thông tin</td><td></td><td></td></tr>
+      <tr><td>Có hỏi lại dữ liệu thiếu</td><td></td><td></td></tr>
+      <tr><td>Số nội dung phải sửa</td><td></td><td></td></tr>
+    </table></div>
+  </section>
+
+  <section>
+    <div class="snum">BƯỚC 3</div>
+    <h3>Khung prompt nhiệm vụ 06 phần</h3>
+    <p class="lede">Đã có Context ở đầu chat — mỗi nhiệm vụ chỉ cần khung này.</p>
+    <div class="tw"><table>
+      <tr><th>#</th><th>Phần</th><th>Trả lời câu gì</th><th>Ví dụ</th></tr>
+      <tr><td class="m">1</td><td><b>Vai trò</b></td><td>AI hỗ trợ ở vai trò nào?</td><td>“Bạn là trợ lý soạn thảo văn bản HCNS.”</td></tr>
+      <tr><td class="m">2</td><td><b>Nhiệm vụ</b></td><td>Cần tạo, phân tích hay kiểm tra gì?</td><td>“Soạn bản dự thảo thông báo…”</td></tr>
+      <tr><td class="m">3</td><td><b>Đầu vào</b></td><td>Thông tin, mẫu, bảng dữ liệu nào?</td><td>Dán mẫu, tiêu chí, dữ liệu giả lập.</td></tr>
+      <tr><td class="m">4</td><td><b>Quy tắc</b></td><td>Được và không được làm gì?</td><td>Không tự tạo số, căn cứ, mức lương.</td></tr>
+      <tr><td class="m">5</td><td><b>Đầu ra</b></td><td>Trả về dưới dạng nào?</td><td>Bản nháp + bảng dữ liệu thiếu + checklist.</td></tr>
+      <tr><td class="m">6</td><td><b>Kiểm tra</b></td><td>AI phải tự rà soát gì?</td><td>Chỉ ra phần suy đoán và nội dung cần xác nhận.</td></tr>
+    </table></div>
+    <div class="note"><span class="lbl">Điểm chốt</span>
+      Phần 6 là thứ tách buổi học này khỏi một buổi giới thiệu công cụ thông thường.</div>
+  </section>
+
+  <section>
+    <div class="snum">PHẦN A · BÀI CHÍNH</div>
+    <h3>Soạn thông báo cảng / depot</h3>
+    <p class="lede">Cấu trúc lặp lại qua các thông báo chính thức. AI không được tự tạo căn cứ hoặc file đính kèm.</p>
+    <ol class="steps coral">
+      <li><b>Tiêu đề</b><span>THÔNG BÁO — V/v [nội dung chính].</span></li>
+      <li><b>Kính gửi</b><span>Khách hàng, hãng tàu, đại lý, đơn vị vận tải, chủ hàng hoặc đối tác bị ảnh hưởng.</span></li>
+      <li><b>Bối cảnh / mục đích</b><span>Vì sao phát hành thông báo và mục tiêu cần đạt.</span></li>
+      <li><b>Phạm vi áp dụng</b><span>Địa điểm, dịch vụ, nhóm đối tượng, lô hàng hoặc bộ phận liên quan.</span></li>
+      <li><b>Nội dung thực hiện</b><span>Lịch làm hàng, thay đổi dịch vụ, mức phí, kênh hỗ trợ hoặc yêu cầu phối hợp.</span></li>
+      <li><b>Hiệu lực</b><span>Ngày giờ bắt đầu, thời gian kết thúc hoặc điều kiện thay đổi.</span></li>
+    </ol>
+    ${P("PROMPT A1 — SOẠN THÔNG BÁO",
+`Dựa trên Context công việc đã cung cấp, bạn là trợ lý soạn thảo văn bản
+HCNS cho doanh nghiệp cảng/depot.
+
+NHIỆM VỤ
+Soạn DỰ THẢO THÔNG BÁO về kế hoạch làm hàng và tiếp nhận dịch vụ trong
+dịp nghỉ lễ, gửi khách hàng, hãng tàu, đại lý, đơn vị giao nhận và đơn
+vị vận tải.
+
+DỮ LIỆU ĐẦU VÀO
+[DÁN TOÀN BỘ BẢNG DỮ LIỆU TẠI ĐÂY]
+
+QUY TẮC
+1. Trước khi soạn, liệt kê tối đa 07 câu hỏi về dữ liệu còn thiếu hoặc
+   mâu thuẫn.
+2. Không tự tạo số văn bản, ngày ban hành, người ký, chức danh người ký,
+   nơi nhận, căn cứ pháp lý hoặc lịch hoạt động chưa được cung cấp.
+3. Chỗ nào thiếu thì ghi [CHƯA CÓ DỮ LIỆU], không tự điền cho đủ.
+4. Văn phong trang trọng, ngắn gọn, đúng đối tượng nhận.
+
+ĐẦU RA
+A. Bản dự thảo thông báo hoàn chỉnh.
+B. Bảng liệt kê thông tin còn thiếu, kèm bộ phận cần xác nhận.
+C. Checklist việc người phụ trách phải kiểm trước khi phát hành.`,
+"Dữ liệu thực hành trong buổi học là <b>giả lập hoàn toàn</b> — CÔNG TY CẢNG MINH HỌA, không phải ICD Phúc Long.")}
+
+    ${P("PROMPT A1-QA — RÀ SOÁT LƯỢT 2 (quan trọng hơn lượt 1)",
+`Hãy kiểm tra lại bản dự thảo vừa tạo như một người kiểm soát văn bản
+trước phát hành.
+
+Không viết lại ngay. Trước tiên trả về bảng gồm:
+1. Vị trí / nội dung.
+2. Loại lỗi: tự suy đoán | thiếu dữ liệu | mâu thuẫn thời gian |
+   không rõ trách nhiệm | sai đối tượng | văn phong chưa phù hợp.
+3. Mức độ: Cao | Trung bình | Thấp.
+4. Bộ phận cần xác nhận: HCNS | Vận hành | Thương vụ | Kế toán |
+   Ban lãnh đạo | Khác.
+5. Đề xuất sửa.
+
+KIỂM TRA BẮT BUỘC
+- Có tự tạo số văn bản, người ký, căn cứ, thời gian hoặc dịch vụ không?
+- Lịch làm việc giữa các nhóm dịch vụ có gây hiểu nhầm không?
+- Có nội dung nào đang quyết định thay tôi không?`,
+"Không có lượt 2, bạn chỉ đang <b>tin</b> AI chứ chưa <b>kiểm</b> AI.")}
+  </section>
+
+  <section>
+    <div class="snum">PHẦN B · BÀI CHÍNH</div>
+    <h3>Tin tuyển dụng logistics</h3>
+    <p class="lede">Cấu trúc tốt cho AI vì từng trường dữ liệu có thể kiểm tra độc lập.</p>
+    <ol class="steps coral">
+      <li><b>Thông tin nhanh</b><span>Tên vị trí, số lượng, địa điểm, ca làm việc, kinh nghiệm, hạn nộp.</span></li>
+      <li><b>Mô tả công việc</b><span>Nhóm nhiệm vụ chính, phối hợp nội bộ, báo cáo, an toàn.</span></li>
+      <li><b>Yêu cầu bắt buộc</b><span>Bằng cấp, chứng chỉ, kinh nghiệm, kỹ năng, điều kiện làm việc.</span></li>
+      <li><b>Điều kiện ưu tiên</b><span>Tách riêng khỏi yêu cầu bắt buộc.</span></li>
+      <li><b>Quyền lợi được công bố</b><span>Chỉ nêu mức lương / phúc lợi khi HCNS đã cung cấp và cho phép công bố.</span></li>
+      <li><b>Cách ứng tuyển</b><span>Email hoặc form, tiêu đề hồ sơ, hồ sơ cần nộp, hạn nộp.</span></li>
+      <li><b>Lưu ý</b><span>Không thu phí; cảnh báo kênh giả mạo nếu cần.</span></li>
+    </ol>
+    ${P("PROMPT B1 — TUYỂN DỤNG",
+`Dựa trên Context công việc đã cung cấp, bạn là trợ lý tuyển dụng cho
+doanh nghiệp cảng/depot/logistics.
+
+NHIỆM VỤ
+Từ dữ liệu tuyển dụng bên dưới, tạo bộ nội dung tuyển dụng cho vị trí
+Nhân viên Giao nhận hiện trường.
+
+DỮ LIỆU ĐẦU VÀO
+[DÁN TOÀN BỘ BẢNG DỮ LIỆU TẠI ĐÂY]
+
+QUY TẮC
+1. Trước khi viết, hỏi tối đa 07 câu về thông tin còn thiếu có ảnh hưởng
+   trực tiếp đến việc đăng tuyển.
+2. Không tự tạo mức lương, phụ cấp, thưởng, phúc lợi, lịch ca, thời gian
+   thử việc, người liên hệ hoặc chính sách công ty.
+3. Không viết "lương hấp dẫn", "phúc lợi cạnh tranh" hoặc các cụm chung
+   chung không có dữ liệu thật đứng sau.
+4. Không đưa tiêu chí tuổi, giới tính, hôn nhân, quê quán hoặc ngoại hình
+   nếu HCNS chưa yêu cầu.
+
+ĐẦU RA
+A. Bản tin tuyển dụng đầy đủ.
+B. Bản rút gọn để đăng Zalo hoặc Facebook.
+C. Bảng thông tin còn thiếu cần HCNS bổ sung.`)}
+
+    ${P("PROMPT B1-QA — RÀ SOÁT TRƯỚC KHI ĐĂNG",
+`Hãy kiểm tra bộ nội dung tuyển dụng vừa tạo như một người kiểm soát
+trước khi đăng.
+
+Trả về bảng gồm:
+- Vị trí nội dung.
+- Vấn đề phát hiện.
+- Nhóm vấn đề: tự tạo thông tin | yêu cầu không liên quan |
+  phân biệt đối xử | mô tả mơ hồ | trùng lặp | thiếu dữ liệu |
+  sai kênh truyền thông.
+- Mức độ rủi ro.
+- Đề xuất sửa.
+
+KIỂM TRA BẮT BUỘC
+1. Có mức lương, phúc lợi, lịch ca, thử việc hoặc chứng chỉ nào bị tự
+   tạo không?
+2. Yêu cầu bắt buộc và điều kiện ưu tiên đã tách rõ chưa?
+3. Có tiêu chí tuổi, giới tính, hôn nhân, quê quán hoặc ngoại hình
+   không cần thiết không?`)}
+  </section>
+
+  <section>
+    <div class="snum">GIỚI HẠN</div>
+    <h3>Ba việc AI chỉ được hỗ trợ, không được quyết</h3>
+    <div class="grid g3">
+      <div class="card no"><div class="k">CHẤM CÔNG</div><h4>Chỉ phát hiện ngoại lệ</h4>
+        <p>Tìm ca dự kiến sai, thiếu lượt chấm, đi trễ về sớm. <b>Không</b> xác nhận công hay OT.</p></div>
+      <div class="card no"><div class="k">LƯƠNG 12 THÁNG</div><h4>Chỉ tìm lỗi dữ liệu</h4>
+        <p>Thiếu tháng, trùng dòng, ô trống, biến động cần xác minh. <b>Không</b> tính quyết toán thuế.</p></div>
+      <div class="card no"><div class="k">ĐỐI CHIẾU LƯƠNG</div><h4>Chỉ tính lại mẫu nhỏ</h4>
+        <p>Tính lại vài dòng theo công thức được cấp, chỉ ra chênh lệch. <b>Không</b> phê duyệt bảng lương.</p></div>
+    </div>
+    <div class="note warn"><span class="lbl">Cổng quyết định</span>
+      Bất kỳ nội dung nào liên quan quyết định nhân sự, pháp lý, công, lương và thuế
+      đều phải có người phụ trách xác nhận. AI hỗ trợ kiểm tra, <b>không phê duyệt nghiệp vụ</b>.</div>
+  </section>
+
+  <section>
+    <div class="snum">TỰ KIỂM</div>
+    <h3>Phiếu kết quả</h3>
+    <div class="form">
+      <div class="ln"><i>01</i><div class="q">Context Card đã sử dụng</div></div>
+      <div class="ln"><i>02</i><div class="q">Bài thực hành: A1 / B1 / Khác</div></div>
+      <div class="ln"><i>03</i><div class="q">Prompt lượt 1</div></div>
+      <div class="ln"><i>04</i><div class="q">Một thông tin AI đã hỏi lại</div></div>
+      <div class="ln"><i>05</i><div class="q">Một lỗi hoặc điểm AI suy đoán</div></div>
+      <div class="ln"><i>06</i><div class="q">Prompt kiểm tra lượt 2</div></div>
+      <div class="ln"><i>07</i><div class="q">Phần đã sửa bằng nghiệp vụ của người dùng</div></div>
+      <div class="ln"><i>08</i><div class="q">Kết quả: dùng được / một phần / không dùng được</div></div>
+      <div class="ln"><i>09</i><div class="q">Lý do</div></div>
+      <div class="ln"><i>10</i><div class="q">Prompt tái sử dụng cho công việc nào tuần tới?</div></div>
+    </div>
+    <div class="note ok"><span class="lbl">Tiêu chí đạt</span>
+      Context Card ngắn, không chứa dữ liệu nhạy cảm · Prompt đủ nhiệm vụ, đầu vào, quy tắc,
+      đầu ra và bước kiểm tra · AI không tự tạo thông tin nghiệp vụ quan trọng ·
+      Chỉ ra được ít nhất 01 điểm cần người xác nhận.</div>
+  </section>`
+},
+
+/* ============================== GIAO NHẬN ============================== */
+giaonhan: {
+  crumb: "Giao nhận",
+  html: `
+  <div class="hero">
+    <div class="kick">Workshop đã tổ chức</div>
+    <h2 class="big">Giao nhận</h2>
+    <p class="sub">Nói cho AI hiểu bạn cần gì — và đầu ra nằm ở ô nào.</p>
+    <div class="meta">
+      <span class="pill">60 phút</span>
+      <span class="pill">Mr. Long — M&amp;R Team</span>
+      <span class="pill hot">ChatGPT Free hoặc Claude Free</span>
+    </div>
+  </div>
+
+  <section>
+    <div class="snum">MỞ ĐẦU</div>
+    <h3>Chỉ cần nhớ 3 việc</h3>
+    <p class="lede">Không cần biết code, không cần nhớ thuật ngữ. Cứ làm đúng 3 việc này là được.</p>
+    <div class="grid g3">
+      <div class="card yes"><div class="k">01</div><h4>Nói rõ file nào</h4>
+        <p>Ví dụ: file tồn tên <b>STOCK ALL.xls</b>, file booking tên <b>crkh.xls</b>.</p></div>
+      <div class="card sig"><div class="k">02</div><h4>Nói rõ cách đếm</h4>
+        <p>Ví dụ: hãng COS, loại A, kích cỡ 4500 thì đếm bao nhiêu container.</p></div>
+      <div class="card"><div class="k">03</div><h4>Nói rõ điền vào đâu</h4>
+        <p>Ví dụ: kết quả điền vào sheet <b>STOCK</b>, ô <b>F4</b>.</p></div>
+    </div>
+    <div class="note"><span class="lbl">Câu chốt</span>
+      AI không đọc được suy nghĩ của mình. Mình nói rõ thì nó mới làm đúng.</div>
+  </section>
+
+  <section>
+    <div class="snum">BẰNG CHỨNG</div>
+    <h3>Bảng đang gõ tay — máy đếm ra đúng như vậy</h3>
+    <p class="lede">Chạy thử trên đúng file STOCK ALL bộ phận đã gửi, rồi so với bảng đã gõ tay.</p>
+    <div class="tw"><table>
+      <tr><th>Hãng · Loại D</th><th>Máy đếm</th><th>Bản gõ tay</th><th>Chênh lệch</th></tr>
+      <tr><td class="m">CMA · 40HC</td><td class="r">40</td><td class="r"><b>39</b></td><td>đúng bằng CMA Offhire 0/1</td></tr>
+      <tr><td class="m">MSC · 40HC</td><td class="r">10</td><td class="r"><b>9</b></td><td>đúng bằng MSC Offhire 0/1</td></tr>
+      <tr><td class="m">ZIM · 40HC</td><td class="r">28</td><td class="r"><b>27</b></td><td>đúng bằng ZIM Offhire 1/1</td></tr>
+      <tr><td class="m">COS · 40HC</td><td class="r">25</td><td class="r"><b>19</b></td><td>đúng bằng COS Offhire 0/6</td></tr>
+      <tr><td class="m">ONE · 40RF</td><td class="r">68</td><td class="r"><b>53</b></td><td>đúng bằng ONE Offhire 0/15</td></tr>
+    </table></div>
+    <div class="note ok"><span class="lbl">Đọc bảng này thế nào</span>
+      Loại A, B, C khớp tuyệt đối, không lệch một dòng nào. Chỗ lệch duy nhất là Offhire —
+      mà Offhire thì máy không biết, chỉ người biết.</div>
+  </section>
+
+  <section>
+    <div class="snum">RANH GIỚI</div>
+    <h3>Chỗ tool không tự làm được</h3>
+    <div class="stats">
+      <div class="stat"><div class="v g">71 container</div>
+        <p>Máy tự nhận ra, vì trong cột ghi chú có chữ <b>OFFHIRE</b>.</p></div>
+      <div class="stat"><div class="v r">13 container</div>
+        <p>Không có dấu vết nào trong file. <b>Người phải nhập tay.</b></p></div>
+    </div>
+    <div class="note"><span class="lbl">Nói với lớp</span>
+      Đây không phải lỗi của tool, cũng không phải lỗi của dữ liệu.
+      <b>Tool tốt không phải tool làm hết. Là tool nói rõ nó dừng ở đâu.</b></div>
+  </section>
+
+  <section>
+    <div class="snum">BƯỚC 1</div>
+    <h3>Lời tự giới thiệu — dán một lần khi mở chat</h3>
+    <p class="lede">Giống lần đầu gặp nhân viên mới: nói mình là ai, làm gì, cần gì. Nói một lần thôi.</p>
+    ${P("LỜI TỰ GIỚI THIỆU — GIAO NHẬN",
+`Tôi làm ở bộ phận Giao nhận của một depot container. Việc của tôi là lấy
+số liệu từ file xuất ra từ hệ thống, rồi điền vào file mẫu báo cáo có sẵn.
+
+Khi làm việc với tôi, xin theo mấy nguyên tắc sau:
+- Trả lời bằng tiếng Việt, ngắn gọn, chỉ rõ từng bước bấm.
+- Không tự đặt ra quy tắc, mã hay con số nào mà tôi chưa nói.
+- Thiếu thông tin thì hỏi lại tôi, đừng tự đoán cho đủ.
+- Nói rõ chỗ nào chắc chắn, chỗ nào chưa chắc.
+- Tôi chỉ đưa tên cột và quy tắc, không đưa dữ liệu thật.`,
+"Dán một lần lúc mở chat. Cả buổi sau đó khỏi phải nhắc lại mình là ai.")}
+  </section>
+
+  <section>
+    <div class="snum">BƯỚC 2</div>
+    <h3>Sáu câu phải nói với AI</h3>
+    <p class="lede">Đây là form chung. Dùng cho mọi báo cáo, không chỉ tồn bãi.</p>
+    <div class="tw"><table>
+      <tr><th>#</th><th>Câu hỏi</th><th>Phải nói gì</th></tr>
+      <tr><td class="m">1</td><td><b>Tôi có file nào?</b></td><td>Tên file, tên sheet, cột cần dùng.</td></tr>
+      <tr><td class="m">2</td><td><b>Cột nào dùng để lọc?</b></td><td>Nói bằng tên cột, đừng nói “cột C”.</td></tr>
+      <tr><td class="m">3</td><td><b>Quy tắc đếm là gì?</b></td><td>Cái gì được tính, cái gì bị loại.</td></tr>
+      <tr><td class="m">4</td><td><b>Kết quả điền vào đâu?</b></td><td>Sheet nào, ô nào, dòng nào.</td></tr>
+      <tr><td class="m">5</td><td><b>Máy chạy ra sao?</b></td><td>Windows mấy, Excel bản nào.</td></tr>
+      <tr><td class="m">6</td><td><b>Đúng là đúng thế nào?</b></td><td>Kiểm bằng cách nào, sai thì báo ra sao.</td></tr>
+    </table></div>
+    <div class="note"><span class="lbl">Điểm chốt</span>
+      Không cần nói hay. Chỉ cần trả lời đủ 6 câu.</div>
+  </section>
+
+  <section>
+    <div class="snum">TỪNG CÂU MỘT</div>
+    <h3>Câu 1 — Tôi có file nào?</h3>
+    <p class="lede">Đừng nói “file báo cáo”. Hãy nói đúng tên file và nó dùng để làm gì.</p>
+    <div class="grid g2">
+      <div class="card no"><div class="k">NÓI CHƯA RÕ</div>
+        <p>“Tôi có file tồn bãi, giúp tôi làm báo cáo.”</p></div>
+      <div class="card yes"><div class="k">NÓI RÕ HƠN</div>
+        <p>Tôi có 3 file:<br>
+        • <b>STOCK ALL.xls</b> — file tồn<br>
+        • <b>crkh.xls</b> — file booking<br>
+        • <b>THONG KE TON BAI.xls</b> — file mẫu cần điền</p></div>
+    </div>
+    <div class="note"><span class="lbl">Ví von</span>
+      Tên file giống như địa chỉ nhà. Không có địa chỉ thì AI đi nhầm nhà.</div>
+
+    <h3 style="margin-top:40px">Câu 2 — Cột nào dùng để lọc?</h3>
+    <p class="lede">AI không biết “cột C”, AI chỉ hiểu tên cột. Nói bằng tên cột là an toàn nhất.</p>
+    <div class="tw"><table>
+      <tr><th>Tên cột</th><th>Dùng để làm gì</th></tr>
+      <tr><td class="m">hangtau</td><td>Lọc hãng tàu: COS, MSC, HPL, ZIM, ONE, CMA</td></tr>
+      <tr><td class="m">tinhtrang</td><td>Lọc loại A, B, C, D</td></tr>
+      <tr><td class="m">kichco</td><td>Lọc mã kích cỡ: 2200, 4500, 4530…</td></tr>
+      <tr><td class="m">ghichu</td><td>Dùng để tìm chữ OFFHIRE</td></tr>
+      <tr><td class="m">socont</td><td>Dùng để đếm container, tránh đếm trùng</td></tr>
+    </table></div>
+
+    <h3 style="margin-top:40px">Câu 3 — Quy tắc đếm là gì?</h3>
+    <p class="lede">Đây là phần người làm nghề phải nói. AI không tự biết.</p>
+    <ul class="b">
+      <li><b>Loại A / B / C</b> — lọc hãng + lọc tình trạng + lọc kích cỡ, rồi đếm container.</li>
+      <li><b>Loại D</b> — lọc D xong mới trừ Offhire. Không trừ vào A, B, C.</li>
+      <li><b>Booking</b> — lấy từ crkh.xls, chỉ lấy tình trạng A và B.</li>
+      <li><b>Trùng</b> — cùng số container thì chỉ đếm một lần.</li>
+      <li><b>Mã kích cỡ</b> — 2200 là 20DC · 4500 là 40HC · 4530 là 40RF · 9500 là 45.</li>
+    </ul>
+    <div class="note warn"><span class="lbl">Câu nói mẫu</span>
+      “Tool không được tự quyết. Thiếu quy tắc thì hỏi lại tôi hoặc báo CHƯA CÓ DỮ LIỆU.”</div>
+
+    <h3 style="margin-top:40px">Câu 4 — Kết quả điền vào đâu?</h3>
+    <p class="lede">Nếu không nói ô nào, AI chỉ trả về bảng rời. Bảng đó vẫn phải gõ tay lại.</p>
+    <div class="card sig" style="margin-top:20px">
+      <div class="k">VÍ DỤ CỤ THỂ — COS / LOẠI A / 40HC</div>
+      <p><b>Nguồn:</b> STOCK ALL.xls</p>
+      <p><b>Điều kiện:</b> hangtau = COS · tinhtrang = A · kichco = 4500</p>
+      <p><b>Kết quả:</b> điền vào ô <b>F4</b></p>
+    </div>
+    <div class="note ok"><span class="lbl">Không nhớ được thì làm sao</span>
+      Mở Excel, bấm vào ô, nhìn tên ô ở góc trên bên trái. Ví dụ F4. Chép đúng chữ đó.</div>
+
+    <h3 style="margin-top:40px">Câu 5 — Máy chạy ra sao?</h3>
+    <p class="lede">Nói trước môi trường máy để AI không làm thứ máy cũ không chạy được.</p>
+    <div class="grid g2">
+      <div class="card"><div class="k">MÁY GIAO NHẬN</div>
+        <ul class="b"><li>Windows 7</li><li>Python 3.8 đã cài</li><li>Excel bản cũ</li>
+        <li>File dùng định dạng .xls</li><li>Người dùng bấm file .bat để chạy</li></ul></div>
+      <div class="card no"><div class="k">YÊU CẦU AI</div>
+        <ul class="b no"><li>Không dùng PowerShell</li><li>Không dùng file .xlsx</li>
+        <li>Không bắt cài thêm phần mềm</li><li>Không ghi đè file gốc</li>
+        <li>Xuất file kết quả mới</li></ul></div>
+    </div>
+
+    <h3 style="margin-top:40px">Câu 6 — Thế nào là đúng?</h3>
+    <p class="lede">Không có tiêu chí kiểm thì AI nói xong, nhưng mình không biết có dùng được không.</p>
+    <ol class="steps">
+      <li><b>Chạy thử không ghi file</b><span>Chế độ DRY RUN phải báo PASS.</span></li>
+      <li><b>Không có mã kích cỡ lạ</b><span>Nếu có mã lạ thì tool phải báo, không tự xếp bừa.</span></li>
+      <li><b>Không đếm trùng container</b><span>Trùng thì chỉ tính một.</span></li>
+      <li><b>Tổng TEU khớp</b><span>BOOKING, AV, OOS phải đúng.</span></li>
+      <li><b>Có file log</b><span>Sai ở đâu thì mở log ra xem.</span></li>
+    </ol>
+    <div class="note"><span class="lbl">Câu chốt</span>
+      Đừng hỏi AI “làm xong chưa”. Hãy bắt AI tạo cách kiểm để mình tự biết xong hay chưa.</div>
+  </section>
+
+  <section>
+    <div class="snum">MẪU DÙNG NGAY</div>
+    <h3>Câu nhờ AI làm tool</h3>
+    ${P("MẪU NHỜ LÀM TOOL — DÁN SAU LỜI TỰ GIỚI THIỆU",
+`Tôi cần tạo một tool chạy trên Windows 7 bằng Python 3.8.
+
+Tool đọc file STOCK ALL.xls và crkh.xls, sau đó điền kết quả vào file mẫu
+THONG KE TON BAI.xls.
+
+Không dùng PowerShell. Không dùng xlsx. Không ghi đè file gốc.
+
+Trước khi làm, hãy hỏi lại tôi các điểm còn thiếu về:
+1. tên file và tên sheet
+2. tên cột cần dùng
+3. quy tắc đếm
+4. quy tắc loại trừ
+5. ô cần điền
+6. cách kiểm tra đúng sai
+
+Thiếu thông tin thì hỏi lại, không tự đoán.`)}
+
+    ${P("MẪU NHỜ AI CHẤM LẠI TRƯỚC KHI BẮT TAY LÀM",
+`Đây là phần tôi trả lời cho 6 câu. Đừng làm gì cả, chỉ chấm giúp tôi.
+
+[DÁN PHẦN TRẢ LỜI 6 CÂU]
+
+Hãy trả lời:
+1. Câu nào tôi trả lời chưa đủ. Thiếu chính xác cái gì.
+2. Chỗ nào tôi viết mà có thể hiểu theo hai cách.
+3. Nếu bây giờ bạn bắt tay làm theo bản này, bạn sẽ phải tự quyết định
+   thay tôi những gì? Liệt kê hết.
+4. Ba việc tôi nên đi hỏi người khác trong công ty trước khi quay lại.
+
+Không đề xuất giải pháp. Không viết code. Chỉ chấm.`,
+"<b>Câu số 3 là câu quan trọng nhất.</b> Nó lôi ra hết những chỗ AI sắp tự quyết định thay mình, trước khi nó kịp làm.")}
+  </section>
+
+  <section>
+    <div class="snum">YÊU CẦU ĐẦU RA</div>
+    <h3>Bắt AI trả về đủ 5 thứ</h3>
+    <p class="lede">Đừng chỉ nói “làm tool”. Phải nói tool trả về những gì.</p>
+    <ol class="steps coral">
+      <li><b>Một thư mục hoàn chỉnh</b><span>Có INPUT, TEMPLATE, OUTPUT, LOG.</span></li>
+      <li><b>Một file .bat để bấm chạy</b><span>Người dùng không cần gõ lệnh.</span></li>
+      <li><b>Một file hướng dẫn 1 trang</b><span>Bước 1, bước 2, bước 3.</span></li>
+      <li><b>Một file log</b><span>Lỗi thì biết lỗi ở đâu.</span></li>
+      <li><b>Một chế độ chạy thử</b><span>Kiểm logic trước khi xuất file thật.</span></li>
+    </ol>
+  </section>
+
+  <section>
+    <div class="snum">SỬ DỤNG</div>
+    <h3>Cách chạy tool thống kê tồn bãi</h3>
+    <ol class="steps">
+      <li><b>Mở thư mục tool</b></li>
+      <li><b>Chép file mới vào thư mục INPUT</b><span>STOCK ALL.xls và crkh.xls.</span></li>
+      <li><b>Bấm đúp KIEM_TRA_DRY_RUN.bat</b><span>Đây là bước chạy thử, không ghi file nào.</span></li>
+      <li><b>Nếu báo PASS thì bấm đúp CAP_NHAT_THONG_KE.bat</b></li>
+      <li><b>Mở thư mục OUTPUT, lấy file kết quả mới nhất</b></li>
+      <li><b>Mở file ra, đối chiếu bằng mắt trước khi gửi đi</b></li>
+    </ol>
+    <div class="note warn"><span class="lbl">Chưa kiểm chứng</span>
+      Tool hiện mới chạy thử đạt, <b>chưa chạy chính thức trên máy của bộ phận</b>.
+      Trước khi dùng cho báo cáo thật, phải chạy trên đúng một máy Giao nhận một lần
+      và đối chiếu kết quả với bản làm tay.</div>
+  </section>
+
+  <section>
+    <div class="snum">TRÁNH LỖI</div>
+    <h3>Ba lỗi thường gặp khi nhờ AI làm tool</h3>
+    <div class="grid g3">
+      <div class="card no"><div class="k">LỖI 01</div><h4>Nói thiếu ô đầu ra</h4>
+        <p>Kết quả ra bảng rời, cuối cùng vẫn phải gõ tay.</p></div>
+      <div class="card no"><div class="k">LỖI 02</div><h4>Để AI tự đoán quy tắc</h4>
+        <p>Mã lạ bị xếp nhầm, báo cáo nhìn vẫn hợp lý nhưng sai.</p></div>
+      <div class="card no"><div class="k">LỖI 03</div><h4>Không yêu cầu log và chạy thử</h4>
+        <p>Lỗi thì không biết sai ở file, ở dữ liệu hay ở tool.</p></div>
+    </div>
+    <div class="note warn"><span class="lbl">Câu chốt</span>
+      “AI làm nhanh, nhưng nếu mình giao thiếu thì nó sai nhanh hơn.”</div>
+  </section>
+
+  <section>
+    <div class="snum">BÀI TỰ LÀM</div>
+    <h3>Chọn một báo cáo đang làm, điền 6 dòng</h3>
+    <div class="form">
+      <div class="ln"><i>1</i><div class="q">File tôi dùng là<em>Tên file và tên sheet</em></div></div>
+      <div class="ln"><i>2</i><div class="q">Những cột tôi cần dùng là<em>Nói bằng tên cột</em></div></div>
+      <div class="ln"><i>3</i><div class="q">Quy tắc đếm / lọc là<em>Cái gì tính, cái gì loại</em></div></div>
+      <div class="ln"><i>4</i><div class="q">Kết quả cần điền vào sheet / ô<em>Ví dụ: sheet STOCK, ô F4</em></div></div>
+      <div class="ln"><i>5</i><div class="q">Máy chạy là<em>Windows mấy, Excel bản nào</em></div></div>
+      <div class="ln"><i>6</i><div class="q">Tôi biết đúng khi<em>Kiểm bằng cách nào</em></div></div>
+    </div>
+    <div class="note"><span class="lbl">Không trả lời được thì sao</span>
+      Ghi <b>CHƯA BIẾT</b>. Đó cũng là một câu trả lời hợp lệ, và là việc phải đi hỏi.</div>
+  </section>
+
+  <section>
+    <div class="snum">BA VIỆC CÒN LẠI</div>
+    <h3>Làm y hệt cách này</h3>
+    <div class="tw"><table>
+      <tr><th>Báo cáo</th><th>Câu khó nhất</th><th>Phải đi hỏi trước khi viết</th></tr>
+      <tr><td><b>Báo cáo MSC</b></td><td><span class="tag c">Câu 4</span></td>
+        <td>File mẫu của hãng có sheet <b>Definitions</b> ghi rõ ô nào mình nhập, ô nào máy tự tính.
+        Đọc sheet đó trước. Tuyệt đối không điền vào ô tự tính.</td></tr>
+      <tr><td><b>Tổng hợp sản lượng xuất</b></td><td><span class="tag c">Câu 3</span></td>
+        <td>Trạng thái đã / chưa thanh lý lấy ở đâu ra? Không có cột nào chứa nó thì phải chừa
+        chỗ cho người nhập, giống cách xử lý Offhire.</td></tr>
+      <tr><td><b>List chi tiết gửi cảng</b></td><td><span class="tag c">Câu 3</span></td>
+        <td>Chốt bảng đổi trạng thái sang FEL và bảng đổi mã kích cỡ sang ISO.
+        Cột Ghi chú là phần người điền, AI không được tự tạo.</td></tr>
+    </table></div>
+    <div class="note ok"><span class="lbl">Nhớ cuối cùng</span>
+      AI không khó. Khó là nói cho rõ việc mình đang làm.
+      <b>Tên file · Tên cột · Quy tắc đếm · Ô cần điền · Máy chạy · Cách kiểm.</b></div>
+  </section>`
+},
+
+/* ===================== BỘ PHẬN CHƯA CÓ NỘI DUNG ===================== */
+dieudo:  { crumb:"Điều độ",             html: soon("Điều độ","ĐĐ") },
+kythuat: { crumb:"Kỹ thuật · Vật tư",   html: soon("Kỹ thuật · Vật tư","KT") },
+trucban: { crumb:"Trực ban sản xuất",   html: soon("Trực ban sản xuất","TB") },
+ketoan:  { crumb:"Kế toán",             html: soon("Kế toán","KT") },
+
+/* ============================== QR ============================== */
+qr: {
+  crumb: "Tạo mã QR",
+  html: `
+  <div class="hero">
+    <div class="kick">Tiện ích</div>
+    <h2 class="big">Tạo mã QR</h2>
+    <p class="sub">Tạo mã QR cho từng bộ phận. Ai quét sẽ vào thẳng trang của bộ phận đó.</p>
+  </div>
+  <section>
+    <div class="snum">BƯỚC 1</div>
+    <h3>Chọn trang cần tạo mã</h3>
+    <div class="urlbox">
+      <select id="qrsel" class="btn ghost" style="padding:10px 13px;min-width:220px;font-weight:400">
+        <option value="">Trang chủ (tất cả bộ phận)</option>
+        <option value="chung">Luật chung cho mọi bộ phận</option>
+        <option value="hcns">Hành chính · Nhân sự</option>
+        <option value="giaonhan">Giao nhận</option>
+        <option value="dieudo">Điều độ</option>
+        <option value="kythuat">Kỹ thuật · Vật tư</option>
+        <option value="trucban">Trực ban sản xuất</option>
+        <option value="ketoan">Kế toán</option>
+      </select>
+    </div>
+    <div class="urlbox">
+      <input id="qrurl" readonly>
+      <button class="btn ghost" onclick="cpUrl()">Sao chép link</button>
+    </div>
+    <div id="qrbox"></div>
+    <div class="urlbox">
+      <button class="btn" onclick="dlQR()">Tải mã QR về máy</button>
+      <button class="btn ghost" onclick="window.print()">In trang này</button>
+    </div>
+    <div class="note"><span class="lbl">Cách dùng</span>
+      Tải mã về, dán lên bảng tin của bộ phận hoặc chèn vào email. Người quét bằng camera
+      điện thoại là vào thẳng trang của bộ phận mình.</div>
+  </section>
+  <section>
+    <div class="snum">BƯỚC 2</div>
+    <h3>Nếu mã QR không hiện</h3>
+    <p class="lede">Trang tạo mã cần mạng để tải thư viện. Không có mạng thì dùng cách khác:</p>
+    <ul class="b">
+      <li>Sao chép link ở trên, dán vào một trang tạo QR bất kỳ.</li>
+      <li>Hoặc gửi thẳng link qua Zalo cho bộ phận.</li>
+    </ul>
+  </section>`
+}
+};
+
+
+function soon(name, ini){
+  return `<div class="empty">
+    <div class="ic">${ini}</div>
+    <h3>${name}</h3>
+    <p>Bộ phận này chưa được đào tạo. Nội dung sẽ được cập nhật sau khi bộ phận
+    gửi danh sách công việc cần hỗ trợ.</p>
+    <p style="margin-top:26px"><button class="btn ghost" onclick="go('chung')">Đọc luật chung trong lúc chờ</button></p>
+  </div>`;
+}
+
+/* ================= ĐIỀU HƯỚNG ================= */
+const view = document.getElementById('view');
+const crumb = document.getElementById('crumb');
+const topbar = document.getElementById('topbar');
+const prog = document.getElementById('prog');
+let io = null;
+
+function reveal(){
+  if(io) io.disconnect();
+  const els = view.querySelectorAll('.rv');
+  if(!('IntersectionObserver' in window)){ els.forEach(e=>e.classList.add('in')); return; }
+  io = new IntersectionObserver((ents)=>{
+    ents.forEach(e=>{
+      if(e.isIntersecting){
+        const d = Number(e.target.dataset.d || 0);
+        e.target.style.animationDelay = (d*70)+'ms';
+        e.target.classList.add('in');
+        io.unobserve(e.target);
+      }
+    });
+  },{rootMargin:'160px 0px 0px 0px',threshold:0});
+  els.forEach(e=>io.observe(e));
+  // lưới an toàn: nếu vì lý do nào đó hiệu ứng không chạy, vẫn hiện nội dung
+  clearTimeout(window.__rvSafe);
+  window.__rvSafe = setTimeout(()=>{ view.querySelectorAll('.rv').forEach(e=>e.classList.add('in')); }, 2200);
+}
+
+function markRv(){
+  view.querySelectorAll('section').forEach(sec=>{
+    let i = 0;
+    [...sec.children].forEach(ch=>{
+      if(!ch.classList.contains('rv')) ch.classList.add('rv');
+      ch.dataset.d = Math.min(i++, 6);
+    });
+  });
+  const hero = view.querySelector('.hero');
+  if(hero) [...hero.children].forEach((ch,i)=>{ ch.classList.add('rv'); ch.dataset.d = i; });
+}
+
+function go(key, push=true){
+  const d = DATA[key] || DATA.home;
+  view.innerHTML = d.html;
+  markRv();
+  view.classList.remove('swap'); void view.offsetWidth; view.classList.add('swap');
+  crumb.textContent = d.crumb;
+  document.title = d.crumb + ' — Cẩm nang AI nội bộ · ICD Phúc Long';
+  document.querySelectorAll('.nav button').forEach(b=>b.classList.toggle('on', b.dataset.t===key));
+  document.body.classList.remove('menu');
+  window.scrollTo(0,0);
+  if(push && location.hash.slice(1)!==key) location.hash = key;
+  reveal();
+  if(key==='qr') initQR();
+}
+
+document.querySelectorAll('.nav button').forEach(b=>{
+  b.addEventListener('click', ()=>go(b.dataset.t));
+});
+window.addEventListener('hashchange', ()=>go(location.hash.slice(1)||'home', false));
+
+/* scroll: progress bar + sticky topbar shadow */
+let ticking=false;
+window.addEventListener('scroll', ()=>{
+  if(ticking) return;
+  ticking=true;
+  requestAnimationFrame(()=>{
+    const y=window.scrollY;
+    const max=document.documentElement.scrollHeight-window.innerHeight;
+    prog.style.width = (max>0 ? (y/max*100) : 0) + '%';
+    topbar.classList.toggle('stuck', y>8);
+    ticking=false;
+  });
+},{passive:true});
+
+/* ================= SAO CHÉP ================= */
+function cp(btn){
+  const t = btn.closest('.prompt').querySelector('pre').innerText;
+  const done = ()=>{ btn.textContent='Đã chép ✓'; btn.classList.add('done');
+    setTimeout(()=>{btn.textContent='Sao chép'; btn.classList.remove('done');},1800); };
+  if(navigator.clipboard && window.isSecureContext){
+    navigator.clipboard.writeText(t).then(done).catch(()=>fallback(t,done));
+  } else fallback(t,done);
+}
+function fallback(t,done){
+  const a=document.createElement('textarea');
+  a.value=t; a.style.position='fixed'; a.style.opacity='0';
+  document.body.appendChild(a); a.select();
+  try{document.execCommand('copy'); done();}catch(e){}
+  document.body.removeChild(a);
+}
+
+/* ================= QR ================= */
+let qrLibLoading=false;
+function baseUrl(){ return location.origin + location.pathname; }
+function currentQrUrl(){
+  const s=document.getElementById('qrsel');
+  const v=s?s.value:'';
+  return baseUrl() + (v?('#'+v):'');
+}
+function drawQR(){
+  const box=document.getElementById('qrbox');
+  const inp=document.getElementById('qrurl');
+  if(!box) return;
+  inp.value = currentQrUrl();
+  box.innerHTML='';
+  if(typeof QRCode==='undefined'){
+    box.innerHTML='<p style="color:var(--mut);font-size:14px;margin:0;max-width:230px">'+
+      'Chưa tải được thư viện tạo mã. Kiểm tra kết nối mạng rồi tải lại trang, '+
+      'hoặc sao chép link ở trên rồi dùng trang tạo QR khác.</p>';
+    return;
+  }
+  new QRCode(box,{text:currentQrUrl(),width:230,height:230,
+    colorDark:'#141310',colorLight:'#FFFFFF',correctLevel:QRCode.CorrectLevel.M});
+}
+function initQR(){
+  const s=document.getElementById('qrsel');
+  if(s) s.addEventListener('change',drawQR);
+  if(typeof QRCode!=='undefined'){ drawQR(); return; }
+  if(qrLibLoading){ drawQR(); return; }
+  qrLibLoading=true;
+  const sc=document.createElement('script');
+  sc.src='https://cdn.jsdelivr.net/npm/qrcodejs@1.0.0/qrcode.min.js';
+  sc.onload=drawQR; sc.onerror=drawQR;
+  document.head.appendChild(sc);
+  drawQR();
+}
+function cpUrl(){
+  const i=document.getElementById('qrurl');
+  i.select(); i.setSelectionRange(0,99999);
+  if(navigator.clipboard&&window.isSecureContext) navigator.clipboard.writeText(i.value);
+  else document.execCommand('copy');
+}
+function dlQR(){
+  const box=document.getElementById('qrbox');
+  const cv=box.querySelector('canvas'); const im=box.querySelector('img');
+  const s=document.getElementById('qrsel');
+  const name='QR_'+((s&&s.value)||'trangchu')+'.png';
+  let data=null;
+  if(cv) data=cv.toDataURL('image/png');
+  else if(im) data=im.src;
+  if(!data){ alert('Chưa có mã QR để tải. Kiểm tra kết nối mạng rồi thử lại.'); return; }
+  const a=document.createElement('a'); a.href=data; a.download=name; a.click();
+}
+
+go(location.hash.slice(1)||'home', false);
+</script>
+</body>
+</html>

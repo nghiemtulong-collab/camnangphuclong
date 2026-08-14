@@ -594,6 +594,15 @@ body[data-dept="ketoan"] #view.swap .motion-stage{animation-name:enterAccStage}
 
 
 
+
+/* Department page hero: content only. Visual identity is handled by the full-screen loader transition. */
+.dept-page .hero.dept-hero{grid-template-columns:1fr;min-height:auto;max-width:820px}
+.dept-page .hero.dept-hero>.motion-stage{display:none!important}
+.dept-loader__label{display:none!important}
+.dept-loader__panel::after{content:"";display:block;width:min(58vw,360px);height:3px;border-radius:999px;background:rgba(255,255,255,.18);overflow:hidden;box-shadow:inset 0 0 0 1px rgba(255,255,255,.05)}
+.dept-loader__panel::before{content:"";position:absolute;left:50%;bottom:-3px;width:min(58vw,360px);height:3px;border-radius:999px;background:linear-gradient(90deg,transparent,#fff,transparent);transform:translateX(-50%) scaleX(.08);transform-origin:left center;z-index:3;animation:loaderProgress 1.05s var(--ease) forwards}
+@keyframes loaderProgress{from{transform:translateX(-50%) scaleX(.08);opacity:.4}to{transform:translateX(-50%) scaleX(1);opacity:1}}
+
 /* Full-screen department loading transitions */
 body.loading{overflow:hidden}
 .dept-loader{position:fixed;inset:0;z-index:120;display:grid;place-items:center;pointer-events:none;opacity:0;transition:opacity .28s var(--ease)}
@@ -1014,7 +1023,7 @@ hcns: {
       <div class="hero-copy">
         <div class="kick">Workshop ứng dụng AI · HC-NS · sáng thứ 6 24/07/2026</div>
         <h2 class="big">Hành chính · Nhân sự</h2>
-        <p class="sub">Đặc trưng của HC-NS trong workshop là tuyển dụng, soạn thông báo và chuẩn hóa nội dung nội bộ; nhưng dữ liệu nhân sự, lương thưởng và xác nhận cuối vẫn do người phụ trách giữ.</p>
+        
         <div class="meta"><span class="pill">60 phút</span><span class="pill ok">Tài liệu ôn bài sau workshop</span><span class="pill hot">Context trước · Prompt sau</span></div>
         <div class="memory-strip">
           <div><b>Context Card</b><span>Dán một lần để AI biết mình là ai và đang làm việc gì.</span></div>
@@ -1322,7 +1331,7 @@ giaonhan: {
       <div class="hero-copy">
         <div class="kick">Workshop ứng dụng AI · Giao nhận · sáng Thứ Bảy, ngày 01/08</div>
         <h2 class="big">Giao nhận</h2>
-        <p class="sub">Đặc trưng của Giao nhận trong workshop là tương tác khách hàng và bám đúng thủ tục: gọi đúng file, đúng rule, đúng form và đúng ô cần điền. Thiếu một trong bốn thứ đó là AI bắt đầu làm sai.</p>
+        
         <div class="meta"><span class="pill">60 phút</span><span class="pill ok">Tài liệu ôn bài sau workshop</span><span class="pill hot">File · Rule · Output Cell</span></div>
         <div class="memory-strip">
           <div><b>File nào?</b><span>STOCK ALL, booking, form hãng tàu — phải gọi đúng tên.</span></div>
@@ -1624,7 +1633,7 @@ dieudo: {
       <div class="hero-copy">
         <div class="kick">Workshop ứng dụng AI · Điều độ · sáng Thứ Tư, ngày 05/08</div>
         <h2 class="big">Điều độ</h2>
-        <p class="sub">Đặc trưng của Điều độ trong workshop là ba mảng đảo chuyển, làm rỗng và làm hàng; AI hỗ trợ viết, soát và dựng báo cáo, còn số liệu và kết luận cuối vẫn do người phụ trách giữ.</p>
+        
         <div class="meta"><span class="pill">60 phút</span><span class="pill ok">Tài liệu sau workshop</span><span class="pill hot">ChatGPT Free hoặc Claude Free</span></div>
       </div>
       <div class="motion-stage ops-stage" aria-hidden="true">
@@ -1733,7 +1742,7 @@ kythuat: {
   crumb: "Kỹ thuật · Vật tư",
   html: `
   <div class="dept-page tech-page">
-    <div class="hero dept-hero"><div class="hero-copy"><div class="kick">Workshop ứng dụng AI · Kỹ thuật – Vật tư · sáng Thứ Tư, ngày 12/08</div><h2 class="big">Kỹ thuật · Vật tư</h2><p class="sub">Đặc trưng của KTVT trong workshop là quản lý xe nâng, tra tài liệu kỹ thuật và điều phối kế hoạch bảo dưỡng phương tiện; mọi thông số và quyết định sửa chữa vẫn phải quay về manual hoặc xác nhận kỹ thuật.</p><div class="meta"><span class="pill">08h00–09h00</span><span class="pill ok">Tài liệu sau workshop</span><span class="pill hot">An toàn kỹ thuật là chốt cuối</span></div></div>
+    <div class="hero dept-hero"><div class="hero-copy"><div class="kick">Workshop ứng dụng AI · Kỹ thuật – Vật tư · sáng Thứ Tư, ngày 12/08</div><h2 class="big">Kỹ thuật · Vật tư</h2><div class="meta"><span class="pill">08h00–09h00</span><span class="pill ok">Tài liệu sau workshop</span><span class="pill hot">An toàn kỹ thuật là chốt cuối</span></div></div>
       <div class="motion-stage tech-stage" aria-hidden="true"><div class="stage-cap">Forklift fleet / PM coordination</div><div class="blue-grid"></div><span class="ring a"></span><span class="ring b"></span><span class="core"></span><span class="scan"></span><span class="stage-chip c1">XE NÂNG</span><span class="stage-chip c2">LỊCH PM</span></div></div>
 
     <section><div class="snum">01 · PHẠM VI</div><h3>Ba vấn đề bộ phận gửi lên</h3><div class="grid g3"><div class="card sig"><div class="k">BÀI 1 · LÀM NGAY</div><h4>So sánh 3 báo giá</h4><p>Quy cùng mặt bằng rồi mới nói về giá.</p></div><div class="card sig"><div class="k">BÀI 2 · THU HẸP PHẠM VI</div><h4>Trợ lý chẩn đoán từ tài liệu</h4><p>AI dẫn tới đúng trang, không chẩn đoán thay kỹ thuật viên.</p></div><div class="card"><div class="k">VẤN ĐỀ 3</div><h4>Safety Stock / Reorder Point</h4><p>Chưa đủ dữ liệu lịch sử cho nhóm hỏng bất chợt.</p></div></div>
@@ -1838,7 +1847,7 @@ trucban: {
       <div class="hero-copy">
         <div class="kick">Workshop ứng dụng AI · Trực ban sản xuất · sáng Thứ Sáu, ngày 07/08</div>
         <h2 class="big">Trực ban sản xuất</h2>
-        <p class="sub">Không chỉ nhờ AI viết. Buổi này tập trung vào cách dùng AI để làm ra công cụ nhỏ phục vụ công việc hằng ngày — bắt đầu từ đầu ra, test trên máy thật và sửa qua nhiều vòng.</p>
+        
         <div class="meta"><span class="pill">60 phút</span><span class="pill ok">Tài liệu ôn bài sau workshop</span><span class="pill hot">Build → Test → Fix</span></div>
         <div class="memory-strip">
           <div><b>Vẽ đầu ra trước</b><span>Chưa mô tả được file kết quả thì chưa bắt đầu xây.</span></div>
@@ -2057,7 +2066,7 @@ ketoan: {
   crumb: "Kế toán",
   html: `
   <div class="dept-page acc-page">
-    <div class="hero dept-hero"><div class="hero-copy"><div class="kick">Workshop ứng dụng AI · Kế toán · sáng Thứ Sáu, ngày 14/08</div><h2 class="big">Kế toán</h2><p class="sub">Đặc trưng của Kế toán trong workshop là hợp đồng, chứng từ và thanh toán; mọi kết luận phải quay lại được văn bản gốc. Nếu file không nói, AI phải được phép trả lời “KHÔNG CÓ” thay vì tự lấp bằng trí nhớ.</p><div class="meta"><span class="pill">60 phút</span><span class="pill ok">Tài liệu sau workshop</span><span class="pill hot">Căn cứ trước · kết luận sau</span></div></div>
+    <div class="hero dept-hero"><div class="hero-copy"><div class="kick">Workshop ứng dụng AI · Kế toán · sáng Thứ Sáu, ngày 14/08</div><h2 class="big">Kế toán</h2><div class="meta"><span class="pill">60 phút</span><span class="pill ok">Tài liệu sau workshop</span><span class="pill hot">Căn cứ trước · kết luận sau</span></div></div>
       <div class="motion-stage acc-stage" aria-hidden="true"><div class="stage-cap">Contract / document / payment check</div><span class="paper p1"></span><span class="paper p2"></span><span class="paper p3"></span><span class="audit-scan"></span><span class="cite c1">HĐ</span><span class="cite c2">CTỪ</span><span class="cite c3">TT</span></div></div>
 
     <section><div class="snum">01 · CHỈ CẦN NHỚ 3 VIỆC</div><h3>AI là người phụ việc, không phải người chịu trách nhiệm</h3><div class="grid g3"><div class="card sig"><div class="k">01</div><h4>Đưa văn bản mình đã có</h4><p>Tự tải bản gốc về máy trước. Đừng hỏi “quy định mới nhất là gì”.</p></div><div class="card sig"><div class="k">02</div><h4>Bắt AI chỉ căn cứ</h4><p>Mỗi câu phải kèm Điều, Khoản, trang. Không có thì ghi KHÔNG CÓ.</p></div><div class="card no"><div class="k">03</div><h4>Không đưa dữ liệu NLĐ</h4><p>Tên, CCCD, địa chỉ, điện thoại, lương — không đưa lên AI công cộng.</p></div></div></section>
@@ -2220,12 +2229,12 @@ const deptLoader = document.getElementById('deptLoader');
 const loaderStage = document.getElementById('loaderStage');
 const loaderLabel = document.getElementById('loaderLabel');
 const LOADER_MAP = {
-  hcns: {label:'HC-NS · Đang mở nội dung tuyển dụng', cls:'loader-hcns', html:`<div class="loader-title">Recruitment loading</div><div class="loader-glow"></div><div class="job-card"></div><div class="megaphone"></div><div class="cv-card"></div><span class="loader-chip c1">ĐĂNG TUYỂN</span><span class="loader-chip c2">CV</span><span class="loader-chip c3">PHỎNG VẤN</span>`},
-  giaonhan: {label:'Giao nhận · Đang mở quy trình khách hàng', cls:'loader-giaonhan', html:`<div class="loader-title">Customer / procedure loading</div><div class="loader-glow"></div><div class="bubble"></div><div class="clipboard"></div><div class="stamp">DONE</div><span class="loader-chip c1">KHÁCH</span><span class="loader-chip c2">THỦ TỤC</span><span class="loader-chip c3">PHẢN HỒI</span>`},
-  dieudo: {label:'Điều độ · Đang mở luồng container hàng', cls:'loader-dieudo', html:`<div class="loader-title">Container movement loading</div><div class="loader-glow"></div><div class="track"></div><div class="container-box"></div><div class="crane"></div><div class="hook"></div><span class="loader-chip c1">ĐẢO CHUYỂN</span><span class="loader-chip c2">LÀM RỖNG</span><span class="loader-chip c3">LÀM HÀNG</span>`},
-  trucban: {label:'TBSX · Đang mở điều phối toàn tuyến', cls:'loader-trucban', html:`<div class="loader-title">Production coordination loading</div><div class="loader-glow"></div><div class="barge"></div><div class="tower"></div><div class="pulse"></div><div class="wave"></div><span class="loader-chip c1">TOÀN TUYẾN</span><span class="loader-chip c2">SẢN XUẤT</span><span class="loader-chip c3">XUẤT NHẬP XÀ LAN</span>`},
-  kythuat: {label:'KTVT · Đang mở bảo dưỡng reachstacker', cls:'loader-kythuat', html:`<div class="loader-title">Forklift PM loading</div><div class="loader-glow"></div><div class="scan-line"></div><div class="reach"><div class="body"></div><div class="cab"></div><div class="arm"></div><div class="wheel w1"></div><div class="wheel w2"></div></div><div class="wrench"></div><span class="loader-chip c1">XE NÂNG</span><span class="loader-chip c2">BẢO DƯỠNG</span><span class="loader-chip c3">PM</span>`},
-  ketoan: {label:'Kế toán · Đang mở hợp đồng và chứng từ', cls:'loader-ketoan', html:`<div class="loader-title">Contract / payment loading</div><div class="loader-glow"></div><div class="sheet s1"></div><div class="sheet s2"></div><div class="coin">₫</div><div class="check"></div><span class="loader-chip c1">HỢP ĐỒNG</span><span class="loader-chip c2">CHỨNG TỪ</span><span class="loader-chip c3">THANH TOÁN</span>`}
+  hcns: {label:'Đang mở Hành chính · Nhân sự', cls:'loader-hcns', html:`<div class="loader-glow"></div><div class="job-card"></div><div class="megaphone"></div><div class="cv-card"></div>`},
+  giaonhan: {label:'Đang mở Giao nhận', cls:'loader-giaonhan', html:`<div class="loader-glow"></div><div class="bubble"></div><div class="clipboard"></div><div class="stamp">DONE</div>`},
+  dieudo: {label:'Đang mở Điều độ', cls:'loader-dieudo', html:`<div class="loader-glow"></div><div class="track"></div><div class="container-box"></div><div class="crane"></div><div class="hook"></div>`},
+  trucban: {label:'Đang mở Trực ban sản xuất', cls:'loader-trucban', html:`<div class="loader-glow"></div><div class="barge"></div><div class="tower"></div><div class="pulse"></div><div class="wave"></div>`},
+  kythuat: {label:'Đang mở Kỹ thuật · Vật tư', cls:'loader-kythuat', html:`<div class="loader-glow"></div><div class="scan-line"></div><div class="reach"><div class="body"></div><div class="cab"></div><div class="arm"></div><div class="wheel w1"></div><div class="wheel w2"></div></div><div class="wrench"></div>`},
+  ketoan: {label:'Đang mở Kế toán', cls:'loader-ketoan', html:`<div class="loader-glow"></div><div class="sheet s1"></div><div class="sheet s2"></div><div class="coin">₫</div><div class="check"></div>`}
 };
 
 function renderPage(key, push=true){

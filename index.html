@@ -465,7 +465,8 @@ body[data-dept="ketoan"]{--coral:#13795B;--coral-2:#B68A2B;--coral-w:#EDF8F2}
 
 .dept-page{--dept-ink:#0B1220;position:relative}
 .dept-page .hero.dept-hero{
-  display:block;min-height:auto;max-width:820px;padding:54px 0 48px;
+  display:grid;grid-template-columns:minmax(0,1.08fr) minmax(300px,.92fr);gap:34px;align-items:center;
+  min-height:410px;max-width:none;padding:54px 0 48px;
 }
 .dept-hero::after{display:none}
 .dept-hero .hero-copy{min-width:0;position:relative;z-index:2}
@@ -497,7 +498,112 @@ body[data-dept="ketoan"]{--coral:#13795B;--coral-2:#B68A2B;--coral-w:#EDF8F2}
 .thanks-card b{display:block;font-size:15px;margin-bottom:6px}
 .thanks-card span{font-size:13.8px;color:var(--mut);line-height:1.55}
 
-/* Department page entrance: text only; visual motion lives in the loader. */
+
+/* ══════════════ IN-PAGE HERO VISUALS · PORTED FROM DONOR V4 ══════════════
+   Persistent animated panels shown after the full-screen loader finishes. */
+.motion-stage{
+  position:relative;height:286px;border-radius:26px;overflow:hidden;isolation:isolate;
+  background:#101620;border:1px solid rgba(255,255,255,.11);
+  box-shadow:0 22px 60px -30px rgba(11,18,32,.72),inset 0 1px rgba(255,255,255,.06);
+}
+.motion-stage::before{
+  content:"";position:absolute;inset:0;pointer-events:none;opacity:.44;
+  background:radial-gradient(circle at 72% 18%,rgba(255,255,255,.10),transparent 38%);
+}
+.stage-cap{position:absolute;left:18px;top:16px;z-index:5;font:600 9px/1 var(--mono);letter-spacing:.17em;text-transform:uppercase;color:rgba(255,255,255,.55)}
+.stage-chip{position:absolute;z-index:5;padding:6px 9px;border:1px solid rgba(255,255,255,.12);border-radius:999px;color:rgba(255,255,255,.78);font:600 9px/1 var(--mono);letter-spacing:.08em;background:rgba(255,255,255,.055);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px)}
+
+/* HCNS — recruitment / candidate review */
+.people-stage{background:linear-gradient(145deg,#201335,#4C1D95 58%,#831843)}
+.people-stage .glow-grid{position:absolute;inset:0;opacity:.18;background-image:linear-gradient(rgba(255,255,255,.08) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.08) 1px,transparent 1px);background-size:26px 26px}
+.people-stage .cardlet{position:absolute;width:132px;height:88px;border-radius:18px;border:1px solid rgba(255,255,255,.16);background:rgba(255,255,255,.08);box-shadow:0 10px 24px -12px rgba(0,0,0,.45)}
+.people-stage .a{left:30px;top:70px;animation:peopleFloat 5.8s ease-in-out infinite}.people-stage .b{left:84px;top:124px;animation:peopleFloat 5.8s ease-in-out 1s infinite}.people-stage .c{right:34px;top:92px;animation:peopleFloat 5.8s ease-in-out 1.6s infinite}
+.people-stage .cardlet::before{content:"";position:absolute;left:16px;right:16px;top:19px;height:8px;border-radius:6px;background:rgba(255,255,255,.85);box-shadow:0 19px 0 rgba(255,255,255,.26),0 38px 0 rgba(255,255,255,.18)}
+.people-stage .beam{position:absolute;left:102px;right:88px;top:144px;height:2px;background:linear-gradient(90deg,transparent,#F9A8D4,#A78BFA,transparent);box-shadow:0 0 18px rgba(249,168,212,.78);animation:beamPulse 3.1s ease-in-out infinite}
+.people-stage .orbit{position:absolute;left:50%;top:50%;width:88px;height:88px;margin:-44px;border-radius:50%;border:1px dashed rgba(255,255,255,.22);animation:spinSoft 13s linear infinite}
+.people-stage .center-note{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);padding:11px 14px;border-radius:12px;background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.2);color:#fff;font:700 10px/1 var(--mono);letter-spacing:.12em}
+.people-stage .stage-chip.c1{left:18px;bottom:18px}.people-stage .stage-chip.c2{left:128px;bottom:18px}.people-stage .stage-chip.c3{right:18px;bottom:18px}
+@keyframes peopleFloat{0%,100%{transform:translateY(0)}50%{transform:translateY(-9px)}}
+@keyframes beamPulse{0%,100%{opacity:.35}50%{opacity:1}}
+@keyframes spinSoft{to{transform:rotate(360deg)}}
+
+/* Giao nhận — customer / procedure / output flow */
+.cargo-stage{background:linear-gradient(145deg,#081A2B,#0A4B53 56%,#0A253D)}
+.cargo-stage .port-grid{position:absolute;inset:0;opacity:.24;background-image:linear-gradient(rgba(255,255,255,.08) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.08) 1px,transparent 1px);background-size:24px 24px}
+.cargo-stage .file{position:absolute;left:28px;width:118px;height:56px;border-radius:14px;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.16);box-shadow:0 8px 22px -12px rgba(0,0,0,.45)}
+.cargo-stage .f1{top:58px}.cargo-stage .f2{top:126px}.cargo-stage .f3{top:194px}
+.cargo-stage .file::before{content:"";position:absolute;left:16px;right:34px;top:18px;height:7px;border-radius:5px;background:rgba(255,255,255,.9);box-shadow:0 15px 0 rgba(255,255,255,.24)}
+.cargo-stage .beam{position:absolute;left:152px;right:124px;height:2px;border-radius:2px;background:linear-gradient(90deg,rgba(2,132,199,.12),rgba(34,211,238,.96),rgba(16,185,129,.12));box-shadow:0 0 16px rgba(34,211,238,.85)}
+.cargo-stage .b1{top:86px;animation:cargoMove 3.9s var(--ease) infinite}.cargo-stage .b2{top:154px;animation:cargoMove 4.4s var(--ease) .8s infinite}.cargo-stage .b3{top:222px;animation:cargoMove 4.1s var(--ease) 1.3s infinite}
+.cargo-stage .gridbox{position:absolute;right:26px;top:62px;width:190px;height:158px;border-radius:18px;border:1px solid rgba(255,255,255,.15);background:rgba(255,255,255,.06);overflow:hidden}
+.cargo-stage .gridbox::before{content:"";position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,.12) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.12) 1px,transparent 1px);background-size:38px 38px}
+.cargo-stage .scan-dot{position:absolute;right:174px;width:12px;height:12px;border-radius:50%;background:#fff;box-shadow:0 0 0 4px rgba(34,211,238,.16),0 0 22px rgba(34,211,238,.8)}
+.cargo-stage .d1{top:80px;animation:cellRun 3.9s var(--ease) infinite}.cargo-stage .d2{top:148px;animation:cellRun 4.4s var(--ease) .8s infinite}.cargo-stage .d3{top:216px;animation:cellRun 4.1s var(--ease) 1.3s infinite}
+.cargo-stage .stage-chip.c1{left:18px;bottom:18px}.cargo-stage .stage-chip.c2{left:124px;bottom:18px}.cargo-stage .stage-chip.c3{right:18px;bottom:18px}
+@keyframes cargoMove{0%{opacity:.2;transform:scaleX(.45);transform-origin:left center}25%{opacity:1}100%{opacity:.4;transform:scaleX(1)}}
+@keyframes cellRun{0%{transform:translateX(0);opacity:.2}20%{opacity:1}100%{transform:translateX(138px);opacity:0}}
+
+/* Điều độ — shifting / empty / laden flow */
+.ops-stage{background:linear-gradient(145deg,#07152D,#0B2D50 58%,#0E172A)}
+.ops-stage .ops-grid{position:absolute;inset:0;opacity:.28;background-image:linear-gradient(rgba(56,189,248,.13) 1px,transparent 1px),linear-gradient(90deg,rgba(56,189,248,.13) 1px,transparent 1px);background-size:28px 28px}
+.ops-stage .route{position:absolute;left:36px;right:34px;height:2px;border-radius:2px;background:linear-gradient(90deg,rgba(56,189,248,.08),rgba(56,189,248,.86),rgba(56,189,248,.08))}
+.ops-stage .r1{top:84px}.ops-stage .r2{top:143px}.ops-stage .r3{top:202px}
+.ops-stage .signal{position:absolute;left:38px;width:10px;height:10px;border-radius:50%;background:#fff;box-shadow:0 0 0 5px rgba(56,189,248,.14),0 0 22px rgba(56,189,248,.9)}
+.ops-stage .s1{top:80px;animation:routeRun 3.8s var(--ease) infinite}.ops-stage .s2{top:139px;animation:routeRun 4.6s var(--ease) .7s infinite}.ops-stage .s3{top:198px;animation:routeRun 4.1s var(--ease) 1.3s infinite}
+.ops-stage .stage-chip.c1{right:18px;top:67px}.ops-stage .stage-chip.c2{right:18px;top:126px}.ops-stage .stage-chip.c3{right:18px;top:185px}
+.ops-stage .pulse-ring{position:absolute;left:50%;top:50%;width:86px;height:86px;margin:-43px;border:1px solid rgba(56,189,248,.26);border-radius:50%;animation:pulseRing 2.8s ease-out infinite}
+@keyframes routeRun{0%{transform:translateX(0);opacity:.15}12%{opacity:1}80%{opacity:1}100%{transform:translateX(205px);opacity:0}}
+@keyframes pulseRing{0%{transform:scale(.5);opacity:0}25%{opacity:.7}100%{transform:scale(2.25);opacity:0}}
+
+/* TBSX — production coordination loop */
+.prod-stage{background:linear-gradient(145deg,#24100D,#4A1715 55%,#19131A)}
+.prod-stage .loop{position:absolute;left:50%;top:53%;width:182px;height:182px;margin:-91px;border-radius:50%;background:conic-gradient(from 20deg,rgba(249,115,22,.15),#F97316,rgba(217,71,63,.2),#D9473F,rgba(249,115,22,.15));-webkit-mask:radial-gradient(circle,transparent 62%,#000 63%);mask:radial-gradient(circle,transparent 62%,#000 63%);animation:prodSpin 8s linear infinite}
+.prod-stage .hub{position:absolute;left:50%;top:53%;width:76px;height:76px;transform:translate(-50%,-50%);border-radius:22px;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.18);box-shadow:0 0 42px rgba(249,115,22,.18);display:grid;place-items:center;color:#fff;font:800 11px/1 var(--mono);letter-spacing:.12em}
+.prod-stage .node{position:absolute;padding:8px 10px;border-radius:10px;border:1px solid rgba(255,255,255,.14);background:rgba(255,255,255,.07);color:rgba(255,255,255,.82);font:700 9px/1 var(--mono);letter-spacing:.1em;animation:nodePulse 2.4s ease-in-out infinite}
+.prod-stage .n1{left:24px;top:76px}.prod-stage .n2{right:20px;top:76px;animation-delay:.7s}.prod-stage .n3{left:50%;bottom:18px;transform:translateX(-50%);animation-delay:1.4s}
+@keyframes prodSpin{to{transform:rotate(360deg)}}
+@keyframes nodePulse{0%,100%{opacity:.5}50%{opacity:1;box-shadow:0 0 22px rgba(249,115,22,.24)}}
+
+/* KTVT — technical blueprint / PM scanner */
+.tech-stage{background:linear-gradient(145deg,#051B1D,#073B3A 62%,#10252A)}
+.tech-stage .blue-grid{position:absolute;inset:0;opacity:.36;background-image:linear-gradient(rgba(45,212,191,.1) 1px,transparent 1px),linear-gradient(90deg,rgba(45,212,191,.1) 1px,transparent 1px);background-size:20px 20px}
+.tech-stage .ring{position:absolute;left:50%;top:51%;border-radius:50%;border:1px solid rgba(94,234,212,.35);transform:translate(-50%,-50%)}
+.tech-stage .ring.a{width:190px;height:190px;border-style:dashed;animation:spinRing 14s linear infinite}.tech-stage .ring.b{width:118px;height:118px;border-color:rgba(245,158,11,.55);animation:spinRingRev 9s linear infinite}
+.tech-stage .core{position:absolute;left:50%;top:51%;width:48px;height:48px;transform:translate(-50%,-50%) rotate(45deg);border:1px solid rgba(255,255,255,.72);background:rgba(255,255,255,.06);box-shadow:0 0 32px rgba(45,212,191,.24)}
+.tech-stage .scan{position:absolute;left:20px;right:20px;top:30px;height:1px;background:linear-gradient(90deg,transparent,#5EEAD4,transparent);box-shadow:0 0 16px #5EEAD4;animation:scanY 3.3s ease-in-out infinite alternate}
+.tech-stage .stage-chip.c1{left:18px;bottom:18px}.tech-stage .stage-chip.c2{right:18px;bottom:18px}
+@keyframes spinRing{to{transform:translate(-50%,-50%) rotate(360deg)}}
+@keyframes spinRingRev{to{transform:translate(-50%,-50%) rotate(-360deg)}}
+@keyframes scanY{from{transform:translateY(12px);opacity:.35}to{transform:translateY(205px);opacity:1}}
+
+/* Kế toán — document stack / evidence scan */
+.acc-stage{background:linear-gradient(145deg,#071E18,#0B3B2C 58%,#17261D)}
+.acc-stage .paper{position:absolute;width:154px;height:190px;border-radius:14px;background:#FBF8EE;border:1px solid rgba(255,255,255,.28);box-shadow:0 18px 40px -18px rgba(0,0,0,.55)}
+.acc-stage .p1{left:64px;top:48px;transform:rotate(-7deg);opacity:.38}.acc-stage .p2{left:82px;top:40px;transform:rotate(4deg);opacity:.66}.acc-stage .p3{left:98px;top:36px;overflow:hidden}
+.acc-stage .p3::before{content:"";position:absolute;left:18px;right:18px;top:28px;height:7px;border-radius:7px;background:#13795B;box-shadow:0 22px 0 #DAD3BE,0 42px 0 #DAD3BE,0 62px 0 #DAD3BE,0 82px 0 #DAD3BE,0 112px 0 #DAD3BE}
+.acc-stage .audit-scan{position:absolute;left:99px;width:152px;height:2px;top:58px;background:linear-gradient(90deg,transparent,#E7C86F,transparent);box-shadow:0 0 14px rgba(231,200,111,.85);animation:auditScan 3s ease-in-out infinite alternate}
+.acc-stage .cite{position:absolute;right:28px;width:50px;height:50px;border-radius:16px;border:1px solid rgba(231,200,111,.32);display:grid;place-items:center;color:#E7C86F;font:800 11px/1 var(--mono);background:rgba(231,200,111,.07)}
+.acc-stage .c1{top:70px;animation:citePulse 2.2s ease-in-out infinite}.acc-stage .c2{top:136px;animation:citePulse 2.2s .8s ease-in-out infinite}.acc-stage .c3{top:202px;animation:citePulse 2.2s 1.6s ease-in-out infinite}
+@keyframes auditScan{from{transform:translateY(0)}to{transform:translateY(140px)}}
+@keyframes citePulse{0%,100%{opacity:.45;transform:scale(.96)}50%{opacity:1;transform:scale(1.04)}}
+
+/* In-page panel entrance is separate from the full-screen loader. */
+#view.swap .motion-stage{animation-duration:.62s;animation-timing-function:var(--ease);animation-fill-mode:both}
+body[data-dept="hcns"] #view.swap .motion-stage{animation-name:enterRecruitStage}
+body[data-dept="giaonhan"] #view.swap .motion-stage{animation-name:enterCargoStage}
+body[data-dept="dieudo"] #view.swap .motion-stage{animation-name:enterOpsStage}
+body[data-dept="trucban"] #view.swap .motion-stage{animation-name:enterProdStage}
+body[data-dept="kythuat"] #view.swap .motion-stage{animation-name:enterTechStage}
+body[data-dept="ketoan"] #view.swap .motion-stage{animation-name:enterAccStage}
+@keyframes enterRecruitStage{from{opacity:0;transform:translateX(18px) rotate(-1.5deg) scale(.97)}to{opacity:1;transform:none}}
+@keyframes enterCargoStage{from{opacity:0;transform:translateX(24px) scale(.98)}to{opacity:1;transform:none}}
+@keyframes enterOpsStage{from{opacity:0;transform:translateX(24px) skewX(-3deg)}to{opacity:1;transform:none}}
+@keyframes enterProdStage{from{opacity:0;transform:rotate(-3deg) scale(.96)}to{opacity:1;transform:none}}
+@keyframes enterTechStage{from{opacity:0;filter:blur(5px);transform:translateY(10px)}to{opacity:1;filter:blur(0);transform:none}}
+@keyframes enterAccStage{from{opacity:0;transform:translateY(22px) scale(.97)}to{opacity:1;transform:none}}
+
+
+/* Department page entrance: text + persistent in-page visual panel. */
 #view.swap .hero-copy{animation-duration:.46s;animation-timing-function:var(--ease);animation-fill-mode:both}
 body[data-dept="hcns"] #view.swap .hero-copy{animation-name:enterRecruitCopy}
 body[data-dept="giaonhan"] #view.swap .hero-copy{animation-name:enterCargoCopy}
@@ -590,7 +696,7 @@ body.searching{overflow:hidden}
 @keyframes svgSpin{to{transform:rotate(360deg)}}
 
 @media (prefers-reduced-motion:reduce){
-  .search-panel,.loader-svg *{animation:none!important}
+  .search-panel,.loader-svg *,#view.swap .motion-stage,.people-stage *,.cargo-stage *,.ops-stage *,.prod-stage *,.tech-stage *,.acc-stage *{animation:none!important}
 }
 
 /* ══════════════ RESPONSIVE ══════════════ */
@@ -599,6 +705,9 @@ body.searching{overflow:hidden}
 }
 @media (max-width:880px){
   .burger{display:block}
+  .dept-page .hero.dept-hero{grid-template-columns:1fr;min-height:0;padding-top:34px}
+  .motion-stage{height:240px;max-width:620px;width:100%;margin-top:4px}
+  .stage-chip{font-size:8px;letter-spacing:.05em;padding:6px 8px}
   .tw.is-scrollable{position:relative;padding-bottom:24px}
   .tw.is-scrollable::after{content:"Vuốt ngang để xem đủ →";position:absolute;right:8px;bottom:4px;color:var(--mut);font:600 10px/1 var(--san);letter-spacing:.02em;pointer-events:none}
   .topbar .in{gap:9px}
@@ -624,6 +733,8 @@ body.searching{overflow:hidden}
 }
 @media (max-width:520px){
   .wrap,.topbar .in{padding-left:20px;padding-right:20px}
+  .motion-stage{height:214px;border-radius:20px}
+  .stage-chip{font-size:7.5px;max-width:116px;text-align:center}
   .search-dialog{padding:0;place-items:stretch}
   .search-panel{width:100%;height:100dvh;max-height:none;border-radius:0;border:0}
   .search-head{padding-top:max(18px,env(safe-area-inset-top))}
@@ -639,7 +750,7 @@ body.searching{overflow:hidden}
   .stat .v{font-size:34px}
 }
 @media print{
-  .rail,.topbar,.scrim,.copy,.burger,.progress,.page-toc,.dept-loader,.search-dialog{display:none!important}
+  .rail,.topbar,.scrim,.copy,.burger,.progress,.page-toc,.dept-loader,.search-dialog,.motion-stage{display:none!important}
   body{background:#fff}body::before{display:none}
   .wrap{max-width:none;padding:0}
   section{break-inside:avoid}
@@ -941,7 +1052,14 @@ hcns: {
         
         <div class="meta"><span class="pill">60 phút</span><span class="pill ok">Tài liệu sau workshop</span><span class="pill hot">Context trước · Prompt sau</span></div>
               </div>
-          </div>
+          
+      <div class="motion-stage people-stage" aria-hidden="true">
+        <div class="stage-cap">Recruitment pipeline / HR review</div><div class="glow-grid"></div>
+        <span class="cardlet a"></span><span class="cardlet b"></span><span class="cardlet c"></span>
+        <span class="beam"></span><span class="orbit"></span><span class="center-note">HIRE</span>
+        <span class="stage-chip c1">JD</span><span class="stage-chip c2">CV</span><span class="stage-chip c3">PHỎNG VẤN</span>
+      </div>
+    </div>
 
   <section>
     <div class="snum">MỤC TIÊU</div>
@@ -1239,7 +1357,15 @@ giaonhan: {
         
         <div class="meta"><span class="pill">60 phút</span><span class="pill ok">Tài liệu sau workshop</span><span class="pill hot">File · Rule · Output Cell</span></div>
               </div>
-          </div>
+          
+      <div class="motion-stage cargo-stage" aria-hidden="true">
+        <div class="stage-cap">Customer touchpoint / procedure flow</div><div class="port-grid"></div>
+        <span class="file f1"></span><span class="file f2"></span><span class="file f3"></span>
+        <span class="beam b1"></span><span class="beam b2"></span><span class="beam b3"></span>
+        <div class="gridbox"></div><span class="scan-dot d1"></span><span class="scan-dot d2"></span><span class="scan-dot d3"></span>
+        <span class="stage-chip c1">KHÁCH HÀNG</span><span class="stage-chip c2">THỦ TỤC</span><span class="stage-chip c3">PHẢN HỒI</span>
+      </div>
+    </div>
 
   <section>
     <div class="snum">MỞ ĐẦU</div>
@@ -1510,7 +1636,14 @@ dieudo: {
         
         <div class="meta"><span class="pill">60 phút</span><span class="pill ok">Tài liệu sau workshop</span><span class="pill hot">ChatGPT Free hoặc Claude Free</span></div>
       </div>
-          </div>
+          
+      <div class="motion-stage ops-stage" aria-hidden="true">
+        <div class="stage-cap">Shifting / empty / laden flow</div><div class="ops-grid"></div>
+        <span class="route r1"></span><span class="route r2"></span><span class="route r3"></span>
+        <span class="signal s1"></span><span class="signal s2"></span><span class="signal s3"></span><span class="pulse-ring"></span>
+        <span class="stage-chip c1">ĐẢO CHUYỂN</span><span class="stage-chip c2">LÀM RỖNG</span><span class="stage-chip c3">LÀM HÀNG</span>
+      </div>
+    </div>
 
     <section><div class="snum">01 · CHỈ CẦN NHỚ 3 VIỆC</div><h3>Ranh giới giữa người và AI</h3>
       <div class="grid g3">
@@ -1613,7 +1746,12 @@ trucban: {
         
         <div class="meta"><span class="pill">60 phút</span><span class="pill ok">Tài liệu sau workshop</span><span class="pill hot">Build → Test → Fix</span></div>
               </div>
-          </div>
+          
+      <div class="motion-stage prod-stage" aria-hidden="true">
+        <div class="stage-cap">Line coordination / barge flow</div><span class="loop"></span><span class="hub">CA</span>
+        <span class="node n1">TOÀN TUYẾN</span><span class="node n2">SẢN XUẤT</span><span class="node n3">XUẤT NHẬP XÀ LAN</span>
+      </div>
+    </div>
 
     <section>
       <div class="snum">01 · CHỈ CẦN NHỚ 3 VIỆC</div>
@@ -1806,7 +1944,13 @@ kythuat: {
   <div class="dept-page tech-page">
     <div class="hero dept-hero"><div class="hero-copy"><div class="kick">Workshop ứng dụng AI · Kỹ thuật – Vật tư · sáng Thứ Tư, ngày 12/08</div><h2 class="big">Kỹ thuật · Vật tư</h2>
         <div class="hero-tagline">Đọc nguồn trước · kết luận sau</div><div class="meta"><span class="pill">08h00–09h00</span><span class="pill ok">Tài liệu sau workshop</span><span class="pill hot">An toàn kỹ thuật là chốt cuối</span></div></div>
+      
+      <div class="motion-stage tech-stage" aria-hidden="true">
+        <div class="stage-cap">Forklift fleet / PM coordination</div><div class="blue-grid"></div>
+        <span class="ring a"></span><span class="ring b"></span><span class="core"></span><span class="scan"></span>
+        <span class="stage-chip c1">XE NÂNG</span><span class="stage-chip c2">LỊCH PM</span>
       </div>
+    </div>
 
     <section><div class="snum">01 · PHẠM VI</div><h3>Ba vấn đề bộ phận gửi lên</h3><div class="grid g3"><div class="card card--accent"><div class="k">BÀI 1 · LÀM NGAY</div><h4>So sánh 3 báo giá</h4><p>Quy cùng mặt bằng rồi mới nói về giá.</p></div><div class="card card--accent"><div class="k">BÀI 2 · THU HẸP PHẠM VI</div><h4>Trợ lý chẩn đoán từ tài liệu</h4><p>AI dẫn tới đúng trang, không chẩn đoán thay kỹ thuật viên.</p></div><div class="card"><div class="k">VẤN ĐỀ 3</div><h4>Safety Stock / Reorder Point</h4><p>Chưa đủ dữ liệu lịch sử cho nhóm hỏng bất chợt.</p></div></div>
       <div class="callout-big">Một câu lệnh tốt có 4 phần: <b>Mục tiêu · Bối cảnh · Các bước · Đầu ra.</b> “Các bước” là nơi cài chốt <i>thiếu dữ liệu thì dừng, đừng đoán</i>.</div></section>
@@ -1909,7 +2053,12 @@ ketoan: {
   <div class="dept-page acc-page">
     <div class="hero dept-hero"><div class="hero-copy"><div class="kick">Workshop ứng dụng AI · Kế toán · sáng Thứ Sáu, ngày 14/08</div><h2 class="big">Kế toán</h2>
         <div class="hero-tagline">Căn cứ trước · kết luận sau</div><div class="meta"><span class="pill">60 phút</span><span class="pill ok">Tài liệu sau workshop</span><span class="pill hot">Điều · Khoản · Trang</span></div></div>
+      
+      <div class="motion-stage acc-stage" aria-hidden="true">
+        <div class="stage-cap">Contract / document / payment check</div><span class="paper p1"></span><span class="paper p2"></span><span class="paper p3"></span><span class="audit-scan"></span>
+        <span class="cite c1">HĐ</span><span class="cite c2">CTỪ</span><span class="cite c3">TT</span>
       </div>
+    </div>
 
     <section><div class="snum">01 · CHỈ CẦN NHỚ 3 VIỆC</div><h3>AI là người phụ việc, không phải người chịu trách nhiệm</h3><div class="grid g3"><div class="card card--accent"><div class="k">01</div><h4>Đưa văn bản mình đã có</h4><p>Tự tải bản gốc về máy trước. Đừng hỏi “quy định mới nhất là gì”.</p></div><div class="card card--accent"><div class="k">02</div><h4>Bắt AI chỉ căn cứ</h4><p>Mỗi câu phải kèm Điều, Khoản, trang. Không có thì ghi KHÔNG CÓ.</p></div><div class="card no"><div class="k">03</div><h4>Không đưa dữ liệu NLĐ</h4><p>Tên, CCCD, địa chỉ, điện thoại, lương — không đưa lên AI công cộng.</p></div></div></section>
 

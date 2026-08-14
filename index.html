@@ -25,7 +25,6 @@
   --green-w:#EDF3EE;
   --red:#A33A2C;
   --red-w:#FBEDEA;
-  --blue:#33566E;
 
   --ser:"Segoe UI",Arial,"Helvetica Neue",sans-serif;
   --san:"Segoe UI",Arial,"Helvetica Neue",sans-serif;
@@ -542,13 +541,13 @@ body.loading{overflow:hidden}
 kbd{font:600 10px/1 var(--mono);padding:4px 6px;border-radius:6px;border:1px solid var(--line-2);background:var(--bg-2);color:var(--mut)}
 
 /* Horizontal sticky TOC */
-.page-toc{position:sticky;top:57px;z-index:28;margin:0 -8px 18px;padding:10px 8px;display:flex;flex-wrap:nowrap;gap:7px;overflow-x:auto;overflow-y:hidden;scrollbar-width:none;background:#FAF8F4;background:color-mix(in srgb,var(--bg) 92%,transparent);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border-bottom:1px solid transparent}
+.page-toc{position:sticky;top:70px;z-index:28;margin:0 -8px 18px;padding:10px 8px;display:flex;flex-wrap:nowrap;gap:7px;overflow-x:auto;overflow-y:hidden;scrollbar-width:none;background:#FAF8F4;background:color-mix(in srgb,var(--bg) 92%,transparent);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border-bottom:1px solid transparent}
 .page-toc::-webkit-scrollbar{display:none}
 .page-toc.is-stuck{border-bottom-color:var(--line)}
 .page-toc button{flex:0 0 auto;min-height:36px;border:1px solid var(--line);border-radius:999px;padding:7px 11px;background:var(--card);color:var(--mut);font:600 11.5px/1.2 var(--san);cursor:pointer;transition:.18s var(--ease);white-space:nowrap}
 .page-toc button:hover{border-color:var(--coral);color:var(--ink)}
 .page-toc button.on,.page-toc button[aria-current="location"]{background:var(--coral-w);border-color:var(--coral);border-color:color-mix(in srgb,var(--coral) 38%,var(--line));color:var(--coral)}
-section[id]{scroll-margin-top:118px}
+section[id]{scroll-margin-top:130px}
 
 /* Search dialog */
 body.searching{overflow:hidden}
@@ -605,7 +604,7 @@ body.searching{overflow:hidden}
   .topbar .in{gap:9px}
   .search-open span,.search-open kbd{display:none}
   .search-open{width:42px;justify-content:center;padding:0}
-  .page-toc{top:57px;margin-left:-4px;margin-right:-4px}
+  .page-toc{top:70px;margin-left:-4px;margin-right:-4px}
   .thanks-grid,.dept-page .memory-strip,.dept-page .mini-grid{grid-template-columns:1fr}
   .progress{left:0}
   .rail{position:fixed;left:0;top:0;z-index:70;transform:translateX(-100%);
@@ -2117,9 +2116,14 @@ function slugify(s){
 
 function setupPageStructure(key){
   if(tocObserver){ tocObserver.disconnect(); tocObserver=null; }
-  if(key==='home'||key==='qr') return;
   const root=view.querySelector(':scope > .dept-page') || view;
   const sections=[...root.querySelectorAll(':scope > section')];
+
+  // Luôn đánh số section để kết quả Search nhảy đúng vị trí,
+  // kể cả Trang chủ và QR (hai trang này chỉ không cần dựng TOC).
+  sections.forEach((sec,i)=>{ sec.dataset.sectionIndex=String(i); });
+
+  if(key==='home'||key==='qr') return;
   if(sections.length<3) return;
   const toc=document.createElement('nav');
   toc.className='page-toc'; toc.setAttribute('aria-label','Mục lục trang');
@@ -2129,7 +2133,7 @@ function setupPageStructure(key){
     const raw=(snum?.textContent || heading?.textContent || `Mục ${i+1}`).trim();
     const label=raw.replace(/^\d+\s*·\s*/, '');
     const id=`sec-${key}-${i}-${slugify(label)}`;
-    sec.id=id; sec.dataset.sectionIndex=String(i);
+    sec.id=id;
     const b=document.createElement('button');
     b.type='button'; b.textContent=label; b.dataset.target=id;
     b.addEventListener('click',()=>sec.scrollIntoView({behavior:window.matchMedia('(prefers-reduced-motion: reduce)').matches?'auto':'smooth',block:'start'}));

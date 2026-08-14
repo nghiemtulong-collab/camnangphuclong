@@ -441,37 +441,100 @@ body[data-dept="ketoan"]{--coral:#13795B;--coral-2:#B68A2B;--coral-w:#EDF8F2}
 .dept-page .mini{padding:16px 18px;border:1px solid var(--line);border-radius:13px;background:var(--card)}
 .dept-page .mini b{display:block;font-size:14.5px;margin-bottom:4px}.dept-page .mini span{font-size:13.7px;color:var(--mut)}
 
-/* Điều độ — moving route / control signals */
+/* Điều độ — container shifting / empty / laden */
 .ops-stage{background:linear-gradient(145deg,#07152D,#0B2D50 58%,#0E172A)}
-.ops-stage .ops-grid{position:absolute;inset:0;opacity:.28;background-image:linear-gradient(rgba(56,189,248,.13) 1px,transparent 1px),linear-gradient(90deg,rgba(56,189,248,.13) 1px,transparent 1px);background-size:28px 28px}
-.ops-stage .route{position:absolute;left:36px;right:34px;height:2px;border-radius:2px;background:linear-gradient(90deg,rgba(56,189,248,.08),rgba(56,189,248,.86),rgba(56,189,248,.08))}
-.ops-stage .r1{top:84px}.ops-stage .r2{top:143px}.ops-stage .r3{top:202px}
-.ops-stage .signal{position:absolute;left:38px;width:10px;height:10px;border-radius:50%;background:#fff;box-shadow:0 0 0 5px rgba(56,189,248,.14),0 0 22px rgba(56,189,248,.9)}
-.ops-stage .s1{top:80px;animation:routeRun 3.8s var(--ease) infinite}.ops-stage .s2{top:139px;animation:routeRun 4.6s var(--ease) .7s infinite}.ops-stage .s3{top:198px;animation:routeRun 4.1s var(--ease) 1.3s infinite}
-.ops-stage .stage-chip.c1{right:18px;top:67px}.ops-stage .stage-chip.c2{right:18px;top:126px}.ops-stage .stage-chip.c3{right:18px;top:185px}
-.ops-stage .pulse-ring{position:absolute;left:50%;top:50%;width:86px;height:86px;margin:-43px;border:1px solid rgba(56,189,248,.26);border-radius:50%;animation:pulseRing 2.8s ease-out infinite}
-@keyframes routeRun{0%{transform:translateX(0);opacity:.15}12%{opacity:1}80%{opacity:1}100%{transform:translateX(205px);opacity:0}}
-@keyframes pulseRing{0%{transform:scale(.5);opacity:0}25%{opacity:.7}100%{transform:scale(2.25);opacity:0}}
+.ops-stage::before{background:radial-gradient(circle at 78% 14%,rgba(56,189,248,.24),transparent 38%)}
+.ops-svg,.tech-svg,.prod-svg{width:100%;height:100%;display:block;position:absolute;inset:0}
+.ops-svg .yard-line{stroke:rgba(255,255,255,.13);stroke-width:1}
+.ops-svg .move-path{fill:none;stroke:#38BDF8;stroke-width:3;stroke-linecap:round;stroke-dasharray:8 12;animation:opsDash 2.8s linear infinite}
+.ops-svg .cont{transform-box:fill-box;transform-origin:center;filter:drop-shadow(0 12px 14px rgba(0,0,0,.22))}
+.ops-svg .cont-main{animation:opsShift 4.2s var(--ease) infinite}
+.ops-svg .spreader{animation:opsLift 4.2s var(--ease) infinite}
+.ops-svg .truck{animation:opsTruck 5.2s var(--ease) infinite}
+.ops-svg .beacon{animation:opsBeacon 1.4s ease-in-out infinite}
+@keyframes opsDash{to{stroke-dashoffset:-40}}
+@keyframes opsShift{0%,12%{transform:translate(0,0)}38%,58%{transform:translate(74px,-30px)}84%,100%{transform:translate(148px,0)}}
+@keyframes opsLift{0%,12%{transform:translateY(0)}38%,58%{transform:translate(74px,-30px)}84%,100%{transform:translate(148px,0)}}
+@keyframes opsTruck{0%,15%{transform:translateX(-34px);opacity:.2}38%,75%{transform:translateX(0);opacity:1}100%{transform:translateX(64px);opacity:.15}}
+@keyframes opsBeacon{0%,100%{opacity:.35}50%{opacity:1}}
 
-/* Kỹ thuật · Vật tư — blueprint rings + scanner */
+/* Kỹ thuật · Vật tư — reachstacker maintenance bay */
 .tech-stage{background:linear-gradient(145deg,#051B1D,#073B3A 62%,#10252A)}
-.tech-stage .blue-grid{position:absolute;inset:0;opacity:.36;background-image:linear-gradient(rgba(45,212,191,.1) 1px,transparent 1px),linear-gradient(90deg,rgba(45,212,191,.1) 1px,transparent 1px);background-size:20px 20px}
-.tech-stage .ring{position:absolute;left:50%;top:51%;border-radius:50%;border:1px solid rgba(94,234,212,.35);transform:translate(-50%,-50%)}
-.tech-stage .ring.a{width:190px;height:190px;border-style:dashed;animation:spinRing 14s linear infinite}.tech-stage .ring.b{width:118px;height:118px;border-color:rgba(245,158,11,.55);animation:spinRingRev 9s linear infinite}
-.tech-stage .core{position:absolute;left:50%;top:51%;width:48px;height:48px;transform:translate(-50%,-50%) rotate(45deg);border:1px solid rgba(255,255,255,.72);background:rgba(255,255,255,.06);box-shadow:0 0 32px rgba(45,212,191,.24)}
-.tech-stage .scan{position:absolute;left:20px;right:20px;top:30px;height:1px;background:linear-gradient(90deg,transparent,#5EEAD4,transparent);box-shadow:0 0 16px #5EEAD4;animation:scanY 3.3s ease-in-out infinite alternate}
-.tech-stage .stage-chip.c1{left:18px;bottom:18px}.tech-stage .stage-chip.c2{right:18px;bottom:18px}
-@keyframes spinRing{to{transform:translate(-50%,-50%) rotate(360deg)}}@keyframes spinRingRev{to{transform:translate(-50%,-50%) rotate(-360deg)}}
-@keyframes scanY{from{transform:translateY(12px);opacity:.35}to{transform:translateY(205px);opacity:1}}
+.tech-stage::before{background:radial-gradient(circle at 72% 18%,rgba(45,212,191,.24),transparent 40%)}
+.tech-svg .bay-grid{stroke:rgba(94,234,212,.11);stroke-width:1}
+.tech-svg .reach-body{filter:drop-shadow(0 12px 14px rgba(0,0,0,.25))}
+.tech-svg .boom{transform-box:fill-box;transform-origin:28px 70px;animation:techBoom 4.8s var(--ease) infinite}
+.tech-svg .service-light{animation:techPulse 1.8s ease-in-out infinite}
+.tech-svg .scan-line{animation:techScan 2.8s ease-in-out infinite alternate}
+.tech-svg .wheel-mark{animation:techWheel 5s linear infinite;transform-box:fill-box;transform-origin:center}
+.tech-svg .wrench{animation:techWrench 3.6s ease-in-out infinite;transform-box:fill-box;transform-origin:center}
+@keyframes techBoom{0%,18%{transform:rotate(0deg)}48%,68%{transform:rotate(-5deg)}100%{transform:rotate(0deg)}}
+@keyframes techPulse{0%,100%{opacity:.25}50%{opacity:1}}
+@keyframes techScan{from{transform:translateY(0);opacity:.25}to{transform:translateY(138px);opacity:1}}
+@keyframes techWheel{to{transform:rotate(360deg)}}
+@keyframes techWrench{0%,100%{transform:rotate(-12deg) scale(.96)}50%{transform:rotate(14deg) scale(1.03)}}
 
-/* Trực ban sản xuất — iterative build loop */
+/* Trực ban sản xuất — whole-line production / barge coordination */
 .prod-stage{background:linear-gradient(145deg,#24100D,#4A1715 55%,#19131A)}
-.prod-stage .loop{position:absolute;left:50%;top:53%;width:182px;height:182px;margin:-91px;border-radius:50%;background:conic-gradient(from 20deg,rgba(249,115,22,.15),#F97316,rgba(217,71,63,.2),#D9473F,rgba(249,115,22,.15));mask:radial-gradient(circle,transparent 62%,#000 63%);animation:prodSpin 8s linear infinite}
-.prod-stage .hub{position:absolute;left:50%;top:53%;width:76px;height:76px;transform:translate(-50%,-50%);border-radius:22px;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.18);box-shadow:0 0 42px rgba(249,115,22,.18);display:grid;place-items:center;color:#fff;font:800 11px/1 var(--mono);letter-spacing:.12em}
-.prod-stage .node{position:absolute;padding:8px 10px;border-radius:10px;border:1px solid rgba(255,255,255,.14);background:rgba(255,255,255,.07);color:rgba(255,255,255,.82);font:700 9px/1 var(--mono);letter-spacing:.1em;animation:nodePulse 2.4s ease-in-out infinite}
-.prod-stage .n1{left:24px;top:76px}.prod-stage .n2{right:20px;top:76px;animation-delay:.7s}.prod-stage .n3{left:50%;bottom:18px;transform:translateX(-50%);animation-delay:1.4s}
-.prod-stage .stage-chip.c1{left:18px;bottom:18px}.prod-stage .stage-chip.c2{right:18px;bottom:18px}
-@keyframes prodSpin{to{transform:rotate(360deg)}}@keyframes nodePulse{0%,100%{opacity:.5}50%{opacity:1;box-shadow:0 0 22px rgba(249,115,22,.24)}}
+.prod-stage::before{background:radial-gradient(circle at 74% 14%,rgba(249,115,22,.22),transparent 40%)}
+.prod-svg .route-line{fill:none;stroke:#FDBA74;stroke-width:3;stroke-linecap:round;stroke-dasharray:7 11;animation:prodRoute 2.8s linear infinite}
+.prod-svg .barge{animation:prodBarge 5.6s var(--ease) infinite;transform-box:fill-box;transform-origin:center}
+.prod-svg .gate-truck{animation:prodTruck 4.8s var(--ease) infinite}
+.prod-svg .gantry-hook{animation:prodHook 3.4s ease-in-out infinite alternate}
+.prod-svg .signal-dot{animation:prodSignal 1.5s ease-in-out infinite}
+.prod-svg .water-wave{animation:prodWave 2.4s linear infinite}
+@keyframes prodRoute{to{stroke-dashoffset:-36}}
+@keyframes prodBarge{0%,12%{transform:translateX(-24px);opacity:.35}40%,78%{transform:translateX(0);opacity:1}100%{transform:translateX(34px);opacity:.35}}
+@keyframes prodTruck{0%,18%{transform:translateX(-34px);opacity:.25}45%,78%{transform:translateX(0);opacity:1}100%{transform:translateX(48px);opacity:.25}}
+@keyframes prodHook{from{transform:translateY(-10px)}to{transform:translateY(20px)}}
+@keyframes prodSignal{0%,100%{opacity:.3}50%{opacity:1}}
+@keyframes prodWave{to{transform:translateX(24px)}}
+
+
+/* v10 — stronger visual identity for Điều độ / KTVT / TBSX */
+.ops-v10,.tech-v10,.prod-v10{height:306px}
+.ops-v10::before,.tech-v10::before,.prod-v10::before{display:none}
+.ops-v10{background:#07162D;border-color:rgba(125,211,252,.22)}
+.tech-v10{background:#062B2B;border-color:rgba(94,234,212,.22)}
+.prod-v10{background:#2B1110;border-color:rgba(251,146,60,.22)}
+.ops-v10 .stage-cap,.tech-v10 .stage-cap,.prod-v10 .stage-cap{z-index:4;padding:7px 10px;border-radius:999px;background:rgba(0,0,0,.22);backdrop-filter:blur(6px);color:rgba(255,255,255,.72)}
+
+.ops-lift-v10{animation:opsLiftMove10 4.4s var(--ease) infinite;transform-box:fill-box;transform-origin:center}
+.yard-truck-v10{animation:opsTruck10 5.2s var(--ease) infinite;transform-box:fill-box;transform-origin:center}
+.ops-route-v10{animation:opsDash10 2.4s linear infinite}
+.ops-beacon-v10{animation:opsBeacon10 1.2s ease-in-out infinite}
+@keyframes opsLiftMove10{0%,12%{transform:translate(0,0)}32%,48%{transform:translate(0,-52px)}66%,82%{transform:translate(112px,-52px)}100%{transform:translate(112px,0)}}
+@keyframes opsTruck10{0%,10%{transform:translateX(-40px);opacity:.2}38%,72%{transform:translateX(90px);opacity:1}100%{transform:translateX(210px);opacity:.15}}
+@keyframes opsDash10{to{stroke-dashoffset:-40}}
+@keyframes opsBeacon10{0%,100%{opacity:.35;filter:drop-shadow(0 0 0 #fde047)}50%{opacity:1;filter:drop-shadow(0 0 10px #fde047)}}
+
+.boom-v10{animation:techBoom10 4.6s var(--ease) infinite;transform-box:fill-box;transform-origin:20px 70px}
+.panel-v10{animation:panelCheck10 3.6s ease-in-out infinite;transform-box:fill-box;transform-origin:left center}
+.wrench-v10{animation:wrench10 3.2s ease-in-out infinite;transform-box:fill-box;transform-origin:center}
+.service-light-v10{animation:servicePulse10 1.5s ease-in-out infinite}
+.tech-scan-v10{filter:drop-shadow(0 0 8px #5EEAD4);animation:techScan10 2.5s ease-in-out infinite alternate}
+@keyframes techBoom10{0%,20%,100%{transform:rotate(0)}50%,72%{transform:rotate(-4deg)}}
+@keyframes panelCheck10{0%,100%{transform:rotateY(0)}45%,65%{transform:rotateY(-28deg)}}
+@keyframes wrench10{0%,100%{transform:rotate(-14deg) translateY(0)}50%{transform:rotate(14deg) translateY(8px)}}
+@keyframes servicePulse10{0%,100%{opacity:.35}50%{opacity:1;filter:drop-shadow(0 0 10px #5EEAD4)}}
+@keyframes techScan10{from{transform:translateY(0);opacity:.2}to{transform:translateY(146px);opacity:1}}
+
+.route-v10{animation:prodDash10 2.1s linear infinite}
+.signal-v10{animation:prodSignal10 1.6s ease-in-out infinite}.signal-v10.s2{animation-delay:.45s}.signal-v10.s3{animation-delay:.9s}
+.hook-v10{animation:prodHook10 2.8s ease-in-out infinite alternate}
+.barge-v10{animation:prodBarge10 5.5s var(--ease) infinite;transform-box:fill-box;transform-origin:center}
+.prod-truck-v10{animation:prodTruck10 4.6s var(--ease) infinite;transform-box:fill-box;transform-origin:center}
+.wave-v10{animation:prodWave10 2.2s linear infinite}
+@keyframes prodDash10{to{stroke-dashoffset:-36}}
+@keyframes prodSignal10{0%,100%{opacity:.32}50%{opacity:1;filter:drop-shadow(0 0 8px currentColor)}}
+@keyframes prodHook10{from{transform:translateY(-8px)}to{transform:translateY(20px)}}
+@keyframes prodBarge10{0%,10%{transform:translateX(-34px);opacity:.45}42%,78%{transform:translateX(0);opacity:1}100%{transform:translateX(38px);opacity:.45}}
+@keyframes prodTruck10{0%{transform:translateX(-30px);opacity:.2}45%,72%{transform:translateX(116px);opacity:1}100%{transform:translateX(238px);opacity:.18}}
+@keyframes prodWave10{to{transform:translateX(24px)}}
+
+@media(max-width:880px){.ops-v10,.tech-v10,.prod-v10{height:258px}}
+@media(max-width:520px){.ops-v10,.tech-v10,.prod-v10{height:228px}}
+@media(prefers-reduced-motion:reduce){.ops-v10 *,.tech-v10 *,.prod-v10 *{animation:none!important}}
 
 /* Kế toán — document stack + evidence scan */
 .acc-stage{background:linear-gradient(145deg,#071E18,#0B3B2C 58%,#17261D)}
@@ -494,7 +557,7 @@ body[data-dept="ketoan"]{--coral:#13795B;--coral-2:#B68A2B;--coral-w:#EDF8F2}
   .ops-stage .signal{transform:scale(.9)}
 }
 @media (prefers-reduced-motion:reduce){
-  .ops-stage .signal,.ops-stage .pulse-ring,.tech-stage .ring,.tech-stage .scan,.prod-stage .loop,.prod-stage .node,.acc-stage .audit-scan,.acc-stage .cite,.people-stage .cardlet,.people-stage .beam,.people-stage .orbit,.cargo-stage .beam,.cargo-stage .scan-dot{animation:none!important}
+  .ops-svg *,.tech-svg *,.prod-svg *,.acc-stage .audit-scan,.acc-stage .cite,.people-stage .cardlet,.people-stage .beam,.people-stage .orbit,.cargo-stage .beam,.cargo-stage .scan-dot{animation:none!important}
 }
 
 
@@ -1744,11 +1807,47 @@ dieudo: {
         
         <div class="meta"><span class="pill">60 phút</span><span class="pill ok">Tài liệu sau workshop</span><span class="pill hot">ChatGPT Free hoặc Claude Free</span></div>
       </div>
-      <div class="motion-stage ops-stage" aria-hidden="true">
-        <div class="stage-cap">Shifting / empty / laden flow</div><div class="ops-grid"></div>
-        <span class="route r1"></span><span class="route r2"></span><span class="route r3"></span>
-        <span class="signal s1"></span><span class="signal s2"></span><span class="signal s3"></span><span class="pulse-ring"></span>
-        <span class="stage-chip c1">ĐẢO CHUYỂN</span><span class="stage-chip c2">LÀM RỖNG</span><span class="stage-chip c3">LÀM HÀNG</span>
+      <div class="motion-stage ops-stage ops-v10" aria-hidden="true">
+        <div class="stage-cap">ĐIỀU ĐỘ · CONTAINER YARD OPERATION</div>
+        <svg class="ops-svg" viewBox="0 0 620 320" role="img" aria-label="Minh họa container hàng được cẩu và đảo chuyển trong bãi">
+          <defs>
+            <linearGradient id="opsSky10" x1="0" y1="0" x2="0" y2="1"><stop stop-color="#0B2B5B"/><stop offset="1" stop-color="#07162D"/></linearGradient>
+            <linearGradient id="opsOrange10" x1="0" x2="1"><stop stop-color="#FB923C"/><stop offset="1" stop-color="#EA580C"/></linearGradient>
+            <filter id="opsShadow10"><feDropShadow dx="0" dy="10" stdDeviation="8" flood-opacity=".32"/></filter>
+          </defs>
+          <rect width="620" height="320" fill="url(#opsSky10)"/>
+          <path d="M0 246H620V320H0z" fill="#10254A"/>
+          <path d="M24 272H596M24 300H596" stroke="rgba(255,255,255,.16)" stroke-width="2" stroke-dasharray="12 14"/>
+
+          <!-- stacked containers in the yard -->
+          <g opacity=".96" filter="url(#opsShadow10)">
+            <g transform="translate(34 176)"><rect width="112" height="42" rx="6" fill="#2563EB"/><path d="M14 7v28m18-28v28m18-28v28m18-28v28m18-28v28" stroke="rgba(255,255,255,.34)"/><rect y="-48" width="112" height="42" rx="6" fill="#0EA5E9"/><path d="M14-41v28m18-28v28m18-28v28m18-28v28m18-28v28" stroke="rgba(255,255,255,.34)"/></g>
+            <g transform="translate(472 176)"><rect width="112" height="42" rx="6" fill="#14B8A6"/><path d="M14 7v28m18-28v28m18-28v28m18-28v28m18-28v28" stroke="rgba(255,255,255,.34)"/><rect y="-48" width="112" height="42" rx="6" fill="#0891B2"/><path d="M14-41v28m18-28v28m18-28v28m18-28v28m18-28v28" stroke="rgba(255,255,255,.34)"/></g>
+          </g>
+
+          <!-- gantry crane -->
+          <g class="gantry-v10" opacity=".98">
+            <path d="M176 54H452M198 54v188M430 54v188" stroke="#E2E8F0" stroke-width="12" stroke-linecap="round"/>
+            <path d="M166 68h298" stroke="#CBD5E1" stroke-width="8" stroke-linecap="round"/>
+            <path d="M194 86h240" stroke="rgba(255,255,255,.24)" stroke-width="3" stroke-dasharray="8 10"/>
+          </g>
+
+          <!-- lifted laden container + spreader move together -->
+          <g class="ops-lift-v10" filter="url(#opsShadow10)">
+            <g transform="translate(252 154)"><rect width="132" height="52" rx="7" fill="url(#opsOrange10)"/><path d="M16 8v36m20-36v36m20-36v36m20-36v36m20-36v36" stroke="rgba(255,255,255,.42)" stroke-width="2"/><circle cx="118" cy="11" r="5" fill="#FDE68A"/></g>
+            <g transform="translate(258 126)"><rect width="120" height="10" rx="5" fill="#F8FAFC"/><path d="M8 10v16m104-16v16" stroke="#F8FAFC" stroke-width="4"/></g>
+            <path d="M318 70v56" stroke="#F8FAFC" stroke-width="3"/>
+          </g>
+
+          <!-- yard tractor -->
+          <g class="yard-truck-v10" transform="translate(88 252)" filter="url(#opsShadow10)">
+            <rect x="0" y="5" width="122" height="28" rx="8" fill="#F8FAFC"/><rect x="84" y="-18" width="38" height="25" rx="7" fill="#38BDF8"/><circle cx="26" cy="37" r="12" fill="#020617"/><circle cx="96" cy="37" r="12" fill="#020617"/>
+          </g>
+
+          <!-- movement cue -->
+          <path class="ops-route-v10" d="M176 238C224 238 228 212 270 212H388C428 212 432 238 474 238" fill="none" stroke="#7DD3FC" stroke-width="4" stroke-linecap="round" stroke-dasharray="8 12"/>
+          <circle class="ops-beacon-v10" cx="544" cy="84" r="8" fill="#FDE047"/>
+        </svg>
       </div>
     </div>
 
@@ -1851,7 +1950,47 @@ kythuat: {
   html: `
   <div class="dept-page tech-page">
     <div class="hero dept-hero"><div class="hero-copy"><div class="kick">Workshop ứng dụng AI · Kỹ thuật – Vật tư · sáng Thứ Tư, ngày 12/08</div><h2 class="big">Kỹ thuật · Vật tư</h2><div class="meta"><span class="pill">08h00–09h00</span><span class="pill ok">Tài liệu sau workshop</span><span class="pill hot">An toàn kỹ thuật là chốt cuối</span></div></div>
-      <div class="motion-stage tech-stage" aria-hidden="true"><div class="stage-cap">Forklift fleet / PM coordination</div><div class="blue-grid"></div><span class="ring a"></span><span class="ring b"></span><span class="core"></span><span class="scan"></span><span class="stage-chip c1">XE NÂNG</span><span class="stage-chip c2">LỊCH PM</span></div></div>
+      <div class="motion-stage tech-stage tech-v10" aria-hidden="true">
+        <div class="stage-cap">KTVT · REACHSTACKER MAINTENANCE BAY</div>
+        <svg class="tech-svg" viewBox="0 0 620 320" role="img" aria-label="Minh họa xe nâng reachstacker đang được bảo dưỡng">
+          <defs>
+            <linearGradient id="techBg10" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#062B2B"/><stop offset="1" stop-color="#0B1720"/></linearGradient>
+            <linearGradient id="techYellow10" x1="0" x2="1"><stop stop-color="#FBBF24"/><stop offset="1" stop-color="#F59E0B"/></linearGradient>
+            <filter id="techShadow10"><feDropShadow dx="0" dy="12" stdDeviation="9" flood-opacity=".34"/></filter>
+          </defs>
+          <rect width="620" height="320" fill="url(#techBg10)"/>
+          <path d="M0 244H620V320H0z" fill="#0F2A28"/>
+          <path d="M34 270H586M70 244v76m120-76v76m120-76v76m120-76v76" stroke="rgba(94,234,212,.14)" stroke-width="2"/>
+          <path d="M28 294H592" stroke="#F59E0B" stroke-width="4" stroke-dasharray="28 14" opacity=".7"/>
+
+          <!-- maintenance light -->
+          <g><rect x="64" y="54" width="136" height="42" rx="12" fill="rgba(255,255,255,.08)" stroke="rgba(255,255,255,.15)"/><circle class="service-light-v10" cx="88" cy="75" r="7" fill="#5EEAD4"/><path d="M108 70h64M108 82h46" stroke="rgba(255,255,255,.64)" stroke-width="6" stroke-linecap="round"/></g>
+
+          <!-- reachstacker: large recognizable silhouette -->
+          <g class="reach-v10" filter="url(#techShadow10)">
+            <g transform="translate(58 126)">
+              <rect x="22" y="64" width="246" height="62" rx="18" fill="url(#techYellow10)"/>
+              <path d="M186 64h84l32 50h-106z" fill="#FDE68A"/>
+              <path d="M198 73h55l20 31h-68z" fill="#0F766E" opacity=".88"/>
+              <rect x="40" y="78" width="92" height="34" rx="9" fill="#D97706" opacity=".5"/>
+              <circle cx="78" cy="132" r="31" fill="#020617"/><circle cx="78" cy="132" r="13" fill="#64748B"/>
+              <circle cx="222" cy="132" r="31" fill="#020617"/><circle cx="222" cy="132" r="13" fill="#64748B"/>
+              <!-- boom and spreader -->
+              <g class="boom-v10"><rect x="250" y="38" width="230" height="22" rx="11" fill="#E2E8F0" transform="rotate(-16 250 38)"/><rect x="454" y="-30" width="18" height="98" rx="8" fill="#CBD5E1" transform="rotate(-16 454 -30)"/><rect x="452" y="58" width="92" height="12" rx="5" fill="#F8FAFC" transform="rotate(-16 452 58)"/></g>
+            </g>
+          </g>
+
+          <!-- open service panel -->
+          <g class="panel-v10" transform="translate(92 164)"><rect width="92" height="50" rx="8" fill="#713F12"/><rect x="10" y="10" width="72" height="8" rx="4" fill="#FDE68A" opacity=".55"/><rect x="10" y="27" width="54" height="8" rx="4" fill="#FDE68A" opacity=".34"/></g>
+
+          <!-- maintenance cart + tool -->
+          <g transform="translate(476 170)"><rect width="92" height="76" rx="14" fill="#173A38" stroke="rgba(94,234,212,.24)"/><rect x="14" y="16" width="64" height="8" rx="4" fill="#5EEAD4" opacity=".55"/><rect x="14" y="34" width="50" height="8" rx="4" fill="#5EEAD4" opacity=".3"/><circle cx="20" cy="82" r="8" fill="#020617"/><circle cx="70" cy="82" r="8" fill="#020617"/></g>
+          <g class="wrench-v10" transform="translate(476 78)"><path d="M18 8a28 28 0 0 0 29 42l42 42 18-18-42-42A28 28 0 0 0 18 8z" fill="#FDE68A"/><circle cx="93" cy="79" r="9" fill="#0F766E"/></g>
+
+          <!-- scan beam -->
+          <path class="tech-scan-v10" d="M34 116H586" stroke="#5EEAD4" stroke-width="2"/>
+        </svg>
+      </div></div>
 
     <section><div class="snum">01 · PHẠM VI</div><h3>Ba vấn đề bộ phận gửi lên</h3><div class="grid g3"><div class="card sig"><div class="k">BÀI 1 · LÀM NGAY</div><h4>So sánh 3 báo giá</h4><p>Quy cùng mặt bằng rồi mới nói về giá.</p></div><div class="card sig"><div class="k">BÀI 2 · THU HẸP PHẠM VI</div><h4>Trợ lý chẩn đoán từ tài liệu</h4><p>AI dẫn tới đúng trang, không chẩn đoán thay kỹ thuật viên.</p></div><div class="card"><div class="k">VẤN ĐỀ 3</div><h4>Safety Stock / Reorder Point</h4><p>Chưa đủ dữ liệu lịch sử cho nhóm hỏng bất chợt.</p></div></div>
       <div class="callout-big">Một câu lệnh tốt có 4 phần: <b>Mục tiêu · Bối cảnh · Các bước · Đầu ra.</b> “Các bước” là nơi cài chốt <i>thiếu dữ liệu thì dừng, đừng đoán</i>.</div></section>
@@ -1963,10 +2102,48 @@ trucban: {
           <div><b>Thử trên máy mình</b><span>AI báo PASS không thay cho việc mở file thật trên Windows/Excel thật.</span></div>
         </div>
       </div>
-      <div class="motion-stage prod-stage" aria-hidden="true">
-        <div class="stage-cap">Build / test / fix loop</div>
-        <span class="loop"></span><span class="hub">TOOL</span>
-        <span class="node n1">BUILD</span><span class="node n2">TEST</span><span class="node n3">FIX</span>
+      <div class="motion-stage prod-stage prod-v10" aria-hidden="true">
+        <div class="stage-cap">TBSX · PRODUCTION CONTROL / BARGE FLOW</div>
+        <svg class="prod-svg" viewBox="0 0 620 320" role="img" aria-label="Minh họa trực ban điều phối toàn tuyến sản xuất và xuất nhập xà lan">
+          <defs>
+            <linearGradient id="prodBg10" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#2B1110"/><stop offset=".58" stop-color="#5C1E16"/><stop offset="1" stop-color="#1C1720"/></linearGradient>
+            <linearGradient id="prodWater10" x1="0" y1="0" x2="1" y2="0"><stop stop-color="#0284C7"/><stop offset="1" stop-color="#1D4ED8"/></linearGradient>
+            <filter id="prodShadow10"><feDropShadow dx="0" dy="10" stdDeviation="7" flood-opacity=".32"/></filter>
+          </defs>
+          <rect width="620" height="320" fill="url(#prodBg10)"/>
+
+          <!-- control board -->
+          <g transform="translate(34 48)" filter="url(#prodShadow10)">
+            <rect width="248" height="148" rx="20" fill="#111827" stroke="rgba(255,255,255,.14)"/>
+            <rect x="18" y="18" width="212" height="20" rx="8" fill="#1F2937"/>
+            <circle class="signal-v10 s1" cx="32" cy="28" r="6" fill="#22C55E"/><circle class="signal-v10 s2" cx="52" cy="28" r="6" fill="#F59E0B"/><circle class="signal-v10 s3" cx="72" cy="28" r="6" fill="#38BDF8"/>
+            <path class="route-v10" d="M28 96H74C104 96 102 62 132 62h38c32 0 30 34 60 34" fill="none" stroke="#FB923C" stroke-width="4" stroke-linecap="round" stroke-dasharray="8 9"/>
+            <g transform="translate(26 58)"><rect width="42" height="26" rx="6" fill="#F8FAFC"/><rect x="28" y="-14" width="14" height="16" rx="4" fill="#38BDF8"/></g>
+            <g transform="translate(106 51)"><rect width="56" height="36" rx="6" fill="#F97316"/><path d="M10 7v22m12-22v22m12-22v22" stroke="rgba(255,255,255,.35)"/></g>
+            <g transform="translate(186 62)"><path d="M0 16h36l10 18H8z" fill="#0EA5E9"/><rect x="8" y="0" width="14" height="18" rx="3" fill="#F8FAFC"/></g>
+            <path d="M28 124h82M128 124h62M202 124h28" stroke="rgba(255,255,255,.25)" stroke-width="8" stroke-linecap="round"/>
+          </g>
+
+          <!-- yard / crane in the middle -->
+          <g transform="translate(318 62)" filter="url(#prodShadow10)">
+            <path d="M0 134H170" stroke="rgba(255,255,255,.16)" stroke-width="2"/>
+            <rect x="18" y="92" width="72" height="34" rx="6" fill="#F97316"/><rect x="92" y="92" width="72" height="34" rx="6" fill="#F59E0B"/>
+            <path d="M42 4h8v120M138 4h8v120M38 12h112" stroke="#E5E7EB" stroke-width="8" stroke-linecap="round"/>
+            <g class="hook-v10"><path d="M94 14v52" stroke="#F8FAFC" stroke-width="3"/><rect x="64" y="66" width="60" height="8" rx="4" fill="#F8FAFC"/></g>
+          </g>
+
+          <!-- water + barge across entire bottom -->
+          <path d="M0 232H620V320H0z" fill="url(#prodWater10)"/>
+          <path class="wave-v10" d="M0 252c30-12 60 12 90 0s60 12 90 0 60 12 90 0 60 12 90 0 60 12 90 0 60 12 90 0 60 12 90 0" fill="none" stroke="rgba(255,255,255,.35)" stroke-width="3"/>
+          <g class="barge-v10" transform="translate(166 238)" filter="url(#prodShadow10)">
+            <path d="M0 18h284l-24 46H34z" fill="#111827"/>
+            <rect x="34" y="-26" width="66" height="44" rx="5" fill="#F97316"/><rect x="104" y="-26" width="66" height="44" rx="5" fill="#F59E0B"/><rect x="174" y="-26" width="66" height="44" rx="5" fill="#FB7185"/>
+            <rect x="246" y="-18" width="26" height="36" rx="5" fill="#E2E8F0"/>
+          </g>
+
+          <!-- truck from control to berth -->
+          <g class="prod-truck-v10" transform="translate(36 210)"><rect width="86" height="24" rx="7" fill="#F8FAFC"/><rect x="58" y="-18" width="28" height="20" rx="5" fill="#F97316"/><circle cx="20" cy="28" r="9" fill="#020617"/><circle cx="66" cy="28" r="9" fill="#020617"/></g>
+        </svg>
       </div>
     </div>
 

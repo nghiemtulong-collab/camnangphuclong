@@ -49,6 +49,7 @@ body{
 }
 ::selection{background:rgba(196,96,47,.16)}
 :focus-visible{outline:2px solid var(--coral);outline-offset:3px;border-radius:4px}
+#view h2.big[tabindex="-1"]:focus{outline:none}
 
 /* subtle paper grain */
 body::before{
@@ -109,9 +110,6 @@ body::before{
   width:3px;height:19px;background:var(--coral-2);border-radius:0 3px 3px 0;
 }
 .nav .dot{width:6px;height:6px;border-radius:50%;flex:0 0 auto;background:#5FA87A;box-shadow:0 0 0 3px rgba(95,168,122,.16)}
-.nav .dot.wait{background:#57504A;box-shadow:none}
-.nav button.soon{color:#7B736A}
-.nav button.soon:hover{color:#9A9287;background:rgba(246,242,236,.035)}
 
 .railfoot{
   padding:16px 26px 22px;border-top:1px solid rgba(246,242,236,.09);
@@ -342,23 +340,10 @@ td b{color:var(--ink);font-weight:600}
 }
 .dcard:hover{transform:translateY(-4px);border-color:rgba(196,96,47,.4);box-shadow:var(--sh-3)}
 .dcard:hover::after{opacity:1;transform:translateX(0)}
-.dcard.locked{cursor:default;opacity:.58;background:var(--bg-2)}
-.dcard.locked:hover{transform:none;border-color:var(--line);box-shadow:var(--sh-1)}
-.dcard.locked::after{display:none}
 .dcard .hd{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:11px}
 .dcard-title{font-family:var(--ser);font-size:20px;margin:0;font-weight:800;letter-spacing:-.004em;font-variant-ligatures:none}
 .dcard p{font-size:14.5px;color:var(--mut);margin:0;font-weight:300;line-height:1.5}
 
-.empty{text-align:center;padding:100px 20px}
-.empty .ic{
-  width:66px;height:66px;border-radius:20px;background:var(--bg-2);border:1px solid var(--line-2);
-  display:flex;align-items:center;justify-content:center;margin:0 auto 26px;
-  font-family:var(--ser);font-size:24px;color:var(--mut-2);font-weight:600;
-  animation:float 3.4s ease-in-out infinite;
-}
-@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-7px)}}
-.empty h3{margin:0}
-.empty p{max-width:430px;margin:15px auto 0;color:var(--mut);font-weight:300}
 
 /* ══════════════ QR ══════════════ */
 #qrbox{background:#fff;border:1px solid var(--line);border-radius:var(--r);padding:24px;
@@ -403,7 +388,9 @@ td b{color:var(--ink);font-weight:600}
 .deptcard{
   --dc1:#C4602F;--dc2:#F59E0B;--dcs:#FFF4EC;
   padding:26px 26px 24px;
+  border-color:var(--line);
   border-color:color-mix(in srgb,var(--dc1) 14%,var(--line));
+  background:linear-gradient(145deg,#fff 0%,var(--dcs) 100%);
   background:
     radial-gradient(circle at 94% 8%,color-mix(in srgb,var(--dc2) 12%,transparent) 0 1px,transparent 46%),
     linear-gradient(145deg,#fff 0%,color-mix(in srgb,var(--dcs) 54%,#fff) 100%);
@@ -414,6 +401,7 @@ td b{color:var(--ink);font-weight:600}
   background:linear-gradient(90deg,var(--dc1),var(--dc2),var(--dc1));
   background-size:220% 100%;background-position:0 0;
   animation:deptStripe 5.8s linear infinite;
+  box-shadow:0 0 20px rgba(20,19,16,.08);
   box-shadow:0 0 20px color-mix(in srgb,var(--dc2) 22%,transparent);
 }
 .deptcard .eyebrow{
@@ -425,18 +413,21 @@ td b{color:var(--ink);font-weight:600}
 .deptcard__tag{
   display:inline-flex;align-items:center;gap:8px;margin-top:14px;margin-right:54px;padding:7px 10px;
   max-width:calc(100% - 54px);white-space:normal;
-  border-radius:999px;background:color-mix(in srgb,var(--dcs) 88%,#fff);color:var(--dc1);
-  border:1px solid color-mix(in srgb,var(--dc1) 11%,transparent);
+  border-radius:999px;background:var(--dcs);background:color-mix(in srgb,var(--dcs) 88%,#fff);color:var(--dc1);
+  border:1px solid var(--line);border-color:color-mix(in srgb,var(--dc1) 11%,transparent);
   font-size:12px;font-weight:650;
   transition:transform .3s var(--ease),box-shadow .3s var(--ease),background .3s var(--ease);
 }
 .deptcard__tag::before{
   content:"";width:7px;height:7px;flex:0 0 7px;border-radius:50%;background:var(--dc2);
+  box-shadow:0 0 0 0 rgba(20,19,16,.12);
   box-shadow:0 0 0 0 color-mix(in srgb,var(--dc2) 35%,transparent);
   animation:deptPulse 2.8s ease-out infinite;
 }
 .deptcard:hover{
+  border-color:var(--dc1);
   border-color:color-mix(in srgb,var(--dc1) 44%,var(--line));
+  box-shadow:var(--sh-2);
   box-shadow:0 18px 44px -28px color-mix(in srgb,var(--dc1) 44%,rgba(0,0,0,.18)),var(--sh-2);
 }
 .deptcard:hover .eyebrow{letter-spacing:.18em;transform:translateX(2px)}
@@ -458,13 +449,12 @@ td b{color:var(--ink);font-weight:600}
 .deptcard.ketoan{background-image:radial-gradient(circle at 92% 14%,rgba(182,138,43,.11),transparent 25%),linear-gradient(145deg,#fff,#F5FBF7)}
 
 @keyframes deptStripe{to{background-position:220% 0}}
-@keyframes deptPulse{0%{box-shadow:0 0 0 0 color-mix(in srgb,var(--dc2) 34%,transparent)}70%,100%{box-shadow:0 0 0 8px transparent}}
+@keyframes deptPulse{0%{box-shadow:0 0 0 0 rgba(20,19,16,.14);box-shadow:0 0 0 0 color-mix(in srgb,var(--dc2) 34%,transparent)}70%,100%{box-shadow:0 0 0 8px transparent}}
 
 @media (prefers-reduced-motion:reduce){
   .deptcard::before,.deptcard__tag::before{animation:none!important}
 }
 
-.deptcard__tag{margin-right:54px;max-width:calc(100% - 54px);white-space:normal}
 
 /* ══════════════ WORKSHOP COMPLETE · DEPARTMENT DESIGN SYSTEM ══════════════ */
 body[data-dept="hcns"]{--coral:#7C3AED;--coral-2:#EC4899;--coral-w:#F7F0FF}
@@ -494,7 +484,7 @@ body[data-dept="ketoan"]{--coral:#13795B;--coral-2:#B68A2B;--coral-w:#EDF8F2}
 .dept-page .memory-strip>div{padding:17px 18px;border-radius:14px;background:var(--card);border:1px solid var(--line);box-shadow:var(--sh-1)}
 .dept-page .memory-strip b{display:block;font-size:14.5px;margin-bottom:4px}
 .dept-page .memory-strip span{font-size:13.5px;color:var(--mut);line-height:1.5}
-.dept-page .callout-big{margin-top:25px;padding:22px 24px;border-radius:18px;background:linear-gradient(135deg,var(--coral-w),#fff);border:1px solid color-mix(in srgb,var(--coral) 24%,var(--line));font-family:var(--ser);font-size:22px;line-height:1.35;letter-spacing:-.015em}
+.dept-page .callout-big{margin-top:25px;padding:22px 24px;border-radius:18px;background:linear-gradient(135deg,var(--coral-w),#fff);border:1px solid var(--line);border-color:color-mix(in srgb,var(--coral) 24%,var(--line));font-family:var(--ser);font-size:22px;line-height:1.35;letter-spacing:-.015em}
 .dept-page .prompt .bar{background:#0B1220}
 .dept-page .prompt pre{background:#111827}
 .dept-page .mini-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;margin-top:22px}
@@ -522,11 +512,6 @@ body[data-dept="ketoan"] #view.swap .hero-copy{animation-name:enterAccCopy}
 @keyframes enterProdCopy{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
 @keyframes enterTechCopy{from{opacity:0;filter:blur(4px);transform:translateY(8px)}to{opacity:1;filter:blur(0);transform:none}}
 @keyframes enterAccCopy{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:none}}
-
-/* Department page hero: content + department color. Full-screen loader carries the visual illustration. */
-.dept-loader__panel::after{content:"";display:block;width:min(58vw,360px);height:3px;border-radius:999px;background:rgba(255,255,255,.18);overflow:hidden;box-shadow:inset 0 0 0 1px rgba(255,255,255,.05)}
-.dept-loader__panel::before{content:"";position:absolute;left:50%;bottom:-3px;width:min(58vw,360px);height:3px;border-radius:999px;background:linear-gradient(90deg,transparent,#fff,transparent);transform:translateX(-50%) scaleX(.08);transform-origin:left center;z-index:3;animation:loaderProgress 1.05s var(--ease) forwards}
-@keyframes loaderProgress{from{transform:translateX(-50%) scaleX(.08);opacity:.4}to{transform:translateX(-50%) scaleX(1);opacity:1}}
 
 /* Full-screen department loading transitions — SVG only. */
 body.loading{overflow:hidden}
@@ -557,12 +542,12 @@ body.loading{overflow:hidden}
 kbd{font:600 10px/1 var(--mono);padding:4px 6px;border-radius:6px;border:1px solid var(--line-2);background:var(--bg-2);color:var(--mut)}
 
 /* Horizontal sticky TOC */
-.page-toc{position:sticky;top:57px;z-index:28;margin:0 -8px 18px;padding:10px 8px;display:flex;flex-wrap:wrap;gap:7px;overflow:visible;scrollbar-width:none;background:color-mix(in srgb,var(--bg) 92%,transparent);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border-bottom:1px solid transparent}
+.page-toc{position:sticky;top:57px;z-index:28;margin:0 -8px 18px;padding:10px 8px;display:flex;flex-wrap:nowrap;gap:7px;overflow-x:auto;overflow-y:hidden;scrollbar-width:none;background:#FAF8F4;background:color-mix(in srgb,var(--bg) 92%,transparent);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border-bottom:1px solid transparent}
 .page-toc::-webkit-scrollbar{display:none}
 .page-toc.is-stuck{border-bottom-color:var(--line)}
 .page-toc button{flex:0 0 auto;min-height:36px;border:1px solid var(--line);border-radius:999px;padding:7px 11px;background:var(--card);color:var(--mut);font:600 11.5px/1.2 var(--san);cursor:pointer;transition:.18s var(--ease);white-space:nowrap}
 .page-toc button:hover{border-color:var(--coral);color:var(--ink)}
-.page-toc button.on,.page-toc button[aria-current="location"]{background:var(--coral-w);border-color:color-mix(in srgb,var(--coral) 38%,var(--line));color:var(--coral)}
+.page-toc button.on,.page-toc button[aria-current="location"]{background:var(--coral-w);border-color:var(--coral);border-color:color-mix(in srgb,var(--coral) 38%,var(--line));color:var(--coral)}
 section[id]{scroll-margin-top:118px}
 
 /* Search dialog */
@@ -577,7 +562,7 @@ body.searching{overflow:hidden}
 .search-head h2{font:800 22px/1.2 var(--san);letter-spacing:-.01em}
 .search-close{width:42px;height:42px;border:1px solid var(--line);border-radius:12px;background:var(--bg-2);color:var(--ink);font-size:25px;line-height:1;cursor:pointer}
 .search-field{margin:0 22px;min-height:48px;border:1px solid var(--line-2);border-radius:14px;background:var(--bg);display:flex;align-items:center;gap:10px;padding:0 13px;color:var(--mut)}
-.search-field:focus-within{border-color:var(--coral);box-shadow:0 0 0 3px color-mix(in srgb,var(--coral) 12%,transparent)}
+.search-field:focus-within{border-color:var(--coral);box-shadow:0 0 0 3px rgba(196,96,47,.14);box-shadow:0 0 0 3px color-mix(in srgb,var(--coral) 12%,transparent)}
 .search-field input{flex:1;min-width:0;border:0;outline:0;background:transparent;color:var(--ink);font:500 16px/1.3 var(--san);padding:12px 0}
 .search-status{min-height:31px;padding:10px 22px 4px;color:var(--mut);font-size:12px}
 .search-results{padding:0 12px 16px;overflow:auto}
@@ -615,12 +600,12 @@ body.searching{overflow:hidden}
 }
 @media (max-width:880px){
   .burger{display:block}
-  .tw{position:relative;padding-bottom:24px}
-  .tw::after{content:"Vuốt ngang để xem đủ →";position:absolute;right:8px;bottom:4px;color:var(--mut);font:600 10px/1 var(--san);letter-spacing:.02em;pointer-events:none}
+  .tw.is-scrollable{position:relative;padding-bottom:24px}
+  .tw.is-scrollable::after{content:"Vuốt ngang để xem đủ →";position:absolute;right:8px;bottom:4px;color:var(--mut);font:600 10px/1 var(--san);letter-spacing:.02em;pointer-events:none}
   .topbar .in{gap:9px}
   .search-open span,.search-open kbd{display:none}
   .search-open{width:42px;justify-content:center;padding:0}
-  .page-toc{top:57px;margin-left:-4px;margin-right:-4px;flex-wrap:nowrap;overflow-x:auto;overflow-y:hidden}
+  .page-toc{top:57px;margin-left:-4px;margin-right:-4px}
   .thanks-grid,.dept-page .memory-strip,.dept-page .mini-grid{grid-template-columns:1fr}
   .progress{left:0}
   .rail{position:fixed;left:0;top:0;z-index:70;transform:translateX(-100%);
@@ -1924,7 +1909,7 @@ ketoan: {
   html: `
   <div class="dept-page acc-page">
     <div class="hero dept-hero"><div class="hero-copy"><div class="kick">Workshop ứng dụng AI · Kế toán · sáng Thứ Sáu, ngày 14/08</div><h2 class="big">Kế toán</h2>
-        <div class="hero-tagline">Căn cứ trước · kết luận sau</div><div class="meta"><span class="pill">60 phút</span><span class="pill ok">Tài liệu sau workshop</span><span class="pill hot">Căn cứ trước · kết luận sau</span></div></div>
+        <div class="hero-tagline">Căn cứ trước · kết luận sau</div><div class="meta"><span class="pill">60 phút</span><span class="pill ok">Tài liệu sau workshop</span><span class="pill hot">Điều · Khoản · Trang</span></div></div>
       </div>
 
     <section><div class="snum">01 · CHỈ CẦN NHỚ 3 VIỆC</div><h3>AI là người phụ việc, không phải người chịu trách nhiệm</h3><div class="grid g3"><div class="card card--accent"><div class="k">01</div><h4>Đưa văn bản mình đã có</h4><p>Tự tải bản gốc về máy trước. Đừng hỏi “quy định mới nhất là gì”.</p></div><div class="card card--accent"><div class="k">02</div><h4>Bắt AI chỉ căn cứ</h4><p>Mỗi câu phải kèm Điều, Khoản, trang. Không có thì ghi KHÔNG CÓ.</p></div><div class="card no"><div class="k">03</div><h4>Không đưa dữ liệu NLĐ</h4><p>Tên, CCCD, địa chỉ, điện thoại, lương — không đưa lên AI công cộng.</p></div></div></section>
@@ -2033,16 +2018,6 @@ qr: {
 };
 
 
-function soon(name, ini){
-  return `<div class="empty">
-    <div class="ic">${ini}</div>
-    <h3>${name}</h3>
-    <p>Bộ phận này chưa được đào tạo. Nội dung sẽ được cập nhật sau khi bộ phận
-    gửi danh sách công việc cần hỗ trợ.</p>
-    <p style="margin-top:26px"><button class="btn ghost" onclick="go('chung')">Đọc luật chung trong lúc chờ</button></p>
-  </div>`;
-}
-
 /* ================= ĐIỀU HƯỚNG ================= */
 const view = document.getElementById('view');
 const crumb = document.getElementById('crumb');
@@ -2143,7 +2118,6 @@ function slugify(s){
 function setupPageStructure(key){
   if(tocObserver){ tocObserver.disconnect(); tocObserver=null; }
   if(key==='home'||key==='qr') return;
-  view.querySelectorAll('.page-toc').forEach(e=>e.remove());
   const root=view.querySelector(':scope > .dept-page') || view;
   const sections=[...root.querySelectorAll(':scope > section')];
   if(sections.length<3) return;
@@ -2152,7 +2126,8 @@ function setupPageStructure(key){
   sections.forEach((sec,i)=>{
     const heading=sec.querySelector('h3,h2');
     const snum=sec.querySelector('.snum');
-    const label=(snum?.textContent || heading?.textContent || `Mục ${i+1}`).trim();
+    const raw=(snum?.textContent || heading?.textContent || `Mục ${i+1}`).trim();
+    const label=raw.replace(/^\d+\s*·\s*/, '');
     const id=`sec-${key}-${i}-${slugify(label)}`;
     sec.id=id; sec.dataset.sectionIndex=String(i);
     const b=document.createElement('button');
@@ -2173,6 +2148,14 @@ function setupPageStructure(key){
   sections.forEach(s=>tocObserver.observe(s));
 }
 
+function updateScrollableTables(){
+  view.querySelectorAll('.tw').forEach(tw=>{
+    tw.classList.remove('is-scrollable');
+    const overflow=tw.scrollWidth>tw.clientWidth+4;
+    tw.classList.toggle('is-scrollable',overflow);
+  });
+}
+
 function focusPageHeading(){
   const h=view.querySelector('h2.big,h2,h1');
   if(!h) return;
@@ -2186,6 +2169,7 @@ function renderPage(key, push=true, focus=false){
   view.innerHTML = d.html;
   setupPageStructure(key);
   markRv();
+  requestAnimationFrame(updateScrollableTables);
   view.classList.remove('swap'); void view.offsetWidth; view.classList.add('swap');
   crumb.textContent = d.crumb;
   document.title = d.crumb + ' — Cẩm nang AI nội bộ · ICD Phúc Long';
@@ -2237,6 +2221,12 @@ function go(key, push=true, animate=true){
   renderPage(next,push,false);
   if(animate) playDeptLoader(next,focusPageHeading); else focusPageHeading();
 }
+
+let tableResizeTimer=null;
+window.addEventListener('resize',()=>{
+  clearTimeout(tableResizeTimer);
+  tableResizeTimer=setTimeout(updateScrollableTables,120);
+});
 
 /* Accessible mobile menu */
 const menuBtn=document.getElementById('menuBtn');

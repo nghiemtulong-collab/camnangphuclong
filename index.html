@@ -8,7 +8,7 @@
 <meta name="theme-color" content="#141310">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@300;400;500;600;700;800&family=Newsreader:opsz,wght@6..72,400;6..72,500;6..72,600;6..72,700&family=JetBrains+Mono:wght@400;500;700&display=swap&subset=vietnamese,latin" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700&display=swap&subset=vietnamese,latin" rel="stylesheet">
 <style>
 /* ══════════════ TOKENS ══════════════ */
 :root{
@@ -30,7 +30,7 @@
   --red-w:#FBEDEA;
   --blue:#33566E;
 
-  --ser:"Newsreader",Georgia,"Times New Roman",serif;
+  --ser:"Be Vietnam Pro",-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;
   --san:"Be Vietnam Pro",-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;
   --mono:"JetBrains Mono",ui-monospace,"SFMono-Regular",Menlo,Consolas,monospace;
 
@@ -48,6 +48,7 @@ body{
   font-family:var(--san);font-size:16px;font-weight:400;line-height:1.62;
   -webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;
   font-feature-settings:"kern" 1;
+  font-kerning:normal;
 }
 ::selection{background:rgba(196,96,47,.16)}
 :focus-visible{outline:2px solid var(--coral);outline-offset:3px;border-radius:4px}
@@ -82,7 +83,7 @@ body::before{
   box-shadow:0 5px 16px -6px rgba(0,0,0,.55);
 }
 .mark img{width:100%;height:100%;object-fit:contain;display:block}
-.brand h1{font-family:var(--ser);font-size:21px;font-weight:600;line-height:1.22;letter-spacing:-.012em}
+.brand h1{font-family:var(--ser);font-size:21px;font-weight:800;line-height:1.22;letter-spacing:-.003em;font-variant-ligatures:none}
 .brand p{font-size:10.5px;color:var(--mut-2);letter-spacing:.19em;text-transform:uppercase;margin-top:9px;font-weight:500}
 
 .navwrap{flex:1;overflow-y:auto;padding:20px 0 26px;position:relative;z-index:1;scrollbar-width:thin}
@@ -162,8 +163,10 @@ body.menu .burger span{background:#F6F2EC}
   display:flex;align-items:center;gap:11px}
 .kick::before{content:"";width:22px;height:1.5px;background:var(--coral);border-radius:2px}
 h2.big{
-  font-family:var(--ser);font-size:clamp(32px,5vw,52px);line-height:1.06;
-  letter-spacing:-.028em;margin:18px 0 0;font-weight:600;
+  font-family:var(--ser);font-size:clamp(32px,5vw,52px);line-height:1.1;
+  letter-spacing:-.012em;margin:18px 0 0;font-weight:800;
+  font-variant-ligatures:none;font-feature-settings:"liga" 0,"clig" 0,"kern" 1;
+  text-wrap:balance;
 }
 .hero .sub{font-size:18.5px;color:var(--mut);margin-top:17px;max-width:640px;line-height:1.58;font-weight:300}
 .meta{display:flex;flex-wrap:wrap;gap:9px;margin-top:28px}
@@ -179,7 +182,7 @@ h2.big{
 section{padding:52px 0;border-bottom:1px solid var(--line)}
 section:last-of-type{border-bottom:0}
 .snum{font-family:var(--mono);font-size:10.5px;letter-spacing:.2em;color:var(--coral);font-weight:700}
-h3{font-family:var(--ser);font-size:30px;line-height:1.2;letter-spacing:-.022em;margin:11px 0 0;font-weight:600}
+h3{font-family:var(--ser);font-size:30px;line-height:1.2;letter-spacing:-.008em;margin:11px 0 0;font-weight:800;font-variant-ligatures:none}
 h4{font-size:16.5px;font-weight:700;margin:0 0 5px;letter-spacing:-.008em;line-height:1.36}
 .lede{color:var(--mut);margin-top:13px;max-width:660px;font-size:16.5px;font-weight:300;line-height:1.6}
 p{margin-top:14px}
@@ -346,7 +349,7 @@ td b{color:var(--ink);font-weight:600}
 .dcard.locked:hover{transform:none;border-color:var(--line);box-shadow:var(--sh-1)}
 .dcard.locked::after{display:none}
 .dcard .hd{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:11px}
-.dcard h4{font-family:var(--ser);font-size:20px;margin:0;font-weight:600;letter-spacing:-.012em}
+.dcard h4{font-family:var(--ser);font-size:20px;margin:0;font-weight:800;letter-spacing:-.004em;font-variant-ligatures:none}
 .dcard p{font-size:14.5px;color:var(--mut);margin:0;font-weight:300;line-height:1.5}
 
 .empty{text-align:center;padding:100px 20px}
@@ -396,12 +399,209 @@ td b{color:var(--ink);font-weight:600}
   .rv{opacity:1}
 }
 
+
+
+/* ══════════════ WORKSHOP COMPLETE · DEPARTMENT DESIGN SYSTEM ══════════════ */
+body[data-dept="dieudo"]{--coral:#2563EB;--coral-2:#38BDF8;--coral-w:#EAF4FF}
+body[data-dept="kythuat"]{--coral:#0F766E;--coral-2:#F59E0B;--coral-w:#ECF8F5}
+body[data-dept="trucban"]{--coral:#D9473F;--coral-2:#F97316;--coral-w:#FFF0ED}
+body[data-dept="ketoan"]{--coral:#13795B;--coral-2:#B68A2B;--coral-w:#EDF8F2}
+
+.dept-page{--dept-ink:#0B1220;position:relative}
+.dept-page .hero.dept-hero{
+  display:grid;grid-template-columns:minmax(0,1.12fr) minmax(280px,.88fr);gap:34px;align-items:center;
+  min-height:430px;padding:54px 0 48px;
+}
+.dept-hero::after{display:none}
+.dept-hero .hero-copy{min-width:0;position:relative;z-index:2}
+.dept-hero .hero-copy .sub{max-width:610px}
+.dept-hero h2.big{text-wrap:balance}
+.motion-stage{
+  position:relative;height:286px;border-radius:26px;overflow:hidden;isolation:isolate;
+  background:#101620;border:1px solid rgba(255,255,255,.11);
+  box-shadow:0 22px 60px -30px rgba(11,18,32,.72), inset 0 1px rgba(255,255,255,.06);
+}
+.motion-stage::before{content:"";position:absolute;inset:0;pointer-events:none;opacity:.5;
+  background:radial-gradient(circle at 70% 18%,color-mix(in srgb,var(--coral-2) 28%,transparent),transparent 38%)}
+.stage-cap{position:absolute;left:18px;top:16px;z-index:5;font:600 9px/1 var(--mono);letter-spacing:.17em;text-transform:uppercase;color:rgba(255,255,255,.55)}
+.stage-chip{position:absolute;z-index:5;padding:6px 9px;border:1px solid rgba(255,255,255,.12);border-radius:999px;
+  color:rgba(255,255,255,.78);font:600 9px/1 var(--mono);letter-spacing:.08em;background:rgba(255,255,255,.055);backdrop-filter:blur(8px)}
+.dept-page section{position:relative}
+.dept-page section>.snum{display:inline-flex;align-items:center;gap:8px;padding:5px 9px;border-radius:999px;background:var(--coral-w)}
+.dept-page section>.snum::before{content:"";width:6px;height:6px;border-radius:50%;background:var(--coral)}
+.dept-page .card{will-change:transform}
+.dept-page .card:hover{transform:translateY(-4px)}
+.dept-page .tw{box-shadow:0 18px 44px -34px rgba(11,18,32,.35)}
+.dept-page .section-kicker{font:700 10px/1.2 var(--mono);letter-spacing:.18em;color:var(--coral);text-transform:uppercase;margin-top:22px}
+.dept-page .memory-strip{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:24px}
+.dept-page .memory-strip>div{padding:17px 18px;border-radius:14px;background:var(--card);border:1px solid var(--line);box-shadow:var(--sh-1)}
+.dept-page .memory-strip b{display:block;font-size:14.5px;margin-bottom:4px}
+.dept-page .memory-strip span{font-size:13.5px;color:var(--mut);line-height:1.5}
+.dept-page .callout-big{margin-top:25px;padding:22px 24px;border-radius:18px;background:linear-gradient(135deg,var(--coral-w),#fff);border:1px solid color-mix(in srgb,var(--coral) 24%,var(--line));font-family:var(--ser);font-size:22px;line-height:1.35;letter-spacing:-.015em}
+.dept-page .prompt .bar{background:#0B1220}
+.dept-page .prompt pre{background:#111827}
+.dept-page .mini-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;margin-top:22px}
+.dept-page .mini{padding:16px 18px;border:1px solid var(--line);border-radius:13px;background:var(--card)}
+.dept-page .mini b{display:block;font-size:14.5px;margin-bottom:4px}.dept-page .mini span{font-size:13.7px;color:var(--mut)}
+
+/* Điều độ — moving route / control signals */
+.ops-stage{background:linear-gradient(145deg,#07152D,#0B2D50 58%,#0E172A)}
+.ops-stage .ops-grid{position:absolute;inset:0;opacity:.28;background-image:linear-gradient(rgba(56,189,248,.13) 1px,transparent 1px),linear-gradient(90deg,rgba(56,189,248,.13) 1px,transparent 1px);background-size:28px 28px}
+.ops-stage .route{position:absolute;left:36px;right:34px;height:2px;border-radius:2px;background:linear-gradient(90deg,rgba(56,189,248,.08),rgba(56,189,248,.86),rgba(56,189,248,.08))}
+.ops-stage .r1{top:84px}.ops-stage .r2{top:143px}.ops-stage .r3{top:202px}
+.ops-stage .signal{position:absolute;left:38px;width:10px;height:10px;border-radius:50%;background:#fff;box-shadow:0 0 0 5px rgba(56,189,248,.14),0 0 22px rgba(56,189,248,.9)}
+.ops-stage .s1{top:80px;animation:routeRun 3.8s var(--ease) infinite}.ops-stage .s2{top:139px;animation:routeRun 4.6s var(--ease) .7s infinite}.ops-stage .s3{top:198px;animation:routeRun 4.1s var(--ease) 1.3s infinite}
+.ops-stage .stage-chip.c1{right:18px;top:67px}.ops-stage .stage-chip.c2{right:18px;top:126px}.ops-stage .stage-chip.c3{right:18px;top:185px}
+.ops-stage .pulse-ring{position:absolute;left:50%;top:50%;width:86px;height:86px;margin:-43px;border:1px solid rgba(56,189,248,.26);border-radius:50%;animation:pulseRing 2.8s ease-out infinite}
+@keyframes routeRun{0%{transform:translateX(0);opacity:.15}12%{opacity:1}80%{opacity:1}100%{transform:translateX(205px);opacity:0}}
+@keyframes pulseRing{0%{transform:scale(.5);opacity:0}25%{opacity:.7}100%{transform:scale(2.25);opacity:0}}
+
+/* Kỹ thuật · Vật tư — blueprint rings + scanner */
+.tech-stage{background:linear-gradient(145deg,#051B1D,#073B3A 62%,#10252A)}
+.tech-stage .blue-grid{position:absolute;inset:0;opacity:.36;background-image:linear-gradient(rgba(45,212,191,.1) 1px,transparent 1px),linear-gradient(90deg,rgba(45,212,191,.1) 1px,transparent 1px);background-size:20px 20px}
+.tech-stage .ring{position:absolute;left:50%;top:51%;border-radius:50%;border:1px solid rgba(94,234,212,.35);transform:translate(-50%,-50%)}
+.tech-stage .ring.a{width:190px;height:190px;border-style:dashed;animation:spinRing 14s linear infinite}.tech-stage .ring.b{width:118px;height:118px;border-color:rgba(245,158,11,.55);animation:spinRingRev 9s linear infinite}
+.tech-stage .core{position:absolute;left:50%;top:51%;width:48px;height:48px;transform:translate(-50%,-50%) rotate(45deg);border:1px solid rgba(255,255,255,.72);background:rgba(255,255,255,.06);box-shadow:0 0 32px rgba(45,212,191,.24)}
+.tech-stage .scan{position:absolute;left:20px;right:20px;top:30px;height:1px;background:linear-gradient(90deg,transparent,#5EEAD4,transparent);box-shadow:0 0 16px #5EEAD4;animation:scanY 3.3s ease-in-out infinite alternate}
+.tech-stage .stage-chip.c1{left:18px;bottom:18px}.tech-stage .stage-chip.c2{right:18px;bottom:18px}
+@keyframes spinRing{to{transform:translate(-50%,-50%) rotate(360deg)}}@keyframes spinRingRev{to{transform:translate(-50%,-50%) rotate(-360deg)}}
+@keyframes scanY{from{transform:translateY(12px);opacity:.35}to{transform:translateY(205px);opacity:1}}
+
+/* Trực ban sản xuất — iterative build loop */
+.prod-stage{background:linear-gradient(145deg,#24100D,#4A1715 55%,#19131A)}
+.prod-stage .loop{position:absolute;left:50%;top:53%;width:182px;height:182px;margin:-91px;border-radius:50%;background:conic-gradient(from 20deg,rgba(249,115,22,.15),#F97316,rgba(217,71,63,.2),#D9473F,rgba(249,115,22,.15));mask:radial-gradient(circle,transparent 62%,#000 63%);animation:prodSpin 8s linear infinite}
+.prod-stage .hub{position:absolute;left:50%;top:53%;width:76px;height:76px;transform:translate(-50%,-50%);border-radius:22px;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.18);box-shadow:0 0 42px rgba(249,115,22,.18);display:grid;place-items:center;color:#fff;font:800 11px/1 var(--mono);letter-spacing:.12em}
+.prod-stage .node{position:absolute;padding:8px 10px;border-radius:10px;border:1px solid rgba(255,255,255,.14);background:rgba(255,255,255,.07);color:rgba(255,255,255,.82);font:700 9px/1 var(--mono);letter-spacing:.1em;animation:nodePulse 2.4s ease-in-out infinite}
+.prod-stage .n1{left:24px;top:76px}.prod-stage .n2{right:20px;top:76px;animation-delay:.7s}.prod-stage .n3{left:50%;bottom:18px;transform:translateX(-50%);animation-delay:1.4s}
+.prod-stage .stage-chip.c1{left:18px;bottom:18px}.prod-stage .stage-chip.c2{right:18px;bottom:18px}
+@keyframes prodSpin{to{transform:rotate(360deg)}}@keyframes nodePulse{0%,100%{opacity:.5}50%{opacity:1;box-shadow:0 0 22px rgba(249,115,22,.24)}}
+
+/* Kế toán — document stack + evidence scan */
+.acc-stage{background:linear-gradient(145deg,#071E18,#0B3B2C 58%,#17261D)}
+.acc-stage .paper{position:absolute;width:154px;height:190px;border-radius:14px;background:#FBF8EE;border:1px solid rgba(255,255,255,.28);box-shadow:0 18px 40px -18px rgba(0,0,0,.55)}
+.acc-stage .p1{left:64px;top:48px;transform:rotate(-7deg);opacity:.38}.acc-stage .p2{left:82px;top:40px;transform:rotate(4deg);opacity:.66}.acc-stage .p3{left:98px;top:36px;overflow:hidden}
+.acc-stage .p3::before{content:"";position:absolute;left:18px;right:18px;top:28px;height:7px;border-radius:7px;background:#13795B;box-shadow:0 22px 0 #DAD3BE,0 42px 0 #DAD3BE,0 62px 0 #DAD3BE,0 82px 0 #DAD3BE,0 112px 0 #DAD3BE}
+.acc-stage .audit-scan{position:absolute;left:99px;width:152px;height:2px;top:58px;background:linear-gradient(90deg,transparent,#E7C86F,transparent);box-shadow:0 0 14px rgba(231,200,111,.85);animation:auditScan 3s ease-in-out infinite alternate}
+.acc-stage .cite{position:absolute;right:28px;width:50px;height:50px;border-radius:16px;border:1px solid rgba(231,200,111,.32);display:grid;place-items:center;color:#E7C86F;font:800 11px/1 var(--mono);background:rgba(231,200,111,.07)}
+.acc-stage .c1{top:70px;animation:citePulse 2.2s ease-in-out infinite}.acc-stage .c2{top:136px;animation:citePulse 2.2s .8s ease-in-out infinite}.acc-stage .c3{top:202px;animation:citePulse 2.2s 1.6s ease-in-out infinite}
+@keyframes auditScan{from{transform:translateY(0)}to{transform:translateY(140px)}}@keyframes citePulse{0%,100%{opacity:.45;transform:scale(.96)}50%{opacity:1;transform:scale(1.04)}}
+
+@media(max-width:880px){
+  .dept-page .hero.dept-hero{grid-template-columns:1fr;min-height:0;padding-top:34px}
+  .motion-stage{height:240px;max-width:560px;width:100%}
+  .dept-page .memory-strip,.dept-page .mini-grid{grid-template-columns:1fr}
+}
+@media(max-width:520px){
+  .motion-stage{height:218px;border-radius:20px}
+  .dept-page .callout-big{font-size:19px;padding:18px 19px}
+  .ops-stage .signal{transform:scale(.9)}
+}
+@media (prefers-reduced-motion:reduce){
+  .ops-stage .signal,.ops-stage .pulse-ring,.tech-stage .ring,.tech-stage .scan,.prod-stage .loop,.prod-stage .node,.acc-stage .audit-scan,.acc-stage .cite,.people-stage .cardlet,.people-stage .beam,.people-stage .orbit,.cargo-stage .beam,.cargo-stage .scan-dot{animation:none!important}
+}
+
+
+
+/* Shared heading rendering fix for Vietnamese serif text */
+.big,.brand h1,h3,.dcard h4{font-variant-ligatures:none;text-rendering:optimizeLegibility}
+
+/* Home cards: each department has its own visual identity */
+.deptcard{padding:26px 26px 24px;overflow:hidden}
+.deptcard::before{content:"";position:absolute;left:0;right:0;top:0;height:5px;border-radius:14px 14px 0 0;background:linear-gradient(90deg,var(--dc1),var(--dc2))}
+.deptcard::after{content:"";position:absolute;right:-32px;top:-32px;width:120px;height:120px;border-radius:50%;background:radial-gradient(circle,var(--dcs),transparent 68%);opacity:.9;pointer-events:none}
+.deptcard .eyebrow{font:700 10px/1.2 var(--mono);letter-spacing:.16em;text-transform:uppercase;color:var(--dc1);margin-bottom:12px}
+.deptcard .sig{display:inline-flex;align-items:center;gap:8px;margin-top:14px;padding:7px 10px;border-radius:999px;background:var(--dcs);color:var(--dc1);font-size:12px;font-weight:600}
+.deptcard .sig::before{content:"";width:7px;height:7px;border-radius:50%;background:var(--dc2)}
+.deptcard.hcns{--dc1:#7C3AED;--dc2:#EC4899;--dcs:#F7F0FF}
+.deptcard.giaonhan{--dc1:#0F766E;--dc2:#0284C7;--dcs:#ECF9F7}
+.deptcard.dieudo{--dc1:#2563EB;--dc2:#38BDF8;--dcs:#EAF4FF}
+.deptcard.kythuat{--dc1:#0F766E;--dc2:#F59E0B;--dcs:#ECF8F5}
+.deptcard.trucban{--dc1:#D9473F;--dc2:#F97316;--dcs:#FFF0ED}
+.deptcard.ketoan{--dc1:#13795B;--dc2:#B68A2B;--dcs:#EDF8F2}
+
+/* Extend per-department theme tokens */
+body[data-dept="hcns"]{--coral:#7C3AED;--coral-2:#EC4899;--coral-w:#F7F0FF}
+body[data-dept="giaonhan"]{--coral:#0F766E;--coral-2:#0284C7;--coral-w:#ECF9F7}
+
+/* HCNS — people operations / message clarity */
+.people-stage{background:linear-gradient(145deg,#201335,#4C1D95 58%,#831843)}
+.people-stage .glow-grid{position:absolute;inset:0;opacity:.18;background-image:linear-gradient(rgba(255,255,255,.08) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.08) 1px,transparent 1px);background-size:26px 26px}
+.people-stage .cardlet{position:absolute;width:132px;height:88px;border-radius:18px;border:1px solid rgba(255,255,255,.16);background:rgba(255,255,255,.08);box-shadow:0 10px 24px -12px rgba(0,0,0,.45)}
+.people-stage .a{left:30px;top:70px;animation:peopleFloat 5.8s ease-in-out infinite}
+.people-stage .b{left:84px;top:124px;animation:peopleFloat 5.8s ease-in-out 1s infinite}
+.people-stage .c{right:34px;top:92px;animation:peopleFloat 5.8s ease-in-out 1.6s infinite}
+.people-stage .cardlet::before{content:"";position:absolute;left:16px;right:16px;top:19px;height:8px;border-radius:6px;background:rgba(255,255,255,.85);box-shadow:0 19px 0 rgba(255,255,255,.26),0 38px 0 rgba(255,255,255,.18)}
+.people-stage .beam{position:absolute;left:102px;right:88px;top:144px;height:2px;background:linear-gradient(90deg,transparent,#F9A8D4,#A78BFA,transparent);box-shadow:0 0 18px rgba(249,168,212,.78);animation:beamPulse 3.1s ease-in-out infinite}
+.people-stage .orbit{position:absolute;left:50%;top:50%;width:88px;height:88px;margin:-44px;border-radius:50%;border:1px dashed rgba(255,255,255,.22);animation:spinSoft 13s linear infinite}
+.people-stage .center-note{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);padding:11px 14px;border-radius:12px;background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.2);color:#fff;font:700 10px/1 var(--mono);letter-spacing:.12em}
+.people-stage .stage-chip.c1{left:18px;bottom:18px}.people-stage .stage-chip.c2{left:128px;bottom:18px}.people-stage .stage-chip.c3{right:18px;bottom:18px}
+@keyframes peopleFloat{0%,100%{transform:translateY(0)}50%{transform:translateY(-9px)}}
+@keyframes beamPulse{0%,100%{opacity:.35}50%{opacity:1}}
+@keyframes spinSoft{to{transform:rotate(360deg)}}
+
+/* Giao nhận — file / rule / cell mapping */
+.cargo-stage{background:linear-gradient(145deg,#081A2B,#0A4B53 56%,#0A253D)}
+.cargo-stage .port-grid{position:absolute;inset:0;opacity:.24;background-image:linear-gradient(rgba(255,255,255,.08) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.08) 1px,transparent 1px);background-size:24px 24px}
+.cargo-stage .file{position:absolute;left:28px;width:118px;height:56px;border-radius:14px;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.16);box-shadow:0 8px 22px -12px rgba(0,0,0,.45)}
+.cargo-stage .f1{top:58px}.cargo-stage .f2{top:126px}.cargo-stage .f3{top:194px}
+.cargo-stage .file::before{content:"";position:absolute;left:16px;right:34px;top:18px;height:7px;border-radius:5px;background:rgba(255,255,255,.9);box-shadow:0 15px 0 rgba(255,255,255,.24)}
+.cargo-stage .beam{position:absolute;left:152px;right:124px;height:2px;border-radius:2px;background:linear-gradient(90deg,rgba(2,132,199,.12),rgba(34,211,238,.96),rgba(16,185,129,.12));box-shadow:0 0 16px rgba(34,211,238,.85)}
+.cargo-stage .b1{top:86px;animation:cargoMove 3.9s var(--ease) infinite}.cargo-stage .b2{top:154px;animation:cargoMove 4.4s var(--ease) .8s infinite}.cargo-stage .b3{top:222px;animation:cargoMove 4.1s var(--ease) 1.3s infinite}
+.cargo-stage .gridbox{position:absolute;right:26px;top:62px;width:190px;height:158px;border-radius:18px;border:1px solid rgba(255,255,255,.15);background:rgba(255,255,255,.06);overflow:hidden}
+.cargo-stage .gridbox::before{content:"";position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,.12) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.12) 1px,transparent 1px);background-size:38px 38px}
+.cargo-stage .scan-dot{position:absolute;right:174px;width:12px;height:12px;border-radius:50%;background:#fff;box-shadow:0 0 0 4px rgba(34,211,238,.16),0 0 22px rgba(34,211,238,.8)}
+.cargo-stage .d1{top:80px;animation:cellRun 3.9s var(--ease) infinite}.cargo-stage .d2{top:148px;animation:cellRun 4.4s var(--ease) .8s infinite}.cargo-stage .d3{top:216px;animation:cellRun 4.1s var(--ease) 1.3s infinite}
+.cargo-stage .stage-chip.c1{left:18px;bottom:18px}.cargo-stage .stage-chip.c2{left:124px;bottom:18px}.cargo-stage .stage-chip.c3{right:18px;bottom:18px}
+@keyframes cargoMove{0%{opacity:.2;transform:scaleX(.45);transform-origin:left center}25%{opacity:1}100%{opacity:.4;transform:scaleX(1)}}
+@keyframes cellRun{0%{transform:translateX(0);opacity:.2}20%{opacity:1}100%{transform:translateX(138px);opacity:0}}
+
+
+
+/* Home gratitude block */
+.thanks-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:24px}
+.thanks-card{padding:18px 18px 16px;border-radius:16px;background:var(--card);border:1px solid var(--line);box-shadow:var(--sh-1);position:relative;overflow:hidden}
+.thanks-card::before{content:"";position:absolute;left:0;top:0;bottom:0;width:4px;background:linear-gradient(180deg,var(--coral),var(--coral-2))}
+.thanks-card b{display:block;font-size:15px;margin-bottom:6px}
+.thanks-card span{font-size:13.8px;color:var(--mut);line-height:1.55}
+
+/* Department-specific page transitions */
+#view.swap .hero-copy,#view.swap .motion-stage{animation-duration:.78s;animation-timing-function:var(--ease);animation-fill-mode:both}
+body[data-dept="hcns"] #view.swap .hero-copy{animation-name:enterRecruitCopy}
+body[data-dept="hcns"] #view.swap .motion-stage{animation-name:enterRecruitStage}
+body[data-dept="giaonhan"] #view.swap .hero-copy{animation-name:enterCargoCopy}
+body[data-dept="giaonhan"] #view.swap .motion-stage{animation-name:enterCargoStage}
+body[data-dept="dieudo"] #view.swap .hero-copy{animation-name:enterOpsCopy}
+body[data-dept="dieudo"] #view.swap .motion-stage{animation-name:enterOpsStage}
+body[data-dept="trucban"] #view.swap .hero-copy{animation-name:enterProdCopy}
+body[data-dept="trucban"] #view.swap .motion-stage{animation-name:enterProdStage}
+body[data-dept="kythuat"] #view.swap .hero-copy{animation-name:enterTechCopy}
+body[data-dept="kythuat"] #view.swap .motion-stage{animation-name:enterTechStage}
+body[data-dept="ketoan"] #view.swap .hero-copy{animation-name:enterAccCopy}
+body[data-dept="ketoan"] #view.swap .motion-stage{animation-name:enterAccStage}
+
+@keyframes enterRecruitCopy{from{opacity:0;transform:translateY(18px) scale(.985)}to{opacity:1;transform:none}}
+@keyframes enterRecruitStage{from{opacity:0;transform:translateX(20px) rotate(-2deg) scale(.96)}to{opacity:1;transform:none}}
+@keyframes enterCargoCopy{from{opacity:0;transform:translateX(-20px)}to{opacity:1;transform:none}}
+@keyframes enterCargoStage{from{opacity:0;clip-path:inset(0 100% 0 0)}to{opacity:1;clip-path:inset(0 0 0 0)}}
+@keyframes enterOpsCopy{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:none}}
+@keyframes enterOpsStage{from{opacity:0;transform:translateX(26px) skewX(-4deg)}to{opacity:1;transform:none}}
+@keyframes enterProdCopy{from{opacity:0;transform:translateY(20px) scale(.97)}to{opacity:1;transform:none}}
+@keyframes enterProdStage{from{opacity:0;transform:rotate(-4deg) scale(.94)}to{opacity:1;transform:none}}
+@keyframes enterTechCopy{from{opacity:0;filter:blur(7px);transform:translateY(10px)}to{opacity:1;filter:blur(0);transform:none}}
+@keyframes enterTechStage{from{opacity:0;clip-path:inset(100% 0 0 0)}to{opacity:1;clip-path:inset(0 0 0 0)}}
+@keyframes enterAccCopy{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:none}}
+@keyframes enterAccStage{from{opacity:0;transform:translateY(28px) scale(.95)}to{opacity:1;transform:none}}
+
 /* ══════════════ RESPONSIVE ══════════════ */
 @media (max-width:1040px){
   .wrap,.topbar .in{padding-left:30px;padding-right:30px}
 }
 @media (max-width:880px){
   .burger{display:block}
+  .thanks-grid,.dept-page .memory-strip,.dept-page .mini-grid{grid-template-columns:1fr}
+  .dept-page .hero.dept-hero{grid-template-columns:1fr;min-height:auto}
+  .motion-stage{height:250px}
+  .stage-chip{font-size:8px;letter-spacing:.05em;padding:6px 8px}
   .progress{left:0}
   .rail{position:fixed;left:0;top:0;z-index:70;transform:translateX(-100%);
     transition:transform .38s var(--ease);box-shadow:0 0 54px rgba(0,0,0,.4)}
@@ -420,6 +620,9 @@ td b{color:var(--ink);font-weight:600}
 }
 @media (max-width:520px){
   .wrap,.topbar .in{padding-left:20px;padding-right:20px}
+  h2.big{font-size:clamp(28px,9vw,38px)}
+  .thanks-card{padding:16px}
+  .stage-chip{font-size:7.5px;max-width:110px;text-align:center}
   .tl .d{padding-left:0}
   h3{font-size:24px}
   .steps li{padding-left:44px}
@@ -452,17 +655,14 @@ td b{color:var(--ink);font-weight:600}
         <li><button data-t="home" class="on">Trang chủ</button></li>
         <li><button data-t="chung">Luật chung cho mọi bộ phận</button></li>
       </ul>
-      <div class="navlbl">Đã đào tạo</div>
+      <div class="navlbl">Tài liệu sau workshop · 6/6</div>
       <ul class="nav">
         <li><button data-t="hcns"><i class="dot"></i>Hành chính · Nhân sự</button></li>
         <li><button data-t="giaonhan"><i class="dot"></i>Giao nhận</button></li>
-      </ul>
-      <div class="navlbl">Sắp cập nhật</div>
-      <ul class="nav">
-        <li><button data-t="dieudo" class="soon"><i class="dot wait"></i>Điều độ</button></li>
-        <li><button data-t="kythuat" class="soon"><i class="dot wait"></i>Kỹ thuật · Vật tư</button></li>
-        <li><button data-t="trucban" class="soon"><i class="dot wait"></i>Trực ban sản xuất</button></li>
-        <li><button data-t="ketoan" class="soon"><i class="dot wait"></i>Kế toán</button></li>
+        <li><button data-t="dieudo"><i class="dot"></i>Điều độ</button></li>
+        <li><button data-t="kythuat"><i class="dot"></i>Kỹ thuật · Vật tư</button></li>
+        <li><button data-t="trucban"><i class="dot"></i>Trực ban sản xuất</button></li>
+        <li><button data-t="ketoan"><i class="dot"></i>Kế toán</button></li>
       </ul>
       <div class="navlbl">Tiện ích</div>
       <ul class="nav">
@@ -501,11 +701,11 @@ home: {
   <div class="hero">
     <div class="kick">Chương trình ứng dụng AI nội bộ</div>
     <h2 class="big">Nói cho AI hiểu mình cần gì</h2>
-    <p class="sub">Toàn bộ nội dung đã giảng tại các buổi workshop, để đọc lại bất cứ lúc nào.
+    <p class="sub">Chương trình workshop đã hoàn tất. Toàn bộ nội dung đã giảng được giữ lại tại đây để mọi người tra cứu và ôn bài bất cứ lúc nào.
     Chọn bộ phận của mình ở danh sách bên trái.</p>
     <div class="meta">
-      <span class="pill ok">2 bộ phận đã đào tạo</span>
-      <span class="pill">4 bộ phận sắp cập nhật</span>
+      <span class="pill ok">Workshop hoàn tất · 6/6 bộ phận</span>
+      <span class="pill">Tài liệu ôn bài đã cập nhật đầy đủ</span>
       <span class="pill hot">Miễn phí · ChatGPT hoặc Claude bản Free</span>
     </div>
   </div>
@@ -516,31 +716,58 @@ home: {
     <p class="lede">Mỗi bộ phận có nội dung riêng theo đúng công việc đang làm. Nội dung chung
     thì đọc mục “Luật chung cho mọi bộ phận”.</p>
     <div class="deptgrid">
-      <button class="dcard" onclick="go('hcns')">
+      <button class="dcard deptcard hcns" onclick="go('hcns')">
+        <div class="eyebrow">HCNS · Văn bản · Chấm công · Tuyển dụng</div>
         <div class="hd"><h4>Hành chính · Nhân sự</h4><span class="tag g">Đã có</span></div>
         <p>Soạn thông báo, công văn, tin tuyển dụng. Kiểm tra dữ liệu chấm công và lương.</p>
+        <span class="sig">Ngôn ngữ chuẩn chỉ · đúng người đọc</span>
       </button>
-      <button class="dcard" onclick="go('giaonhan')">
+      <button class="dcard deptcard giaonhan" onclick="go('giaonhan')">
+        <div class="eyebrow">Giao nhận · File · Rule · Ô điền</div>
         <div class="hd"><h4>Giao nhận</h4><span class="tag g">Đã có</span></div>
         <p>Thống kê tồn bãi, báo cáo hãng tàu, list gửi cảng. Cách nhờ AI làm tool.</p>
+        <span class="sig">Nói đúng file · máy đi đúng ô</span>
       </button>
-      <button class="dcard locked">
-        <div class="hd"><h4>Điều độ</h4><span class="tag n">Sắp có</span></div>
-        <p>Chờ bộ phận gửi danh sách công việc cần hỗ trợ.</p>
+      <button class="dcard deptcard dieudo" onclick="go('dieudo')">
+        <div class="eyebrow">Điều độ · Báo cáo · Quy trình · Ký xác nhận</div>
+        <div class="hd"><h4>Điều độ</h4><span class="tag g">Đã có</span></div>
+        <p>Báo cáo 2 tuần, 6 câu giao việc cho AI, soát báo cáo và quy trình 5 bước.</p>
+        <span class="sig">Máy giữ số · người giữ chữ ký</span>
       </button>
-      <button class="dcard locked">
-        <div class="hd"><h4>Kỹ thuật · Vật tư</h4><span class="tag n">Sắp có</span></div>
-        <p>Chờ bộ phận gửi danh sách công việc cần hỗ trợ.</p>
+      <button class="dcard deptcard kythuat" onclick="go('kythuat')">
+        <div class="eyebrow">KTVT · Báo giá · Manual · Web nguồn</div>
+        <div class="hd"><h4>Kỹ thuật · Vật tư</h4><span class="tag g">Đã có</span></div>
+        <p>So sánh báo giá, tra tài liệu kỹ thuật, web search có nguồn và Safety Stock.</p>
+        <span class="sig">Đọc nguồn trước · kết luận sau</span>
       </button>
-      <button class="dcard locked">
-        <div class="hd"><h4>Trực ban sản xuất</h4><span class="tag n">Sắp có</span></div>
-        <p>Chờ bộ phận gửi danh sách công việc cần hỗ trợ.</p>
+      <button class="dcard deptcard trucban" onclick="go('trucban')">
+        <div class="eyebrow">TBSX · Tool nội bộ · Checklist · Báo cáo ca</div>
+        <div class="hd"><h4>Trực ban sản xuất</h4><span class="tag g">Đã có</span></div>
+        <p>Vẽ đầu ra, tự xây tool, test trên máy thật, báo lỗi và lặp vòng sửa.</p>
+        <span class="sig">Vẽ đầu ra trước · xây sau</span>
       </button>
-      <button class="dcard locked">
-        <div class="hd"><h4>Kế toán</h4><span class="tag n">Sắp có</span></div>
-        <p>Chờ bộ phận gửi danh sách công việc cần hỗ trợ.</p>
+      <button class="dcard deptcard ketoan" onclick="go('ketoan')">
+        <div class="eyebrow">Kế toán · Văn bản · Căn cứ · Đối chiếu</div>
+        <div class="hd"><h4>Kế toán</h4><span class="tag g">Đã có</span></div>
+        <p>Đọc văn bản có căn cứ, không bịa luật, tóm tắt thông báo và kiểm chứng nguồn.</p>
+        <span class="sig">Căn cứ trước · kết luận sau</span>
       </button>
     </div>
+  </section>
+
+  <section>
+    <div class="snum">LỜI CẢM ƠN</div>
+    <h3>Cảm ơn các phòng ban đã tích cực tham gia workshop</h3>
+    <p class="lede">Chuỗi workshop đã hoàn tất đủ 6/6 bộ phận. Cảm ơn HC-NS, Giao nhận, Điều độ, Trực ban sản xuất, Kỹ thuật – Vật tư và Kế toán đã tham gia nghiêm túc, đóng góp dữ liệu tình huống thực tế và cùng hoàn thiện cẩm nang dùng chung này.</p>
+    <div class="thanks-grid">
+      <div class="thanks-card"><b>HC-NS</b><span>Tuyển dụng · thông báo · chuẩn hóa nội dung nội bộ</span></div>
+      <div class="thanks-card"><b>Giao nhận</b><span>Tương tác khách hàng · thủ tục · form biểu</span></div>
+      <div class="thanks-card"><b>Điều độ</b><span>Đảo chuyển · làm rỗng · làm hàng</span></div>
+      <div class="thanks-card"><b>TBSX</b><span>Điều phối toàn tuyến · báo cáo ca · xuất nhập xà lan</span></div>
+      <div class="thanks-card"><b>KTVT</b><span>Xe nâng · bảo dưỡng phương tiện · kế hoạch PM</span></div>
+      <div class="thanks-card"><b>Kế toán</b><span>Hợp đồng · chứng từ · thanh toán</span></div>
+    </div>
+    <div class="note ok"><span class="lbl">Ghi nhận</span>Cẩm nang này là bản tổng hợp sau workshop để mọi người tra cứu lại, ôn bài và dùng làm điểm xuất phát khi viết prompt cho công việc thực tế.</div>
   </section>
 
   <section>
@@ -664,16 +891,26 @@ chung: {
 hcns: {
   crumb: "Hành chính · Nhân sự",
   html: `
-  <div class="hero">
-    <div class="kick">Workshop đã tổ chức · 24/07/2026</div>
-    <h2 class="big">Hành chính · Nhân sự</h2>
-    <p class="sub">Context trước — Prompt sau. Bộ prompt và dữ liệu thực hành đầy đủ.</p>
-    <div class="meta">
-      <span class="pill">60 phút</span>
-      <span class="pill">Nghiêm Tử Long — M&amp;R Team</span>
-      <span class="pill hot">ChatGPT Free hoặc Claude Free</span>
+  <div class="dept-page people-page">
+    <div class="hero dept-hero">
+      <div class="hero-copy">
+        <div class="kick">Workshop ứng dụng AI · HC-NS · sáng thứ 6 24/07/2026</div>
+        <h2 class="big">Tuyển đúng người.<br>Viết đúng việc.</h2>
+        <p class="sub">HC-NS dùng AI nhiều nhất ở phần tuyển dụng, soạn thông báo và chuẩn hóa nội dung nội bộ; nhưng dữ liệu nhân sự, lương thưởng và xác nhận cuối vẫn do người phụ trách giữ.</p>
+        <div class="meta"><span class="pill">60 phút</span><span class="pill ok">Tài liệu ôn bài sau workshop</span><span class="pill hot">Context trước · Prompt sau</span></div>
+        <div class="memory-strip">
+          <div><b>Context Card</b><span>Dán một lần để AI biết mình là ai và đang làm việc gì.</span></div>
+          <div><b>Prompt nhiệm vụ</b><span>Nói rõ việc cần làm, đầu vào, quy tắc và đầu ra.</span></div>
+          <div><b>Tự kiểm lần cuối</b><span>Các nội dung nhạy cảm và quyết định nghiệp vụ phải do người xác nhận.</span></div>
+        </div>
+      </div>
+      <div class="motion-stage people-stage" aria-hidden="true">
+        <div class="stage-cap">Recruitment pipeline / HR review</div><div class="glow-grid"></div>
+        <span class="cardlet a"></span><span class="cardlet b"></span><span class="cardlet c"></span>
+        <span class="beam"></span><span class="orbit"></span><span class="center-note">HIRE</span>
+        <span class="stage-chip c1">JD</span><span class="stage-chip c2">CV</span><span class="stage-chip c3">PHỎNG VẤN</span>
+      </div>
     </div>
-  </div>
 
   <section>
     <div class="snum">MỤC TIÊU</div>
@@ -954,23 +1191,35 @@ KIỂM TRA BẮT BUỘC
       Context Card ngắn, không chứa dữ liệu nhạy cảm · Prompt đủ nhiệm vụ, đầu vào, quy tắc,
       đầu ra và bước kiểm tra · AI không tự tạo thông tin nghiệp vụ quan trọng ·
       Chỉ ra được ít nhất 01 điểm cần người xác nhận.</div>
-  </section>`
+  </section>
+  </div>`
 },
 
 /* ============================== GIAO NHẬN ============================== */
 giaonhan: {
   crumb: "Giao nhận",
   html: `
-  <div class="hero">
-    <div class="kick">Workshop đã tổ chức</div>
-    <h2 class="big">Giao nhận</h2>
-    <p class="sub">Nói cho AI hiểu bạn cần gì — và đầu ra nằm ở ô nào.</p>
-    <div class="meta">
-      <span class="pill">60 phút</span>
-      <span class="pill">Nghiêm Tử Long — M&amp;R Team</span>
-      <span class="pill hot">ChatGPT Free hoặc Claude Free</span>
+  <div class="dept-page cargo-page">
+    <div class="hero dept-hero">
+      <div class="hero-copy">
+        <div class="kick">Workshop ứng dụng AI · Giao nhận · sáng Thứ Bảy, ngày 01/08</div>
+        <h2 class="big">Hiểu khách hàng.<br>Đúng thủ tục.</h2>
+        <p class="sub">Giao nhận dùng AI tốt nhất khi vừa xử lý tương tác khách hàng vừa bám đúng thủ tục: gọi đúng file, đúng rule, đúng form và đúng ô cần điền. Thiếu một trong bốn thứ đó là AI bắt đầu làm sai.</p>
+        <div class="meta"><span class="pill">60 phút</span><span class="pill ok">Tài liệu ôn bài sau workshop</span><span class="pill hot">File · Rule · Output Cell</span></div>
+        <div class="memory-strip">
+          <div><b>File nào?</b><span>STOCK ALL, booking, form hãng tàu — phải gọi đúng tên.</span></div>
+          <div><b>Rule nào?</b><span>Cách đếm, cách map trạng thái, cách loại offhire phải nói rõ.</span></div>
+          <div><b>Ô nào?</b><span>Kết quả điền vào sheet nào, cột nào, ô nào phải chỉ ra cụ thể.</span></div>
+        </div>
+      </div>
+      <div class="motion-stage cargo-stage" aria-hidden="true">
+        <div class="stage-cap">Customer touchpoint / procedure flow</div><div class="port-grid"></div>
+        <span class="file f1"></span><span class="file f2"></span><span class="file f3"></span>
+        <span class="beam b1"></span><span class="beam b2"></span><span class="beam b3"></span>
+        <div class="gridbox"></div><span class="scan-dot d1"></span><span class="scan-dot d2"></span><span class="scan-dot d3"></span>
+        <span class="stage-chip c1">KHÁCH HÀNG</span><span class="stage-chip c2">THỦ TỤC</span><span class="stage-chip c3">PHẢN HỒI</span>
+      </div>
     </div>
-  </div>
 
   <section>
     <div class="snum">MỞ ĐẦU</div>
@@ -1243,14 +1492,352 @@ Không đề xuất giải pháp. Không viết code. Chỉ chấm.`,
     <div class="note ok"><span class="lbl">Nhớ cuối cùng</span>
       AI không khó. Khó là nói cho rõ việc mình đang làm.
       <b>Tên file · Tên cột · Quy tắc đếm · Ô cần điền · Máy chạy · Cách kiểm.</b></div>
-  </section>`
+  </section>
+  </div>`
 },
 
-/* ===================== BỘ PHẬN CHƯA CÓ NỘI DUNG ===================== */
-dieudo:  { crumb:"Điều độ",             html: soon("Điều độ","ĐĐ") },
-kythuat: { crumb:"Kỹ thuật · Vật tư",   html: soon("Kỹ thuật · Vật tư","KT") },
-trucban: { crumb:"Trực ban sản xuất",   html: soon("Trực ban sản xuất","TB") },
-ketoan:  { crumb:"Kế toán",             html: soon("Kế toán","KT") },
+
+/* ============================== ĐIỀU ĐỘ ============================== */
+dieudo: {
+  crumb: "Điều độ",
+  html: `
+  <div class="dept-page dieudo-page">
+    <div class="hero dept-hero">
+      <div class="hero-copy">
+        <div class="kick">Workshop ứng dụng AI · Điều độ · sáng Thứ Tư, ngày 05/08</div>
+        <h2 class="big">Đảo chuyển · Làm rỗng.<br>Làm hàng.</h2>
+        <p class="sub">Điều độ dùng AI để hỗ trợ viết, soát và dựng báo cáo cho ba mảng đặc trưng: đảo chuyển, làm rỗng và làm hàng; còn số liệu và kết luận cuối vẫn do người phụ trách giữ.</p>
+        <div class="meta"><span class="pill">60 phút</span><span class="pill ok">Tài liệu sau workshop</span><span class="pill hot">ChatGPT Free hoặc Claude Free</span></div>
+      </div>
+      <div class="motion-stage ops-stage" aria-hidden="true">
+        <div class="stage-cap">Shifting / empty / laden flow</div><div class="ops-grid"></div>
+        <span class="route r1"></span><span class="route r2"></span><span class="route r3"></span>
+        <span class="signal s1"></span><span class="signal s2"></span><span class="signal s3"></span><span class="pulse-ring"></span>
+        <span class="stage-chip c1">ĐẢO CHUYỂN</span><span class="stage-chip c2">LÀM RỖNG</span><span class="stage-chip c3">LÀM HÀNG</span>
+      </div>
+    </div>
+
+    <section><div class="snum">01 · CHỈ CẦN NHỚ 3 VIỆC</div><h3>Ranh giới giữa người và AI</h3>
+      <div class="grid g3">
+        <div class="card sig"><div class="k">01 · SỐ LÀ CỦA MÌNH</div><h4>AI không có số</h4><p>Sản lượng, chỉ tiêu, cont hư — mình đưa thì AI mới biết.</p></div>
+        <div class="card sig"><div class="k">02 · CHỮ LÀ CỦA AI</div><h4>Viết từ số đã có</h4><p>AI chuyển dữ liệu đã cung cấp thành câu ngắn, đúng giọng báo cáo.</p></div>
+        <div class="card yes"><div class="k">03 · CHỮ KÝ LÀ CỦA MÌNH</div><h4>Kết luận do người quyết</h4><p>“Đạt”, “không đạt”, “đã thực hiện” — người phụ trách tự xác nhận.</p></div>
+      </div><div class="callout-big">“Báo cáo này trình BGĐ. Người ký tên chịu trách nhiệm là mình, không phải AI.”</div>
+    </section>
+
+    <section><div class="snum">02 · AN TOÀN DỮ LIỆU</div><h3>Đưa con số tổng, đừng đưa danh sách</h3>
+      <div class="grid g2"><div class="card no"><div class="k">✕ KHÔNG ĐƯA LÊN AI</div><ul class="b no"><li>Số container, booking, seal</li><li>Tên khách hàng, chủ hàng</li><li>File export CMS nguyên bản</li><li>File báo cáo BGĐ đã có số thật</li></ul></div>
+      <div class="card yes"><div class="k">✓ ĐƯA ĐƯỢC</div><ul class="b ok"><li>Cấu trúc báo cáo, tên các mục</li><li>Số tổng hợp không kèm số cont</li><li>Câu văn cần sửa gọn</li><li>Quy tắc chỉ tiêu và cách tính</li></ul></div></div>
+      <div class="note"><span class="lbl">Ví dụ trong workshop</span>“Tuần 29 sửa 281 cont, chỉ tiêu 360.” — dùng được vì không kèm container cụ thể.</div>
+    </section>
+
+    <section><div class="snum">03 · HAI VIỆC THỰC TẾ</div><h3>Công cụ nhiệt độ và báo cáo 2 tuần</h3>
+      <div class="grid g2"><div class="card yes"><div class="k">VIỆC 1 · ĐÃ XONG</div><h4>Nhập nhiệt độ cont lạnh trên điện thoại</h4><ul class="b ok"><li>Nạp danh sách đầu ca từ CMS</li><li>Gõ 4 số cuối để tìm cont</li><li>Chọn khung giờ và nhập nhiệt độ</li><li>Cont hạ thêm giữa ca thì thêm tay</li></ul><p><b>Điểm còn hở:</b> phải có hướng dẫn đầu ca và ít nhất 2 người chạy được.</p></div>
+      <div class="card sig"><div class="k">VIỆC 2 · ĐANG VẬN HÀNH</div><h4>Báo cáo sản xuất 2 tuần</h4><p>Sáu mục cố định. Không mục nào giao trọn cho AI, cũng không mục nào AI vô dụng.</p><div class="mini-grid"><div class="mini"><b>Người giữ</b><span>Trạng thái, số CMS, kết luận.</span></div><div class="mini"><b>AI hỗ trợ</b><span>Viết câu, soát hình thức, dựng file từ mẫu.</span></div></div></div></div>
+      <div class="note warn"><span class="lbl">Hai câu AI không bao giờ được tự viết</span><b>“Đã thực hiện”</b> và <b>“Đạt / Không đạt”</b>.</div>
+    </section>
+
+    <section><div class="snum">04 · BÁO CÁO 6 MỤC</div><h3>Máy làm phần nào, người làm phần nào</h3>
+      <div class="tw"><table><tr><th>Mục</th><th>Nội dung</th><th>AI được làm</th><th>Ghi chú</th></tr>
+        <tr><td class="m">I</td><td>Phản hồi chỉ đạo BGĐ</td><td><span class="tag r">Người</span></td><td>Trạng thái chỉ người biết</td></tr>
+        <tr><td class="m">II</td><td>Tồn đọng 2 tuần</td><td><span class="tag c">Cả hai</span></td><td>Số của mình · câu chữ của AI</td></tr>
+        <tr><td class="m">III–V</td><td>Ba bảng số liệu</td><td><span class="tag r">Người</span></td><td>Số lấy từ CMS, dán vào bảng có sẵn</td></tr>
+        <tr><td class="m">VI</td><td>Phát sinh và đề xuất</td><td><span class="tag c">Cả hai</span></td><td>Ý của mình · AI viết cho gọn</td></tr>
+      </table></div>
+    </section>
+
+    <section><div class="snum">05 · SÁU CÂU PHẢI NÓI</div><h3>Thiếu câu nào, AI sẽ tự lấp câu đó</h3>
+      <div class="grid g3">
+        <div class="card sig"><div class="k">01</div><h4>Số lấy ở đâu?</h4><p>Sản lượng sửa chữa, cont hư, tỷ lệ due, cont lạnh tồn.</p></div>
+        <div class="card sig"><div class="k">02</div><h4>Chỉ tiêu bao nhiêu?</h4><p>So với cái gì mới biết đạt hay chưa.</p></div>
+        <div class="card sig"><div class="k">03</div><h4>Viết vào mục nào?</h4><p>Mục II tồn đọng hay mục VI đề xuất.</p></div>
+        <div class="card"><div class="k">04</div><h4>Giọng văn ra sao?</h4><p>BGĐ đọc, gạch đầu dòng, ngắn, không hoa mỹ.</p></div>
+        <div class="card"><div class="k">05</div><h4>Ai duyệt?</h4><p>Tổ trưởng Điều độ đọc lại trước khi gửi.</p></div>
+        <div class="card yes"><div class="k">06</div><h4>Kiểm thế nào?</h4><p>Đối chiếu số với CMS, đếm đủ 6 mục.</p></div>
+      </div>
+      <div class="note"><span class="lbl">Mẹo từ slide</span>Chưa có số thì ghi thẳng <b>[chưa có số]</b>. Không để AI tự điền một con số nghe hợp lý.</div>
+    </section>
+
+    <section><div class="snum">06 · MẪU VIẾT NỘI DUNG</div><h3>Chép nguyên khối, chỉ thay phần trong ngoặc</h3><div class="prompt rv"><div class="bar"><span>PROMPT · BÁO CÁO 2 TUẦN</span><button class="copy" onclick="cp(this)">Sao chép</button></div><pre>Tôi làm ở tổ Điều độ của một depot container. Hai tuần một lần tôi làm báo cáo sản xuất trình ban giám đốc.
+Báo cáo có 6 mục cố định:
+I. Phản hồi chỉ đạo BGĐ      IV. Bảng phát sinh
+II. Tồn đọng 2 tuần          V. Tổng hợp sản lượng
+III. Tỷ lệ đảo chuyển        VI. Phát sinh và đề xuất
+
+SỐ LIỆU KỲ NÀY
+[DÁN PHẦN SỐ LIỆU CỦA BẠN]
+
+TÔI CẦN
+Viết phần chữ cho mục [II hoặc VI], dạng gạch đầu dòng, mỗi ý tối đa 2 dòng, số đặt lên trước câu.
+
+QUY TẮC
+1. Không tự tạo thêm số nào tôi chưa cung cấp.
+2. Chỗ tôi ghi [chưa có số] thì giữ nguyên, không đoán.
+3. KHÔNG viết &quot;đã thực hiện&quot;, &quot;đạt&quot; hay &quot;không đạt&quot;. Để trống chỗ đó, tôi tự điền.
+4. Không thêm nhận xét hay đề xuất mà tôi không nói.
+
+ĐẦU RA
+A. Phần chữ đã viết, chia theo từng ý.
+B. Danh sách số liệu tôi còn thiếu.
+C. Những chỗ bạn phải để trống chờ tôi quyết.</pre></div></section>
+
+    <section><div class="snum">07 · SOÁT TRƯỚC KHI GỬI</div><h3>Đừng hỏi AI “xong chưa” — hãy cho nó phép kiểm</h3>
+      <div class="memory-strip"><div><b>Đối chiếu CMS</b><span>Chọn 2 số bất kỳ, mở CMS so lại.</span></div><div><b>Đếm đủ 6 mục</b><span>Mục không phát sinh vẫn phải hiện.</span></div><div><b>Không còn ngoặc vuông</b><span>Còn [chưa có số] nghĩa là chưa xong.</span></div></div>
+      <div class="prompt rv"><div class="bar"><span>PROMPT · SOÁT BÁO CÁO</span><button class="copy" onclick="cp(this)">Sao chép</button></div><pre>Đây là nội dung chữ trong báo cáo 2 tuần của tôi. Đừng viết lại. Chỉ soát giúp tôi.
+[DÁN NỘI DUNG CHỮ, ĐÃ BỎ SỐ CONTAINER VÀ TÊN KHÁCH HÀNG]
+
+Hãy chỉ ra:
+1. Mục nào đặt tiêu đề trùng hoặc gần trùng với mục khác.
+2. Câu nào có kết luận (đạt / không đạt / đã xong) mà thiếu con số hoặc thiếu căn cứ đứng trước.
+3. Chỗ nào viết hai kiểu khác nhau cho cùng một thứ, ví dụ lúc ghi DP2 lúc ghi Dp2.
+4. Ký tự lạ, dấu cách thừa, dòng trống thừa.
+5. Mục nào trong 6 mục đang trống hoặc quá sơ sài.
+6. Câu nào đọc lên có thể hiểu theo hai nghĩa.
+
+Trả về dạng bảng: vị trí | vấn đề | sửa thế nào.
+Không tự sửa hộ. Không thêm nội dung mới.</pre></div>
+    </section>
+
+    <section><div class="snum">08 · QUY TRÌNH KỲ SAU</div><h3>Năm bước, không sửa tay nếu AI làm sai</h3>
+      <ol class="steps coral"><li><b>Gom số liệu theo Mẫu 2B</b><span>Số từ CMS — việc người làm.</span></li><li><b>Đính kèm file mẫu + số liệu + câu lệnh</b><span>AI thay đúng các ô đánh dấu.</span></li><li><b>Tải file và mở bằng PowerPoint</b><span>Phải còn logo, số trang, bảng.</span></li><li><b>Kiểm 8 điểm</b><span>Sai thì nhắn AI sửa, giữ nguyên phần khác.</span></li><li><b>Tự điền trạng thái, tổ trưởng đọc lại</b><span>Đạt / không đạt / đã thực hiện do người gõ.</span></li></ol>
+      <div class="tw"><table><tr><th colspan="2">8 điểm kiểm thành phẩm · 3 phút</th></tr><tr><td>1. Đúng 6 slide</td><td>5. Ba bảng đúng số cột và tên cột</td></tr><tr><td>2. Slide nào cũng còn logo ICD</td><td>6. Chọn 5 số bất kỳ, so lại phải khớp</td></tr><tr><td>3. Còn số trang góc phải</td><td>7. Không có số nào tự xuất hiện</td></tr><tr><td>4. Không còn chữ trong ngoặc nhọn</td><td>8. Mục I còn chỗ trống tự điền trạng thái</td></tr></table></div>
+    </section>
+
+    <section><div class="snum">09 · BÀI TẬP SAU WORKSHOP</div><h3>Làm lại kỳ cũ để có bản gốc đối chiếu</h3>
+      <div class="grid g3"><div class="card sig"><div class="k">TRONG 3 NGÀY</div><h4>Điền 6 dòng + chạy thử mục II</h4><p>Chưa cần đụng file mẫu.</p></div><div class="card sig"><div class="k">TRONG 1 TUẦN</div><h4>Hoàn thành file đủ 6 mục</h4><p>Tự điền trạng thái cuối cùng.</p></div><div class="card yes"><div class="k">TRONG 10 NGÀY</div><h4>Người thứ hai chạy lại</h4><p>Tổ trưởng chấm đủ 6 tiêu chí và ký.</p></div></div>
+      <div class="note ok"><span class="lbl">Sản phẩm phải có</span>File hoàn chỉnh · ảnh đoạn đã dán lên AI không có dữ liệu nhạy cảm · một người thứ hai làm lại được.</div>
+    </section>
+  </div>`
+},
+
+/* ============================== KỸ THUẬT · VẬT TƯ ============================== */
+kythuat: {
+  crumb: "Kỹ thuật · Vật tư",
+  html: `
+  <div class="dept-page tech-page">
+    <div class="hero dept-hero"><div class="hero-copy"><div class="kick">Workshop ứng dụng AI · Kỹ thuật – Vật tư · sáng Thứ Tư, ngày 12/08</div><h2 class="big">Nắm xe nâng.<br>Chủ động bảo dưỡng.</h2><p class="sub">KTVT dùng AI để quản lý nhóm xe nâng, tra tài liệu kỹ thuật và điều phối kế hoạch bảo dưỡng phương tiện; mọi thông số và quyết định sửa chữa vẫn phải quay về manual hoặc xác nhận kỹ thuật.</p><div class="meta"><span class="pill">08h00–09h00</span><span class="pill ok">Tài liệu sau workshop</span><span class="pill hot">An toàn kỹ thuật là chốt cuối</span></div></div>
+      <div class="motion-stage tech-stage" aria-hidden="true"><div class="stage-cap">Forklift fleet / PM coordination</div><div class="blue-grid"></div><span class="ring a"></span><span class="ring b"></span><span class="core"></span><span class="scan"></span><span class="stage-chip c1">XE NÂNG</span><span class="stage-chip c2">LỊCH PM</span></div></div>
+
+    <section><div class="snum">01 · PHẠM VI</div><h3>Ba vấn đề bộ phận gửi lên</h3><div class="grid g3"><div class="card sig"><div class="k">BÀI 1 · LÀM NGAY</div><h4>So sánh 3 báo giá</h4><p>Quy cùng mặt bằng rồi mới nói về giá.</p></div><div class="card sig"><div class="k">BÀI 2 · THU HẸP PHẠM VI</div><h4>Trợ lý chẩn đoán từ tài liệu</h4><p>AI dẫn tới đúng trang, không chẩn đoán thay kỹ thuật viên.</p></div><div class="card"><div class="k">VẤN ĐỀ 3</div><h4>Safety Stock / Reorder Point</h4><p>Chưa đủ dữ liệu lịch sử cho nhóm hỏng bất chợt.</p></div></div>
+      <div class="callout-big">Một câu lệnh tốt có 4 phần: <b>Mục tiêu · Bối cảnh · Các bước · Đầu ra.</b> “Các bước” là nơi cài chốt <i>thiếu dữ liệu thì dừng, đừng đoán</i>.</div></section>
+
+    <section><div class="snum">02 · AN TOÀN</div><h3>Rủi ro dữ liệu và rủi ro kỹ thuật</h3><div class="grid g2"><div class="card no"><div class="k">DỮ LIỆU</div><p>Báo giá có tên, số điện thoại người lập và giá mua của công ty.</p><ul class="b no"><li>Thay NCC bằng A/B/C</li><li>Xóa tên và số điện thoại</li><li>Giữ mã hàng, giá, điều kiện giao</li></ul></div><div class="card no"><div class="k">KỸ THUẬT</div><p>AI sai có thể dẫn tới đặt nhầm linh kiện hoặc dùng sai thông số trên thiết bị nâng hạ.</p><ul class="b no"><li>P/N</li><li>Torque</li><li>Áp suất / dung tích / nhiệt độ</li><li>Số trang tài liệu</li></ul></div></div><div class="note warn"><span class="lbl">Luật lớp</span>Bốn loại thông tin trên phải mở tài liệu gốc soát lại hoặc xác nhận đại lý trước khi dùng.</div></section>
+
+    <section><div class="snum">03 · BÀI 1</div><h3>Ba báo giá — nhìn rẻ chưa chắc đã so được</h3>
+      <div class="tw"><table><tr><th>NCC</th><th>Mã hàng</th><th>Giá trên báo giá</th><th>VAT</th><th>Phạm vi</th><th>Hiệu lực</th></tr><tr><td>Tuấn Minh</td><td class="m">922772.0034</td><td class="r">27.800.000</td><td>8%</td><td>Chỉ xích</td><td>Ngày để trống</td></tr><tr><td>igus</td><td class="m">H4.56.15.175.0</td><td class="r">25.393.500</td><td>8%</td><td>Xích + bracket + 84 separator</td><td>Không nêu</td></tr><tr><td>SAMCO</td><td class="m">9227720034</td><td class="r">24.000.000</td><td>Không nêu</td><td>Chỉ xích</td><td>Hết hạn 07/08/2026</td></tr></table></div>
+      <div class="grid g3"><div class="card no"><div class="k">BẪY 01</div><h4>Mã hàng khác hãng</h4><p>igus là mã khác, không thể mặc định cùng món với OEM Kalmar.</p></div><div class="card no"><div class="k">BẪY 02</div><h4>VAT không đồng nhất</h4><p>SAMCO không nêu VAT; thứ hạng thay đổi tùy giả định.</p></div><div class="card no"><div class="k">BẪY 03</div><h4>Phạm vi khác nhau</h4><p>igus báo trọn bộ; hai bên còn lại chỉ báo xích.</p></div></div>
+      <div class="mini-grid"><div class="mini"><b>“Giá thấp nhất?” — tính được</b><span>Quy về cùng VAT, cùng phạm vi, cùng đơn vị.</span></div><div class="mini"><b>“Vật tư tốt nhất?” — chưa tính được</b><span>Thiếu bảo hành, xuất xứ, tuổi thọ. Phải hỏi NCC.</span></div></div>
+      <div class="prompt rv"><div class="bar"><span>PROMPT · SO SÁNH BÁO GIÁ</span><button class="copy" onclick="cp(this)">Sao chép</button></div><pre>MỤC TIÊU
+Tôi có 3 báo giá cho cùng một nhu cầu vật tư. Tôi cần quy về cùng một mặt bằng để so sánh, và biết chỗ nào chưa đủ dữ liệu để kết luận.
+
+BỐI CẢNH
+Tôi phụ trách kỹ thuật – vật tư tại một cảng container, mua phụ tùng cho thiết bị nâng hạ. Báo giá do các nhà cung cấp gửi, mỗi bên trình bày một kiểu. Tôi phải trình đề xuất mua lên cấp trên, nên mọi con số bạn đưa ra tôi đều phải kiểm lại được từ báo giá gốc.
+
+CÁC BƯỚC THỰC HIỆN
+B1. Đọc từng báo giá. Ghi ra: tên NCC, số báo giá, ngày, hạn hiệu lực, mã hàng, số lượng, đơn giá, tổng tiền, VAT có hay không.
+B2. Nếu bất kỳ mục nào ở B1 không có trong báo giá, ghi &quot;KHÔNG NÊU&quot;. Tuyệt đối không suy ra từ báo giá khác, không lấy giá thị trường, không tự giả định đã gồm VAT.
+B3. So mã hàng giữa các báo giá. Chỉ ra cái nào cùng mã, cái nào khác mã. Nếu khác mã, nói rõ đây là hàng khác — chưa phải cùng một món để so giá.
+B4. Quy tất cả về giá đã gồm VAT. Với báo giá không nêu VAT, đưa ra CẢ HAI con số: nếu đã gồm và nếu chưa gồm. Nói rõ hai trường hợp cho thứ hạng khác nhau thế nào.
+B5. So phạm vi cung cấp: mỗi báo giá gồm những gì. Chỉ ra bên nào thiếu phụ kiện.
+B6. Chỉ xếp thứ tự giá SAU khi đã làm xong B3, B4, B5. Nếu còn chỗ &quot;KHÔNG NÊU&quot; làm thay đổi thứ hạng, nói thẳng là chưa kết luận được.
+B7. Soạn danh sách câu hỏi cần gửi lại từng NCC để bù đủ dữ liệu còn thiếu.
+
+ĐẦU RA
+- Bảng: NCC | Mã hàng | Giá chưa VAT | Giá đã gồm VAT | Phạm vi | Hiệu lực
+- Mục CHƯA SO ĐƯỢC
+- Mục CÂU HỎI GỬI NCC
+- Không xếp hạng &quot;tốt nhất&quot;. Không thêm nhận xét ngoài dữ liệu trong báo giá.</pre></div>
+    </section>
+
+    <section><div class="snum">04 · BÀI 2</div><h3>Tra manual — AI dẫn đúng trang, không thay kỹ thuật viên</h3>
+      <div class="stats"><div class="stat"><div class="v">1.040</div><p>trang Workshop manual Kalmar DRF 400–450</p></div><div class="stat"><div class="v">2/3</div><p>là Schematics dạng hình — không phải phần AI tra tốt</p></div></div>
+      <div class="note"><span class="lbl">Cách xử lý trong workshop</span>Tách riêng Chương D Error codes, trang 769–858, thành file khoảng 90 trang để AI tra bảng mã lỗi hiệu quả.</div>
+      <div class="grid g2"><div class="card yes"><div class="k">AI LÀM</div><ul class="b ok"><li>Tìm mã lỗi và dẫn trang</li><li>Đọc mô tả / Hành động / menu chẩn đoán</li><li>Liệt kê phép kiểm tra đúng thứ tự</li><li>Dịch Anh → Việt, giữ thuật ngữ</li></ul></div><div class="card no"><div class="k">AI KHÔNG LÀM</div><ul class="b no"><li>Kết luận hỏng gì</li><li>Đề xuất thay linh kiện</li><li>Bỏ qua phép kiểm tra của hãng</li><li>Thay quyết định kỹ thuật viên</li></ul></div></div>
+      <div class="prompt rv"><div class="bar"><span>PROMPT · TRA MÃ LỖI TỪ MANUAL</span><button class="copy" onclick="cp(this)">Sao chép</button></div><pre>MỤC TIÊU
+Tôi cần tra một mã lỗi hiện trên màn hình thiết bị, và biết tài liệu yêu cầu kiểm tra những gì.
+
+BỐI CẢNH
+Tôi phụ trách kỹ thuật tại cảng container. File đính kèm là chương D Error codes trích từ Workshop manual Kalmar DRF 400–450. Kỹ thuật viên sẽ mở tài liệu đối chiếu, nên bạn phải dẫn số trang cho mọi thông tin.
+
+CÁC BƯỚC THỰC HIỆN
+B1. Tìm mã lỗi tôi đưa trong file đính kèm. Ghi rõ nó nằm ở trang nào, mục nào.
+B2. Nếu không tìm thấy mã đó trong file: nói thẳng &quot;KHÔNG CÓ TRONG TÀI LIỆU NÀY&quot;. Tuyệt đối không lấy kiến thức sẵn có của bạn để trả lời thay.
+B3. Chép lại nguyên văn cột Mô tả, Giới hạn, Hành động, Menu chẩn đoán. Dịch sang tiếng Việt, giữ nguyên thuật ngữ kỹ thuật và mọi con số.
+B4. Liệt kê các phép kiểm tra theo đúng thứ tự tài liệu nêu. Không đảo thứ tự, không bỏ bước.
+B5. KHÔNG kết luận nguyên nhân, KHÔNG đề xuất thay linh kiện. Dừng ở chỗ tài liệu dừng.
+B6. Cuối cùng, nêu những chỗ tài liệu không nói rõ, để tôi hỏi lại đại lý Kalmar.</pre></div>
+      <div class="memory-strip"><div><b>Dẫn trang</b><span>AI trả lời phải có trang.</span></div><div><b>Mở PDF so lại</b><span>So mã lỗi, mô tả, hành động.</span></div><div><b>Hỏi mã không tồn tại</b><span>Nếu AI vẫn trả lời → đang bịa.</span></div></div>
+    </section>
+
+    <section><div class="snum">05 · TRỢ LÝ NỘI BỘ</div><h3>Từ tra một file → thư viện của phòng</h3>
+      <ol class="steps coral"><li><b>Tạo Project theo nhóm thiết bị</b><span>Không dồn tất cả vào một chỗ.</span></li><li><b>Chuẩn bị file trước khi nạp</b><span>Tách chương, bỏ Schematics nếu không cần, đặt tên rõ.</span></li><li><b>Nạp vào Context</b><span>Nạp một lần, dùng lại.</span></li><li><b>Viết Instructions</b><span>Dẫn file + trang, không bịa, không chẩn đoán thay.</span></li><li><b>Thử 5–10 mã lỗi đã biết</b><span>Sai đâu sửa Instructions ở đó.</span></li></ol>
+      <div class="prompt rv"><div class="bar"><span>INSTRUCTIONS · TRỢ LÝ KỸ THUẬT NỘI BỘ</span><button class="copy" onclick="cp(this)">Sao chép</button></div><pre>Bạn là trợ lý tra cứu tài liệu kỹ thuật của phòng Kỹ thuật – Vật tư, cảng container. Người hỏi là kỹ thuật viên đang đứng cạnh thiết bị.
+
+LUẬT BẮT BUỘC — áp dụng cho mọi câu trả lời:
+1. Chỉ trả lời dựa trên tài liệu trong project này. Mọi thông tin phải kèm TÊN FILE và SỐ TRANG.
+2. Không tìm thấy trong tài liệu thì nói thẳng &quot;KHÔNG CÓ TRONG TÀI LIỆU CỦA PHÒNG&quot;. Tuyệt đối không lấy kiến thức sẵn có để trả lời thay.
+3. Nếu buộc phải nêu điều gì ngoài tài liệu, gắn nhãn [NGOÀI TÀI LIỆU — CẦN XÁC NHẬN VỚI ĐẠI LÝ] và tách thành mục riêng ở cuối.
+4. Mọi mã linh kiện, lực siết, áp suất, dung tích đều phải trích nguyên văn kèm trang. Không có trong tài liệu thì không đưa con số.
+5. KHÔNG kết luận nguyên nhân hỏng. KHÔNG đề xuất thay linh kiện. Chỉ nêu các phép kiểm tra mà tài liệu yêu cầu, theo đúng thứ tự tài liệu nêu.
+6. Nếu hai tài liệu mâu thuẫn nhau, nêu cả hai kèm nguồn. Không tự chọn bên nào.
+7. Trả lời bằng tiếng Việt, giữ nguyên thuật ngữ kỹ thuật tiếng Anh và mọi con số.</pre></div>
+      <div class="note warn"><span class="lbl">Ba việc cấp công ty phải quyết trước khi dựng thật</span>Tài khoản đứng tên ai · chia sẻ project cho cả phòng thế nào · quyền sử dụng/bản quyền tài liệu manual.</div>
+    </section>
+
+    <section><div class="snum">06 · BẢNG CHẨN ĐOÁN 6 CỘT</div><h3>AI điền căn cứ; người hiện trường điền kết quả đo</h3>
+      <div class="tw"><table><tr><th>Triệu chứng</th><th>Nguyên nhân có khả năng</th><th>Cách kiểm tra</th><th>Giá trị tiêu chuẩn</th><th>Kết quả đạt/không</th><th>Bước tiếp theo</th></tr><tr><td>Mã lỗi / hiện tượng</td><td>Chỉ nguyên nhân manual nêu + trang</td><td>Phép đo, vị trí, dụng cụ</td><td>Trích nguyên văn</td><td><b>ĐỂ TRỐNG — người đo điền</b></td><td>Manual yêu cầu gì nếu không đạt</td></tr></table></div>
+      <div class="note"><span class="lbl">Ranh giới</span>Nếu bảng nhiều nhãn <b>[SUY LUẬN]</b>, đó là dấu hiệu phải hỏi đại lý — không phải dấu hiệu hỏi AI thêm cho đến khi nó “ra đáp án”.</div>
+    </section>
+
+    <section><div class="snum">07 · WEB SEARCH</div><h3>Web là manh mối để đi tra — chưa phải căn cứ sửa hoặc đặt hàng</h3>
+      <div class="grid g2"><div class="card yes"><div class="k">DÙNG WEB ĐỂ</div><ul class="b ok"><li>Tìm manh mối đi tra tiếp</li><li>Biết tên gọi khác của linh kiện</li><li>Tìm NCC có bán món đó</li><li>Biết có bản tài liệu mới hay không</li></ul></div><div class="card no"><div class="k">KHÔNG DÙNG WEB ĐỂ</div><ul class="b no"><li>Lấy P/N để đặt hàng</li><li>Lấy torque / áp suất</li><li>Lấy quy trình sửa chữa</li><li>Thay việc hỏi đại lý</li></ul></div></div>
+      <div class="prompt rv"><div class="bar"><span>PROMPT · BẮT AI KHAI NGUỒN</span><button class="copy" onclick="cp(this)">Sao chép</button></div><pre>CÁC BƯỚC THỰC HIỆN
+B1. Trả lời câu hỏi của tôi. Với MỖI thông tin, ghi rõ nó đến từ đâu, chọn một trong ba:
+[TỪ FILE ĐÍNH KÈM — trang X]
+[TỪ WEB — kèm địa chỉ trang]
+[TỪ KIẾN THỨC SẴN CÓ CỦA BẠN — chưa kiểm chứng]
+B2. Ưu tiên theo thứ tự: file đính kèm trước, web sau, kiến thức sẵn có sau cùng.
+B3. Nếu web và file đính kèm mâu thuẫn nhau, nói rõ mâu thuẫn ở đâu. Không tự chọn bên nào.
+B4. Mọi mã linh kiện, thông số lực siết, áp suất mà bạn nêu đều phải kèm nhãn nguồn ở B1. Không có nguồn rõ thì ghi &quot;CẦN XÁC NHẬN VỚI ĐẠI LÝ&quot;, không đưa con số.
+B5. Cuối cùng, liệt kê riêng những gì thuộc nhãn thứ ba để tôi biết cái nào cần kiểm lại.</pre></div>
+    </section>
+
+    <section><div class="snum">08 · SAFETY STOCK</div><h3>Nhóm định kỳ tính được; nhóm hỏng bất chợt chưa đủ dữ liệu</h3>
+      <div class="grid g2"><div class="card yes"><div class="k">THAY ĐỊNH KỲ</div><h4>Lốp · nhớt · lọc</h4><p>Cần ngày thay gần nhất, chu kỳ và giờ chạy trung bình.</p></div><div class="card no"><div class="k">HỎNG BẤT CHỢT</div><h4>Bạc đạn · xích · khớp</h4><p>Cần lịch sử tiêu thụ và lead time NCC. Chưa có sổ xuất thì chưa có đầu vào.</p></div></div>
+      <div class="callout-big">Việc phải làm trước: <b>ghi sổ xuất vật tư</b> — ngày, mã vật tư, số lượng, thiết bị. Sau khi có đủ lịch sử mới bàn công thức.</div>
+    </section>
+
+    <section><div class="snum">09 · NĂM ĐIỀU MANG VỀ</div><h3>Tóm lại đúng tinh thần slide cuối</h3><ol class="steps"><li><b>Prompt tốt có 4 phần</b><span>Phần Các bước là nơi cài chốt kiểm tra.</span></li><li><b>AI đọc tài liệu mình có</b><span>Phải dẫn số trang.</span></li><li><b>4 thứ luôn đối chiếu</b><span>P/N · torque · áp suất · số trang.</span></li><li><b>“Rẻ nhất” tính được</b><span>“Tốt nhất” phải hỏi NCC.</span></li><li><b>Web chỉ là manh mối</b><span>Không dùng làm căn cứ đặt hàng hay sửa.</span></li></ol></section>
+  </div>`
+},
+
+/* ============================== TRỰC BAN SẢN XUẤT ============================== */
+trucban: {
+  crumb: "Trực ban sản xuất",
+  html: `
+  <div class="dept-page prod-page">
+    <div class="hero dept-hero"><div class="hero-copy"><div class="kick">Workshop ứng dụng AI · Trực ban sản xuất · sáng Thứ Sáu, ngày 07/08</div><h2 class="big">Điều phối toàn tuyến.<br>Nắm xuất nhập xà lan.</h2><p class="sub">TBSX dùng AI để điều phối toàn tuyến liên quan sản xuất, chuẩn hóa báo cáo ca và theo dõi xuất nhập xà lan; khi xây tool vẫn phải đi theo vòng Build → Test → Fix và tự test trên máy thật.</p><div class="meta"><span class="pill">60 phút</span><span class="pill ok">Tài liệu sau workshop</span><span class="pill hot">Build → Test → Fix</span></div></div>
+      <div class="motion-stage prod-stage" aria-hidden="true"><div class="stage-cap">Line coordination / barge flow</div><span class="loop"></span><span class="hub">CA</span><span class="node n1">TOÀN TUYẾN</span><span class="node n2">SẢN XUẤT</span><span class="node n3">XUẤT NHẬP XÀ LAN</span></div></div>
+
+    <section><div class="snum">01 · CHỈ CẦN NHỚ 3 VIỆC</div><h3>Xây tool là một chu kỳ, không phải một cú bấm</h3><div class="grid g3"><div class="card sig"><div class="k">01</div><h4>Vẽ đầu ra trước</h4><p>Muốn file kết quả trông thế nào thì vẽ ra trước. Chưa vẽ được thì chưa xây được.</p></div><div class="card sig"><div class="k">02</div><h4>Xây từng vòng</h4><p>Làm → thử → báo lỗi → sửa. Không kỳ vọng bản đầu dùng ngay.</p></div><div class="card yes"><div class="k">03</div><h4>Thử trên máy mình</h4><p>AI báo chạy được là trên môi trường của nó. Máy thật phải tự test.</p></div></div><div class="callout-big">“Xây công cụ không phải việc riêng của dân IT nữa. Nhưng cũng không phải bấm một cái là xong.”</div></section>
+
+    <section><div class="snum">02 · AN TOÀN DỮ LIỆU</div><h3>Đưa cái khung, đừng đưa cái ruột</h3><div class="grid g2"><div class="card no"><div class="k">✕ KHÔNG ĐƯA</div><ul class="b no"><li>Số cont, booking, tên sà lan thật</li><li>Tên khách / hãng tàu kèm sản lượng</li><li>File tồn bãi, file sản lượng nguyên bản</li><li>Tên NLĐ trong checklist an toàn</li></ul></div><div class="card yes"><div class="k">✓ ĐƯA ĐƯỢC</div><ul class="b ok"><li>Tên cột, tên sheet, cấu trúc bảng</li><li>Quy tắc TEU, tỷ lệ, ngày quá hạn</li><li>Vài dòng giả lập đã thay số</li><li>Mô tả file kết quả mong muốn</li></ul></div></div></section>
+
+    <section><div class="snum">03 · CÔNG CỤ ĐÃ CÓ</div><h3>Checklist an toàn + Báo cáo sản xuất ca</h3><div class="grid g2"><div class="card yes"><div class="k">CHECKLIST AN TOÀN</div><h4>25 hạng mục</h4><p>Ba trạng thái: Đạt · Không đạt · Không áp dụng. Chọn Không đạt thì bắt buộc hiện trạng, hành động, người phụ trách và thời hạn.</p></div><div class="card yes"><div class="k">BÁO CÁO CA</div><h4>5 nhóm thông tin</h4><p>Nhân sự · phương tiện · sà lan · xuất nhập cổng · phát sinh. Tự tính cont/TEU và xuất Excel theo form cũ.</p></div></div>
+      <div class="note warn"><span class="lbl">Bài học đắt nhất từ bản đầu</span>Tool báo PASS nhưng file Excel thực tế mở ra trắng. Chỉ phát hiện khi mở bằng Excel thật. Cách sửa là dùng file Excel hợp lệ làm nền thay vì tự dựng sai chuẩn.</div></section>
+
+    <section><div class="snum">04 · TEST THẬT</div><h3>Ba câu áp cho mọi công cụ</h3><div class="memory-strip"><div><b>PASS ≠ máy mình PASS</b><span>Không phải Windows mình, không phải Excel mình.</span></div><div><b>Mở file kết quả ra xem</b><span>Tool báo xuất thành công vẫn có thể ra file rỗng.</span></div><div><b>Thử dữ liệu xấu</b><span>Tiếng Việt, ô trống, ký tự lạ mới lộ chỗ gãy.</span></div></div>
+      <div class="callout-big"><b>Công thức báo lỗi:</b> Tôi làm gì → tôi thấy gì → tôi mong đợi gì.</div></section>
+
+    <section><div class="snum">05 · SÁU CÂU PHẢI NÓI</div><h3>Câu 4 — đầu ra — là câu quan trọng nhất</h3><div class="grid g3"><div class="card sig"><div class="k">01</div><h4>Để làm gì?</h4><p>Công cụ thay việc gì.</p></div><div class="card sig"><div class="k">02</div><h4>Ai dùng?</h4><p>Người thao tác hằng ngày.</p></div><div class="card sig"><div class="k">03</div><h4>Đầu vào?</h4><p>Gõ tay hay đọc từ file.</p></div><div class="card"><div class="k">04</div><h4>Đầu ra?</h4><p>File, sheet, cột nào. Chưa vẽ được thì chưa xây.</p></div><div class="card"><div class="k">05</div><h4>Máy chạy?</h4><p>Windows, Excel, có mạng hay không.</p></div><div class="card yes"><div class="k">06</div><h4>Thế nào là đạt?</h4><p>Mở Excel thật, số khớp bản tay.</p></div></div>
+      <div class="tw"><table><tr><th colspan="4">Ví dụ vẽ đầu ra — Checklist an toàn</th></tr><tr><td><b>File</b></td><td>CHECKLIST_TBSX_&lt;ngay&gt;_&lt;ca&gt;.xlsx</td><td><b>Sheet 1</b></td><td>CHECKLIST</td></tr><tr><td><b>Cột</b></td><td colspan="3">STT | Hạng mục | Kết quả | Ghi chú | Người phụ trách | Thời hạn</td></tr><tr><td><b>Sheet 2</b></td><td>TỔNG HỢP</td><td><b>Hiển thị</b></td><td>25 mục · Đạt · Không đạt · Không áp dụng + việc cần khắc phục</td></tr></table></div>
+    </section>
+
+    <section><div class="snum">06 · VÒNG LẶP XÂY TOOL</div><h3>Làm — thử — báo lỗi — sửa</h3><ol class="steps coral"><li><b>Mô tả đủ 6 câu</b><span>Nhờ AI làm bản đầu, ưu tiên một file duy nhất.</span></li><li><b>Mở ra và cố tình làm sai</b><span>Bỏ trống, gõ chữ vào ô số, gõ tiếng Việt.</span></li><li><b>Xuất file và mở bằng Excel</b><span>Bước hay bị bỏ nhất.</span></li><li><b>Báo lỗi theo 3 câu</b><span>Tôi làm gì · thấy gì · mong gì.</span></li><li><b>Lặp bước 2–4</b><span>Cho đến khi khớp bản làm tay.</span></li></ol><div class="prompt rv"><div class="bar"><span>PROMPT · NHỜ AI XÂY CÔNG CỤ</span><button class="copy" onclick="cp(this)">Sao chép</button></div><pre>Tôi làm trực ban sản xuất ở một depot container, cần một công cụ nhỏ thay việc ghi tay hằng ngày.
+
+1. CÔNG CỤ ĐỂ LÀM GÌ
+[Ví dụ: thay việc ghi tay bảng KPI theo ca]
+2. AI SẼ DÙNG
+Trực ban sản xuất, dùng để quản lý các bộ phận liên quan (giao nhận, điều độ, xe nâng, ...).
+3. ĐẦU VÀO
+Tôi sẽ gõ tay trên giao diện. Chưa có file nguồn.
+Các mục cần nhập: [liệt kê]
+4. ĐẦU RA
+File Excel tên [...], gồm các sheet và cột: [liệt kê]
+5. MÁY CHẠY
+Windows 7, Excel bản cũ, KHÔNG cài thêm phần mềm, KHÔNG có mạng khi dùng.
+6. THẾ NÀO LÀ ĐẠT
+Mở file kết quả bằng Excel phải thấy đủ dữ liệu, số khớp với bản làm tay.
+
+YÊU CẦU KỸ THUẬT
+- MỘT file HTML duy nhất, mở bằng trình duyệt là chạy.
+- Không gọi Internet. Thư viện nhúng thẳng vào file.
+- Xuất Excel: đừng tự dựng file từ đầu; dùng thư viện xuất xlsx chuẩn để Excel không phải sửa file.
+- Giao diện trực quan, dễ thao tác. Thiếu dữ liệu thì chặn và báo rõ.
+
+AI PHẢI TRẢ VỀ
+A. Một file HTML tải về được.
+B. Hướng dẫn dùng ngắn, 5 bước.
+C. Danh sách việc tôi phải tự kiểm.
+D. Phần nào bạn chưa chắc chắn.
+
+CÂU CUỐI PHẢI CÓ
+Nói rõ chỗ nào bạn chưa kiểm chứng được và tôi phải tự thử.</pre></div></section>
+
+    <section><div class="snum">07 · BA VIỆC CÒN LẠI</div><h3>Biết tắc ở đâu cũng là kết quả</h3><div class="tw"><table><tr><th>Việc</th><th>Trạng thái workshop</th><th>Điểm chặn</th></tr><tr><td><b>Báo cáo overdue DP3</b></td><td><span class="tag g">Làm được ngay</span></td><td>Đã có file tồn + rule hãng; còn cần biết cột ngày hạ bãi và định dạng ngày</td></tr><tr><td><b>Tính hiệu suất MNR</b></td><td><span class="tag c">Chốt đầu ra trước</span></td><td>Chưa có form mẫu</td></tr><tr><td><b>File KPI theo ngày</b></td><td><span class="tag c">Chốt người duyệt</span></td><td>Phải chốt ai duyệt và số dùng làm gì</td></tr></table></div>
+      <div class="tw"><table><tr><th>Hãng</th><th>Rule overdue trong slide</th></tr><tr><td>ZIM</td><td>dưới 12 ngày</td></tr><tr><td>COSCO</td><td>dưới 14 ngày</td></tr><tr><td>HPL</td><td>dưới 15 ngày</td></tr><tr><td>CMA</td><td>21 ngày</td></tr><tr><td>MSC</td><td>dưới 30 ngày</td></tr></table></div>
+    </section>
+
+    <section><div class="snum">08 · BÀI TẬP SAU WORKSHOP</div><h3>Hai bậc sản phẩm</h3><div class="grid g2"><div class="card sig"><div class="k">BẬC 1 · ĐẠT</div><h4>Mô tả đủ 6 câu</h4><p>Kèm hình vẽ đầu ra và ảnh đoạn đã dán lên AI. Không cần ra tool.</p></div><div class="card yes"><div class="k">BẬC 2 · ĐẠT TỐT</div><h4>Một công cụ chạy được</h4><p>Mở browser chạy, xuất Excel có dữ liệu, ghi lại các vòng lỗi/sửa.</p></div></div><div class="note warn"><span class="lbl">Dữ liệu sạch</span>Không nộp ảnh hay file có số container, tên khách hàng hoặc tên người lao động.</div></section>
+
+    <section><div class="snum">09 · BA MỐC</div><h3>Đừng dồn tới ngày cuối</h3><div class="grid g3"><div class="card"><div class="k">3 NGÀY</div><h4>Trả lời 6 câu + vẽ đầu ra</h4><p>Chưa cần đụng AI.</p></div><div class="card"><div class="k">1 TUẦN</div><h4>Làm bản đầu + ít nhất 1 vòng sửa</h4><p>Test trên máy thật.</p></div><div class="card yes"><div class="k">10 NGÀY</div><h4>Nộp trưởng ca chấm và ký</h4><p>Bậc 1 hay bậc 2 đều nộp.</p></div></div></section>
+  </div>`
+},
+
+/* ============================== KẾ TOÁN ============================== */
+ketoan: {
+  crumb: "Kế toán",
+  html: `
+  <div class="dept-page acc-page">
+    <div class="hero dept-hero"><div class="hero-copy"><div class="kick">Workshop ứng dụng AI · Kế toán · sáng Thứ Sáu, ngày 14/08</div><h2 class="big">Hợp đồng trước.<br>Chứng từ chuẩn. Thanh toán đúng.</h2><p class="sub">Kế toán dùng AI để đọc hợp đồng, rà chứng từ và hỗ trợ nội dung thanh toán; mọi kết luận phải quay lại được văn bản gốc. Nếu file không nói, AI phải được phép trả lời “KHÔNG CÓ” thay vì tự lấp bằng trí nhớ.</p><div class="meta"><span class="pill">60 phút</span><span class="pill ok">Tài liệu sau workshop</span><span class="pill hot">Căn cứ trước · kết luận sau</span></div></div>
+      <div class="motion-stage acc-stage" aria-hidden="true"><div class="stage-cap">Contract / document / payment check</div><span class="paper p1"></span><span class="paper p2"></span><span class="paper p3"></span><span class="audit-scan"></span><span class="cite c1">HĐ</span><span class="cite c2">CTỪ</span><span class="cite c3">TT</span></div></div>
+
+    <section><div class="snum">01 · CHỈ CẦN NHỚ 3 VIỆC</div><h3>AI là người phụ việc, không phải người chịu trách nhiệm</h3><div class="grid g3"><div class="card sig"><div class="k">01</div><h4>Đưa văn bản mình đã có</h4><p>Tự tải bản gốc về máy trước. Đừng hỏi “quy định mới nhất là gì”.</p></div><div class="card sig"><div class="k">02</div><h4>Bắt AI chỉ căn cứ</h4><p>Mỗi câu phải kèm Điều, Khoản, trang. Không có thì ghi KHÔNG CÓ.</p></div><div class="card no"><div class="k">03</div><h4>Không đưa dữ liệu NLĐ</h4><p>Tên, CCCD, địa chỉ, điện thoại, lương — không đưa lên AI công cộng.</p></div></div></section>
+
+    <section><div class="snum">02 · AN TOÀN DỮ LIỆU</div><h3>Không đưa ruột file — chỉ đưa khung và quy tắc</h3><div class="grid g2"><div class="card no"><div class="k">✕ KHÔNG GỬI</div><ul class="b no"><li>Danh sách NLĐ có tên, CCCD, địa chỉ, số điện thoại</li><li>Lương, thu nhập, số thuế kèm tên</li><li>Số tiền thanh toán kèm tên NCC/người liên hệ</li></ul></div><div class="card yes"><div class="k">✓ CÓ THỂ GỬI</div><ul class="b ok"><li>Tên cột: manv, hoten, msthue, thunhap...</li><li>Văn bản công khai đã tự tải từ nguồn chính thức</li><li>Thông báo nội bộ không có dữ liệu cá nhân</li></ul></div></div><div class="prompt rv"><div class="bar"><span>CONTEXT CARD · DÁN 1 LẦN ĐẦU CHAT</span><button class="copy" onclick="cp(this)">Sao chép</button></div><pre>Tôi làm kế toán tại một công ty khai thác depot container.
+Việc của tôi là đọc văn bản quy định và thông báo nội bộ, rồi diễn đạt lại cho các bộ phận khác hiểu và làm đúng.
+Mọi điều bạn nói ra tôi đều phải mở lại văn bản gốc đối chiếu được, vì tôi phải trình lên Kế toán trưởng.
+Đừng dùng kiến thức sẵn có của bạn về luật. Chỉ đọc file tôi gửi.</pre></div></section>
+
+    <section><div class="snum">03 · BỐN VIỆC BỘ PHẬN GỬI</div><h3>Workshop làm sâu hai ví dụ</h3><div class="grid g2"><div class="card"><div class="k">1 · LÀM TƯƠNG TỰ</div><h4>Google Sheet lưu đề xuất mua</h4><p>Theo dõi hồ sơ ở khâu nào, ai giữ, đủ mấy chứng từ.</p></div><div class="card sig"><div class="k">2 · VÍ DỤ HÔM NAY</div><h4>Cập nhật thay đổi chính sách thuế</h4><p>Đọc văn bản pháp quy có dẫn Điều/Khoản.</p></div><div class="card sig"><div class="k">3 · VÍ DỤ HÔM NAY</div><h4>Tóm tắt thông báo nội bộ</h4><p>Diễn đạt lại dễ hiểu, không thay đổi nội dung đã ban hành.</p></div><div class="card"><div class="k">4 · CHỜ MỘT CÂU TRẢ LỜI</div><h4>NLĐ tự lấy chứng từ TNCN</h4><p>Cần xác nhận hạ tầng/khả năng tra cứu trước.</p></div></div></section>
+
+    <section><div class="snum">04 · NĂM CÂU PHẢI NÓI</div><h3>Muốn AI đọc đúng văn bản, phải khóa phạm vi</h3><div class="grid g3"><div class="card sig"><div class="k">01</div><h4>Tôi có văn bản nào?</h4><p>Số hiệu, ngày, nguồn tải.</p></div><div class="card sig"><div class="k">02</div><h4>Tôi cần lấy phần nào?</h4><p>Cả văn bản hay một nghiệp vụ cụ thể.</p></div><div class="card no"><div class="k">03</div><h4>Được nói gì, không được nói gì?</h4><p>Chỉ nội dung có trong file. Không có thì ghi KHÔNG CÓ.</p></div><div class="card"><div class="k">04</div><h4>Đầu ra ra sao?</h4><p>Độ dài, mục, bảng, người đọc.</p></div><div class="card yes"><div class="k">05</div><h4>Kiểm AI bằng cách nào?</h4><p>Điều · Khoản · Trang + bài thử nội dung không tồn tại.</p></div></div>
+      <div class="callout-big">“AI đọc hộ văn bản mình đã cầm trong tay. AI không phải nơi đi tìm luật.”</div></section>
+
+    <section><div class="snum">05 · TRƯỚC KHI HỎI AI</div><h3>Bốn bước người làm phải tự chịu trách nhiệm</h3><ol class="steps coral"><li><b>Vào nguồn chính thống</b><span>Cổng thuế hoặc trang văn bản pháp luật phù hợp.</span></li><li><b>Tìm đúng số hiệu</b><span>Số, năm, cơ quan.</span></li><li><b>Tải PDF gốc</b><span>Không chụp màn hình, không chép tay.</span></li><li><b>Kiểm tra hiệu lực</b><span>Xem đã bị thay thế hay chưa.</span></li></ol>
+      <div class="note warn"><span class="lbl">Câu 3 — quan trọng nhất</span>Mọi điều AI nêu phải kèm căn cứ trong file; không tìm thấy thì ghi <b>KHÔNG CÓ TRONG VĂN BẢN NÀY</b>. Không lấy kiến thức sẵn có để bù.</div></section>
+
+    <section><div class="snum">06 · VÍ DỤ 1</div><h3>Tóm tắt thông báo nội bộ thành bản dán được lên tường</h3><div class="grid g3"><div class="card yes"><div class="k">BẮT BUỘC LÀM</div><p>Diễn đạt ngắn, đúng nội dung đã ban hành.</p></div><div class="card no"><div class="k">TUYỆT ĐỐI KHÔNG LÀM</div><p>Chỉ ghi hậu quả đúng như văn bản nêu.</p></div><div class="card sig"><div class="k">CÁCH KIỂM TRA</div><p>Giữ nguyên link/đường dẫn tra cứu trong văn bản.</p></div></div><div class="prompt rv"><div class="bar"><span>PROMPT · TÓM TẮT THÔNG BÁO NỘI BỘ</span><button class="copy" onclick="cp(this)">Sao chép</button></div><pre>Tôi gửi kèm [tên thông báo, số hiệu, ngày] của công ty. Đây là văn bản đã ban hành, tôi không được sửa nội dung quy định, chỉ được diễn đạt lại cho dễ hiểu.
+Rút gọn thành bản hướng dẫn dán tại nơi làm đề xuất mua. Người đọc là nhân viên bộ phận khác, không có nghiệp vụ kế toán.
+
+Làm theo thứ tự:
+1. Ghi ra số văn bản, ngày ban hành, chức danh người ký.
+2. Chữ mờ không đọc chắc chắn thì DỪNG, báo rõ, không đoán.
+3. Tách ba nhóm: BẮT BUỘC LÀM — TUYỆT ĐỐI KHÔNG LÀM — CÁCH KIỂM TRA.
+4. Mỗi điều KHÔNG ĐƯỢC LÀM ghi kèm hậu quả đúng như văn bản nêu. Không thêm hậu quả nào văn bản không nói.
+5. Chép nguyên văn các đường dẫn tra cứu.
+
+Trình bày: một trang A4, tối đa 400 từ, ba mục gạch đầu dòng.</pre></div>
+      <div class="note"><span class="lbl">Ranh giới</span>AI làm xong chưa phải là xong. Đây là bản diễn đạt lại văn bản đã ban hành; Kế toán trưởng phải đọc và đồng ý trước khi phát hành hướng dẫn nội bộ.</div></section>
+
+    <section><div class="snum">07 · VÍ DỤ 2</div><h3>Đọc văn bản pháp quy — căn cứ là cột quan trọng nhất</h3><p class="lede">Workshop dùng Thông tư 91/2026/TT-BTC làm ví dụ thực hành. Bảng dưới đây là <b>nội dung minh họa trong slide workshop</b>, không thay thế việc mở lại file gốc để kiểm.</p>
+      <div class="tw"><table><tr><th>Nội dung minh họa trong slide</th><th>Căn cứ ghi trên slide</th><th>Việc cần kiểm</th></tr><tr><td>Đăng ký trước khi dùng chứng từ điện tử</td><td>Điều 17 khoản 1</td><td>Xác nhận quy trình đăng ký</td></tr><tr><td>Định dạng chứng từ XML</td><td>Điều 18 khoản 1</td><td>Kiểm phần mềm</td></tr><tr><td>Ký hiệu chứng từ 6 ký tự</td><td>Phụ lục II mục 1</td><td>Rà lại ký hiệu</td></tr><tr><td>Xử lý sai tên/địa chỉ nhưng đúng MST, số tiền</td><td>Điều 20 khoản 1</td><td>Rà quy trình xử lý sai sót</td></tr></table></div>
+      <div class="prompt rv"><div class="bar"><span>PROMPT · ĐỌC VĂN BẢN PHÁP QUY</span><button class="copy" onclick="cp(this)">Sao chép</button></div><pre>Tôi gửi kèm Thông tư 91/2026/TT-BTC ngày 30/6/2026, bản PDF tôi tự tải từ nguồn chính thức. Tôi phải trình Kế toán trưởng nên mọi điều bạn nêu tôi đều phải mở lại văn bản đối chiếu được.
+
+Làm theo thứ tự:
+1. Ghi ra số hiệu, ngày ban hành, cơ quan ban hành, ngày hiệu lực, và văn bản nào bị thay thế nếu văn bản có nêu.
+2. QUY TẮC BẮT BUỘC: mọi điều bạn nêu phải kèm số Điều, số Khoản trong file. Không tìm thấy thì ghi KHÔNG CÓ TRONG VĂN BẢN NÀY. Tuyệt đối không lấy kiến thức sẵn có của bạn để bù vào.
+3. Lọc riêng phần liên quan tới chứng từ khấu trừ thuế TNCN.
+4. Mỗi nội dung ghi rõ: phải làm gì khác đi, hạn chót nào.
+5. Liệt kê những điểm bạn KHÔNG chắc chắn, để tôi hỏi lại người có chuyên môn thuế.
+
+Trình bày: bảng ba cột — Nội dung | Căn cứ | Phải sửa gì.</pre></div>
+    </section>
+
+    <section><div class="snum">08 · KIỂM AI CÓ BỊA KHÔNG</div><h3>Bốn phép kiểm và một bài thử rất mạnh</h3><div class="memory-strip"><div><b>Bắt dẫn trang</b><span>Mọi câu quan trọng có Điều/Khoản/trang.</span></div><div><b>Mở file gốc so lại</b><span>Nhảy đúng trang, so nội dung.</span></div><div><b>Hỏi điều không có thật</b><span>Nếu AI dựng ra nội dung → đang bịa.</span></div></div>
+      <div class="note warn"><span class="lbl">Bài thử trong slide</span>Hỏi “Trong văn bản đính kèm, Điều 40 quy định gì?” khi văn bản chỉ có 25 Điều. Câu trả lời đúng phải là <b>không có</b>.</div>
+      <div class="callout-big">Bốn thứ luôn phải soát lại: <b>Số hiệu văn bản · Số Điều · Số Khoản · Ngày hiệu lực.</b></div></section>
+
+    <section><div class="snum">09 · KHI AI HỎI LẠI</div><h3>AI hỏi lại là tín hiệu tốt</h3><div class="tw"><table><tr><th>AI hỏi</th><th>Trả lời theo workshop</th></tr><tr><td>Tóm tắt cả văn bản hay một phần?</td><td>Chỉ phần liên quan tới nghiệp vụ đang cần.</td></tr><tr><td>Có cần so với quy định cũ?</td><td>Chỉ so nếu chính văn bản có nêu phần thay đổi.</td></tr><tr><td>Người đọc là ai?</td><td>Nhân viên bộ phận khác, không có nghiệp vụ kế toán.</td></tr></table></div></section>
+
+    <section><div class="snum">10 · ĐẦU RA PHẢI CỤ THỂ</div><h3>Giao việc cho AI như giao việc cho người</h3><div class="grid g3"><div class="card"><div class="k">01</div><h4>Số chữ tối đa</h4><p>Ví dụ: một trang A4, tối đa 400 từ.</p></div><div class="card"><div class="k">02</div><h4>Chia mấy mục</h4><p>Ví dụ: ba mục gạch đầu dòng.</p></div><div class="card"><div class="k">03</div><h4>Ai là người đọc</h4><p>Người không có nghiệp vụ kế toán.</p></div><div class="card"><div class="k">04</div><h4>Cột căn cứ</h4><p>Mỗi ý kèm Điều/Khoản.</p></div><div class="card yes"><div class="k">05</div><h4>Mục chưa chắc chắn</h4><p>Tách riêng ở cuối, không trộn vào phần chính.</p></div></div></section>
+
+    <section><div class="snum">11 · BA LỖI THƯỜNG GẶP</div><h3>AI đọc nhanh — giao thiếu thì sai nhanh hơn</h3><div class="grid g3"><div class="card no"><div class="k">LỖI 01</div><h4>Hỏi khi chưa có văn bản</h4><p>AI trả lời bằng trí nhớ.</p></div><div class="card no"><div class="k">LỖI 02</div><h4>Không bắt dẫn căn cứ</h4><p>Nội dung file bị trộn với kiến thức cũ.</p></div><div class="card no"><div class="k">LỖI 03</div><h4>Tin luôn, không soát</h4><p>Số hiệu, Điều, Khoản, ngày hiệu lực có thể sai.</p></div></div></section>
+
+    <section><div class="snum">12 · BÀI THỰC HÀNH</div><h3>Mỗi người tự điền 5 dòng</h3><div class="form"><div class="ln"><i>1</i><div class="q">Văn bản tôi cần đọc là<em>Số hiệu, ngày ban hành</em></div></div><div class="ln"><i>2</i><div class="q">Tôi tải bản gốc từ<em>Nguồn nào</em></div></div><div class="ln"><i>3</i><div class="q">Phần tôi cần lấy là<em>Nghiệp vụ nào</em></div></div><div class="ln"><i>4</i><div class="q">Bản kết quả tôi muốn<em>Độ dài, cấu trúc, người đọc</em></div></div><div class="ln"><i>5</i><div class="q">Tôi sẽ kiểm bằng cách<em>Điều không có thật / mở file so Điều</em></div></div></div>
+      <div class="note ok"><span class="lbl">Hai việc còn lại</span>Google Sheet theo dõi đề xuất mua và NLĐ tự lấy chứng từ TNCN đều dùng cùng 5 câu; chỉ thay nội dung và dữ liệu đầu vào.</div></section>
+  </div>`
+},
 
 /* ============================== QR ============================== */
 qr: {
@@ -1353,6 +1940,7 @@ function markRv(){
 
 function go(key, push=true){
   const d = DATA[key] || DATA.home;
+  document.body.dataset.dept = key;
   view.innerHTML = d.html;
   markRv();
   view.classList.remove('swap'); void view.offsetWidth; view.classList.add('swap');

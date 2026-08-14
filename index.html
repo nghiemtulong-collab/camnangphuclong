@@ -491,130 +491,42 @@ body[data-dept="ketoan"]{--coral:#13795B;--coral-2:#B68A2B;--coral-w:#EDF8F2}
 @keyframes prodWave{to{transform:translateX(24px)}}
 
 
-/* v10 — stronger visual identity for Điều độ / KTVT / TBSX */
-.ops-v10,.tech-v10,.prod-v10{height:306px}
-.ops-v10::before,.tech-v10::before,.prod-v10::before{display:none}
-.ops-v10{background:#07162D;border-color:rgba(125,211,252,.22)}
-.tech-v10{background:#062B2B;border-color:rgba(94,234,212,.22)}
-.prod-v10{background:#2B1110;border-color:rgba(251,146,60,.22)}
-.ops-v10 .stage-cap,.tech-v10 .stage-cap,.prod-v10 .stage-cap{z-index:4;padding:7px 10px;border-radius:999px;background:rgba(0,0,0,.22);backdrop-filter:blur(6px);color:rgba(255,255,255,.72)}
+/* v11 — simplified in-page panels matching the kế toán card style */
+.ops-v11,.tech-v11,.prod-v11{height:292px;background:#0b1020;border:1px solid rgba(255,255,255,.08)}
+.ops-v11::before,.tech-v11::before,.prod-v11::before{display:none}
+.ops-v11 .stage-cap,.tech-v11 .stage-cap,.prod-v11 .stage-cap{z-index:5}
+.ops-v11 .stage-cap,.tech-v11 .stage-cap,.prod-v11 .stage-cap{padding:8px 12px;border-radius:999px;background:rgba(0,0,0,.18);backdrop-filter:blur(6px)}
 
-.ops-lift-v10{animation:opsLiftMove10 4.4s var(--ease) infinite;transform-box:fill-box;transform-origin:center}
-.yard-truck-v10{animation:opsTruck10 5.2s var(--ease) infinite;transform-box:fill-box;transform-origin:center}
-.ops-route-v10{animation:opsDash10 2.4s linear infinite}
-.ops-beacon-v10{animation:opsBeacon10 1.2s ease-in-out infinite}
-@keyframes opsLiftMove10{0%,12%{transform:translate(0,0)}32%,48%{transform:translate(0,-52px)}66%,82%{transform:translate(112px,-52px)}100%{transform:translate(112px,0)}}
-@keyframes opsTruck10{0%,10%{transform:translateX(-40px);opacity:.2}38%,72%{transform:translateX(90px);opacity:1}100%{transform:translateX(210px);opacity:.15}}
-@keyframes opsDash10{to{stroke-dashoffset:-40}}
-@keyframes opsBeacon10{0%,100%{opacity:.35;filter:drop-shadow(0 0 0 #fde047)}50%{opacity:1;filter:drop-shadow(0 0 10px #fde047)}}
+/* Điều độ panel */
+.ops-v11{background:linear-gradient(135deg,#08152B,#0B3355 58%,#0A1D34)}
+.ops-v11 .ops11-hook{animation:ops11Hook 3.8s var(--ease) infinite}
+.ops-v11 .ops11-container{animation:ops11Container 3.8s var(--ease) infinite;transform-box:fill-box;transform-origin:center}
+.ops-v11 .ops11-tractor{animation:ops11Tractor 4.8s var(--ease) infinite}
+.ops-v11 .ops11-beacon{animation:ops11Beacon 1.4s ease-in-out infinite}
+@keyframes ops11Hook{0%,18%{transform:translateY(0)}42%,58%{transform:translateY(14px)}100%{transform:translateY(0)}}
+@keyframes ops11Container{0%,18%{transform:translate(0,0)}42%,58%{transform:translate(0,14px)}76%,100%{transform:translate(54px,14px)}}
+@keyframes ops11Tractor{0%,16%{transform:translateX(-18px);opacity:.2}38%,82%{transform:translateX(0);opacity:1}100%{transform:translateX(42px);opacity:.2}}
+@keyframes ops11Beacon{0%,100%{opacity:.35}50%{opacity:1}}
 
-.boom-v10{animation:techBoom10 4.6s var(--ease) infinite;transform-box:fill-box;transform-origin:20px 70px}
-.panel-v10{animation:panelCheck10 3.6s ease-in-out infinite;transform-box:fill-box;transform-origin:left center}
-.wrench-v10{animation:wrench10 3.2s ease-in-out infinite;transform-box:fill-box;transform-origin:center}
-.service-light-v10{animation:servicePulse10 1.5s ease-in-out infinite}
-.tech-scan-v10{filter:drop-shadow(0 0 8px #5EEAD4);animation:techScan10 2.5s ease-in-out infinite alternate}
-@keyframes techBoom10{0%,20%,100%{transform:rotate(0)}50%,72%{transform:rotate(-4deg)}}
-@keyframes panelCheck10{0%,100%{transform:rotateY(0)}45%,65%{transform:rotateY(-28deg)}}
-@keyframes wrench10{0%,100%{transform:rotate(-14deg) translateY(0)}50%{transform:rotate(14deg) translateY(8px)}}
-@keyframes servicePulse10{0%,100%{opacity:.35}50%{opacity:1;filter:drop-shadow(0 0 10px #5EEAD4)}}
-@keyframes techScan10{from{transform:translateY(0);opacity:.2}to{transform:translateY(146px);opacity:1}}
+/* KTVT panel */
+.tech-v11{background:linear-gradient(135deg,#06201F,#0C4A46 54%,#10262B)}
+.tech-v11 .tech11-scan{animation:tech11Scan 2.8s ease-in-out infinite alternate}
+.tech-v11 .tech11-wrench{animation:tech11Wrench 2.8s ease-in-out infinite}
+.tech-v11 .tech11-wheel{animation:tech11Wheel 4.4s linear infinite;transform-box:fill-box;transform-origin:center}
+@keyframes tech11Scan{from{transform:translateY(0);opacity:.24}to{transform:translateY(118px);opacity:.9}}
+@keyframes tech11Wrench{0%,100%{transform:rotate(-10deg)}50%{transform:rotate(10deg)}}
+@keyframes tech11Wheel{to{transform:rotate(360deg)}}
 
-.route-v10{animation:prodDash10 2.1s linear infinite}
-.signal-v10{animation:prodSignal10 1.6s ease-in-out infinite}.signal-v10.s2{animation-delay:.45s}.signal-v10.s3{animation-delay:.9s}
-.hook-v10{animation:prodHook10 2.8s ease-in-out infinite alternate}
-.barge-v10{animation:prodBarge10 5.5s var(--ease) infinite;transform-box:fill-box;transform-origin:center}
-.prod-truck-v10{animation:prodTruck10 4.6s var(--ease) infinite;transform-box:fill-box;transform-origin:center}
-.wave-v10{animation:prodWave10 2.2s linear infinite}
-@keyframes prodDash10{to{stroke-dashoffset:-36}}
-@keyframes prodSignal10{0%,100%{opacity:.32}50%{opacity:1;filter:drop-shadow(0 0 8px currentColor)}}
-@keyframes prodHook10{from{transform:translateY(-8px)}to{transform:translateY(20px)}}
-@keyframes prodBarge10{0%,10%{transform:translateX(-34px);opacity:.45}42%,78%{transform:translateX(0);opacity:1}100%{transform:translateX(38px);opacity:.45}}
-@keyframes prodTruck10{0%{transform:translateX(-30px);opacity:.2}45%,72%{transform:translateX(116px);opacity:1}100%{transform:translateX(238px);opacity:.18}}
-@keyframes prodWave10{to{transform:translateX(24px)}}
-
-@media(max-width:880px){.ops-v10,.tech-v10,.prod-v10{height:258px}}
-@media(max-width:520px){.ops-v10,.tech-v10,.prod-v10{height:228px}}
-@media(prefers-reduced-motion:reduce){.ops-v10 *,.tech-v10 *,.prod-v10 *{animation:none!important}}
-
-/* Kế toán — document stack + evidence scan */
-.acc-stage{background:linear-gradient(145deg,#071E18,#0B3B2C 58%,#17261D)}
-.acc-stage .paper{position:absolute;width:154px;height:190px;border-radius:14px;background:#FBF8EE;border:1px solid rgba(255,255,255,.28);box-shadow:0 18px 40px -18px rgba(0,0,0,.55)}
-.acc-stage .p1{left:64px;top:48px;transform:rotate(-7deg);opacity:.38}.acc-stage .p2{left:82px;top:40px;transform:rotate(4deg);opacity:.66}.acc-stage .p3{left:98px;top:36px;overflow:hidden}
-.acc-stage .p3::before{content:"";position:absolute;left:18px;right:18px;top:28px;height:7px;border-radius:7px;background:#13795B;box-shadow:0 22px 0 #DAD3BE,0 42px 0 #DAD3BE,0 62px 0 #DAD3BE,0 82px 0 #DAD3BE,0 112px 0 #DAD3BE}
-.acc-stage .audit-scan{position:absolute;left:99px;width:152px;height:2px;top:58px;background:linear-gradient(90deg,transparent,#E7C86F,transparent);box-shadow:0 0 14px rgba(231,200,111,.85);animation:auditScan 3s ease-in-out infinite alternate}
-.acc-stage .cite{position:absolute;right:28px;width:50px;height:50px;border-radius:16px;border:1px solid rgba(231,200,111,.32);display:grid;place-items:center;color:#E7C86F;font:800 11px/1 var(--mono);background:rgba(231,200,111,.07)}
-.acc-stage .c1{top:70px;animation:citePulse 2.2s ease-in-out infinite}.acc-stage .c2{top:136px;animation:citePulse 2.2s .8s ease-in-out infinite}.acc-stage .c3{top:202px;animation:citePulse 2.2s 1.6s ease-in-out infinite}
-@keyframes auditScan{from{transform:translateY(0)}to{transform:translateY(140px)}}@keyframes citePulse{0%,100%{opacity:.45;transform:scale(.96)}50%{opacity:1;transform:scale(1.04)}}
-
-@media(max-width:880px){
-  .dept-page .hero.dept-hero{grid-template-columns:1fr;min-height:0;padding-top:34px}
-  .motion-stage{height:240px;max-width:560px;width:100%}
-  .dept-page .memory-strip,.dept-page .mini-grid{grid-template-columns:1fr}
-}
-@media(max-width:520px){
-  .motion-stage{height:218px;border-radius:20px}
-  .dept-page .callout-big{font-size:19px;padding:18px 19px}
-  .ops-stage .signal{transform:scale(.9)}
-}
-@media (prefers-reduced-motion:reduce){
-  .ops-svg *,.tech-svg *,.prod-svg *,.acc-stage .audit-scan,.acc-stage .cite,.people-stage .cardlet,.people-stage .beam,.people-stage .orbit,.cargo-stage .beam,.cargo-stage .scan-dot{animation:none!important}
-}
-
-
-
-/* Shared heading rendering fix for Vietnamese serif text */
-.big,.brand h1,h3,.dcard h4{font-variant-ligatures:none;text-rendering:optimizeLegibility}
-
-/* Home cards: each department has its own visual identity */
-.deptcard{padding:26px 26px 24px;overflow:hidden}
-.deptcard::before{content:"";position:absolute;left:0;right:0;top:0;height:5px;border-radius:14px 14px 0 0;background:linear-gradient(90deg,var(--dc1),var(--dc2))}
-.deptcard::after{content:"";position:absolute;right:-32px;top:-32px;width:120px;height:120px;border-radius:50%;background:radial-gradient(circle,var(--dcs),transparent 68%);opacity:.9;pointer-events:none}
-.deptcard .eyebrow{font:700 10px/1.2 var(--mono);letter-spacing:.16em;text-transform:uppercase;color:var(--dc1);margin-bottom:12px}
-.deptcard .sig{display:inline-flex;align-items:center;gap:8px;margin-top:14px;padding:7px 10px;border-radius:999px;background:var(--dcs);color:var(--dc1);font-size:12px;font-weight:600}
-.deptcard .sig::before{content:"";width:7px;height:7px;border-radius:50%;background:var(--dc2)}
-.deptcard.hcns{--dc1:#7C3AED;--dc2:#EC4899;--dcs:#F7F0FF}
-.deptcard.giaonhan{--dc1:#0F766E;--dc2:#0284C7;--dcs:#ECF9F7}
-.deptcard.dieudo{--dc1:#2563EB;--dc2:#38BDF8;--dcs:#EAF4FF}
-.deptcard.kythuat{--dc1:#0F766E;--dc2:#F59E0B;--dcs:#ECF8F5}
-.deptcard.trucban{--dc1:#D9473F;--dc2:#F97316;--dcs:#FFF0ED}
-.deptcard.ketoan{--dc1:#13795B;--dc2:#B68A2B;--dcs:#EDF8F2}
-
-/* Extend per-department theme tokens */
-body[data-dept="hcns"]{--coral:#7C3AED;--coral-2:#EC4899;--coral-w:#F7F0FF}
-body[data-dept="giaonhan"]{--coral:#0F766E;--coral-2:#0284C7;--coral-w:#ECF9F7}
-
-/* HCNS — people operations / message clarity */
-.people-stage{background:linear-gradient(145deg,#201335,#4C1D95 58%,#831843)}
-.people-stage .glow-grid{position:absolute;inset:0;opacity:.18;background-image:linear-gradient(rgba(255,255,255,.08) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.08) 1px,transparent 1px);background-size:26px 26px}
-.people-stage .cardlet{position:absolute;width:132px;height:88px;border-radius:18px;border:1px solid rgba(255,255,255,.16);background:rgba(255,255,255,.08);box-shadow:0 10px 24px -12px rgba(0,0,0,.45)}
-.people-stage .a{left:30px;top:70px;animation:peopleFloat 5.8s ease-in-out infinite}
-.people-stage .b{left:84px;top:124px;animation:peopleFloat 5.8s ease-in-out 1s infinite}
-.people-stage .c{right:34px;top:92px;animation:peopleFloat 5.8s ease-in-out 1.6s infinite}
-.people-stage .cardlet::before{content:"";position:absolute;left:16px;right:16px;top:19px;height:8px;border-radius:6px;background:rgba(255,255,255,.85);box-shadow:0 19px 0 rgba(255,255,255,.26),0 38px 0 rgba(255,255,255,.18)}
-.people-stage .beam{position:absolute;left:102px;right:88px;top:144px;height:2px;background:linear-gradient(90deg,transparent,#F9A8D4,#A78BFA,transparent);box-shadow:0 0 18px rgba(249,168,212,.78);animation:beamPulse 3.1s ease-in-out infinite}
-.people-stage .orbit{position:absolute;left:50%;top:50%;width:88px;height:88px;margin:-44px;border-radius:50%;border:1px dashed rgba(255,255,255,.22);animation:spinSoft 13s linear infinite}
-.people-stage .center-note{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);padding:11px 14px;border-radius:12px;background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.2);color:#fff;font:700 10px/1 var(--mono);letter-spacing:.12em}
-.people-stage .stage-chip.c1{left:18px;bottom:18px}.people-stage .stage-chip.c2{left:128px;bottom:18px}.people-stage .stage-chip.c3{right:18px;bottom:18px}
-@keyframes peopleFloat{0%,100%{transform:translateY(0)}50%{transform:translateY(-9px)}}
-@keyframes beamPulse{0%,100%{opacity:.35}50%{opacity:1}}
-@keyframes spinSoft{to{transform:rotate(360deg)}}
-
-/* Giao nhận — file / rule / cell mapping */
-.cargo-stage{background:linear-gradient(145deg,#081A2B,#0A4B53 56%,#0A253D)}
-.cargo-stage .port-grid{position:absolute;inset:0;opacity:.24;background-image:linear-gradient(rgba(255,255,255,.08) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.08) 1px,transparent 1px);background-size:24px 24px}
-.cargo-stage .file{position:absolute;left:28px;width:118px;height:56px;border-radius:14px;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.16);box-shadow:0 8px 22px -12px rgba(0,0,0,.45)}
-.cargo-stage .f1{top:58px}.cargo-stage .f2{top:126px}.cargo-stage .f3{top:194px}
-.cargo-stage .file::before{content:"";position:absolute;left:16px;right:34px;top:18px;height:7px;border-radius:5px;background:rgba(255,255,255,.9);box-shadow:0 15px 0 rgba(255,255,255,.24)}
-.cargo-stage .beam{position:absolute;left:152px;right:124px;height:2px;border-radius:2px;background:linear-gradient(90deg,rgba(2,132,199,.12),rgba(34,211,238,.96),rgba(16,185,129,.12));box-shadow:0 0 16px rgba(34,211,238,.85)}
-.cargo-stage .b1{top:86px;animation:cargoMove 3.9s var(--ease) infinite}.cargo-stage .b2{top:154px;animation:cargoMove 4.4s var(--ease) .8s infinite}.cargo-stage .b3{top:222px;animation:cargoMove 4.1s var(--ease) 1.3s infinite}
-.cargo-stage .gridbox{position:absolute;right:26px;top:62px;width:190px;height:158px;border-radius:18px;border:1px solid rgba(255,255,255,.15);background:rgba(255,255,255,.06);overflow:hidden}
-.cargo-stage .gridbox::before{content:"";position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,.12) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.12) 1px,transparent 1px);background-size:38px 38px}
-.cargo-stage .scan-dot{position:absolute;right:174px;width:12px;height:12px;border-radius:50%;background:#fff;box-shadow:0 0 0 4px rgba(34,211,238,.16),0 0 22px rgba(34,211,238,.8)}
-.cargo-stage .d1{top:80px;animation:cellRun 3.9s var(--ease) infinite}.cargo-stage .d2{top:148px;animation:cellRun 4.4s var(--ease) .8s infinite}.cargo-stage .d3{top:216px;animation:cellRun 4.1s var(--ease) 1.3s infinite}
-.cargo-stage .stage-chip.c1{left:18px;bottom:18px}.cargo-stage .stage-chip.c2{left:124px;bottom:18px}.cargo-stage .stage-chip.c3{right:18px;bottom:18px}
-@keyframes cargoMove{0%{opacity:.2;transform:scaleX(.45);transform-origin:left center}25%{opacity:1}100%{opacity:.4;transform:scaleX(1)}}
-@keyframes cellRun{0%{transform:translateX(0);opacity:.2}20%{opacity:1}100%{transform:translateX(138px);opacity:0}}
-
+/* TBSX panel */
+.prod-v11{background:linear-gradient(135deg,#2A120F,#563125 52%,#0F2E51)}
+.prod-v11 .prod11-barge{animation:prod11Barge 5s ease-in-out infinite}
+.prod-v11 .prod11-wave{animation:prod11Wave 2.2s linear infinite}
+.prod-v11 .prod11-hook{animation:prod11Hook 3.2s ease-in-out infinite alternate}
+.prod-v11 .prod11-signal{animation:prod11Signal 1.4s ease-in-out infinite}
+@keyframes prod11Barge{0%,100%{transform:translateY(0)}50%{transform:translateY(-4px)}}
+@keyframes prod11Wave{to{transform:translateX(22px)}}
+@keyframes prod11Hook{from{transform:translateY(-6px)}to{transform:translateY(14px)}}
+@keyframes prod11Signal{0%,100%{opacity:.3}50%{opacity:1}}
 
 
 /* Home gratitude block */
@@ -787,7 +699,7 @@ body.loading{overflow:hidden}
 kbd{font:600 10px/1 var(--mono);padding:4px 6px;border-radius:6px;border:1px solid var(--line-2);background:var(--bg-2);color:var(--mut)}
 
 /* Horizontal sticky TOC */
-.page-toc{position:sticky;top:57px;z-index:28;margin:0 -8px 18px;padding:10px 8px;display:flex;gap:7px;overflow-x:auto;scrollbar-width:none;background:color-mix(in srgb,var(--bg) 92%,transparent);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border-bottom:1px solid transparent}
+.page-toc{position:sticky;top:57px;z-index:28;margin:0 -8px 18px;padding:10px 8px;display:flex;flex-wrap:wrap;gap:7px;overflow:visible;scrollbar-width:none;background:color-mix(in srgb,var(--bg) 92%,transparent);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border-bottom:1px solid transparent}
 .page-toc::-webkit-scrollbar{display:none}
 .page-toc.is-stuck{border-bottom-color:var(--line)}
 .page-toc button{flex:0 0 auto;min-height:36px;border:1px solid var(--line);border-radius:999px;padding:7px 11px;background:var(--card);color:var(--mut);font:600 11.5px/1.2 var(--san);cursor:pointer;transition:.18s var(--ease);white-space:nowrap}
@@ -863,6 +775,7 @@ body.searching{overflow:hidden}
 }
 @media (max-width:880px){
   .burger{display:block}
+  .page-toc{flex-wrap:nowrap;overflow-x:auto;overflow-y:hidden}
   .thanks-grid,.dept-page .memory-strip,.dept-page .mini-grid{grid-template-columns:1fr}
   .dept-page .hero.dept-hero{grid-template-columns:1fr;min-height:auto}
   .motion-stage{height:250px}
@@ -932,8 +845,8 @@ body.searching{overflow:hidden}
         <li><button data-t="hcns"><i class="dot"></i>Hành chính · Nhân sự</button></li>
         <li><button data-t="giaonhan"><i class="dot"></i>Giao nhận</button></li>
         <li><button data-t="dieudo"><i class="dot"></i>Điều độ</button></li>
-        <li><button data-t="kythuat"><i class="dot"></i>Kỹ thuật · Vật tư</button></li>
         <li><button data-t="trucban"><i class="dot"></i>Trực ban sản xuất</button></li>
+        <li><button data-t="kythuat"><i class="dot"></i>Kỹ thuật · Vật tư</button></li>
         <li><button data-t="ketoan"><i class="dot"></i>Kế toán</button></li>
       </ul>
       <div class="navlbl">Tiện ích</div>
@@ -1032,17 +945,17 @@ home: {
         <p>Báo cáo 2 tuần, 6 câu giao việc cho AI, soát báo cáo và quy trình 5 bước.</p>
         <span class="sig">Máy giữ số · người giữ chữ ký</span>
       </button>
-      <button class="dcard deptcard kythuat" onclick="go('kythuat')">
-        <div class="eyebrow">KTVT · Báo giá · Manual · Web nguồn</div>
-        <div class="hd"><h4>Kỹ thuật · Vật tư</h4><span class="tag g">Đã có</span></div>
-        <p>So sánh báo giá, tra tài liệu kỹ thuật, web search có nguồn và Safety Stock.</p>
-        <span class="sig">Đọc nguồn trước · kết luận sau</span>
-      </button>
       <button class="dcard deptcard trucban" onclick="go('trucban')">
         <div class="eyebrow">TBSX · Tool nội bộ · Checklist · Báo cáo ca</div>
         <div class="hd"><h4>Trực ban sản xuất</h4><span class="tag g">Đã có</span></div>
         <p>Checklist, Báo cáo ca, 6 câu giao việc cho AI và vòng lặp Build → Test → Fix.</p>
         <span class="sig">Vẽ đầu ra trước · xây sau</span>
+      </button>
+      <button class="dcard deptcard kythuat" onclick="go('kythuat')">
+        <div class="eyebrow">KTVT · Báo giá · Manual · Web nguồn</div>
+        <div class="hd"><h4>Kỹ thuật · Vật tư</h4><span class="tag g">Đã có</span></div>
+        <p>So sánh báo giá, tra tài liệu kỹ thuật, web search có nguồn và Safety Stock.</p>
+        <span class="sig">Đọc nguồn trước · kết luận sau</span>
       </button>
       <button class="dcard deptcard ketoan" onclick="go('ketoan')">
         <div class="eyebrow">Kế toán · Văn bản · Căn cứ · Đối chiếu</div>
@@ -1195,13 +1108,8 @@ hcns: {
         <div class="kick">Workshop ứng dụng AI · HC-NS · sáng thứ 6 24/07/2026</div>
         <h2 class="big">Hành chính · Nhân sự</h2>
         
-        <div class="meta"><span class="pill">60 phút</span><span class="pill ok">Tài liệu ôn bài sau workshop</span><span class="pill hot">Context trước · Prompt sau</span></div>
-        <div class="memory-strip">
-          <div><b>Context Card</b><span>Dán một lần để AI biết mình là ai và đang làm việc gì.</span></div>
-          <div><b>Prompt nhiệm vụ</b><span>Nói rõ việc cần làm, đầu vào, quy tắc và đầu ra.</span></div>
-          <div><b>Tự kiểm lần cuối</b><span>Các nội dung nhạy cảm và quyết định nghiệp vụ phải do người xác nhận.</span></div>
-        </div>
-      </div>
+        <div class="meta"><span class="pill">60 phút</span><span class="pill ok">Tài liệu sau workshop</span><span class="pill hot">Context trước · Prompt sau</span></div>
+              </div>
       <div class="motion-stage people-stage" aria-hidden="true">
         <div class="stage-cap">Recruitment pipeline / HR review</div><div class="glow-grid"></div>
         <span class="cardlet a"></span><span class="cardlet b"></span><span class="cardlet c"></span>
@@ -1503,13 +1411,8 @@ giaonhan: {
         <div class="kick">Workshop ứng dụng AI · Giao nhận · sáng Thứ Bảy, ngày 01/08</div>
         <h2 class="big">Giao nhận</h2>
         
-        <div class="meta"><span class="pill">60 phút</span><span class="pill ok">Tài liệu ôn bài sau workshop</span><span class="pill hot">File · Rule · Output Cell</span></div>
-        <div class="memory-strip">
-          <div><b>File nào?</b><span>STOCK ALL, booking, form hãng tàu — phải gọi đúng tên.</span></div>
-          <div><b>Rule nào?</b><span>Cách đếm, cách map trạng thái, cách loại offhire phải nói rõ.</span></div>
-          <div><b>Ô nào?</b><span>Kết quả điền vào sheet nào, cột nào, ô nào phải chỉ ra cụ thể.</span></div>
-        </div>
-      </div>
+        <div class="meta"><span class="pill">60 phút</span><span class="pill ok">Tài liệu sau workshop</span><span class="pill hot">File · Rule · Output Cell</span></div>
+              </div>
       <div class="motion-stage cargo-stage" aria-hidden="true">
         <div class="stage-cap">Customer touchpoint / procedure flow</div><div class="port-grid"></div>
         <span class="file f1"></span><span class="file f2"></span><span class="file f3"></span>
@@ -1807,46 +1710,26 @@ dieudo: {
         
         <div class="meta"><span class="pill">60 phút</span><span class="pill ok">Tài liệu sau workshop</span><span class="pill hot">ChatGPT Free hoặc Claude Free</span></div>
       </div>
-      <div class="motion-stage ops-stage ops-v10" aria-hidden="true">
-        <div class="stage-cap">ĐIỀU ĐỘ · CONTAINER YARD OPERATION</div>
-        <svg class="ops-svg" viewBox="0 0 620 320" role="img" aria-label="Minh họa container hàng được cẩu và đảo chuyển trong bãi">
+      <div class="motion-stage ops-stage ops-v11" aria-hidden="true">
+        <div class="stage-cap">ĐIỀU ĐỘ · CONTAINER OPERATION</div>
+        <svg class="ops-svg" viewBox="0 0 620 292" role="img" aria-label="Minh họa điều độ đảo chuyển và làm hàng container">
           <defs>
-            <linearGradient id="opsSky10" x1="0" y1="0" x2="0" y2="1"><stop stop-color="#0B2B5B"/><stop offset="1" stop-color="#07162D"/></linearGradient>
-            <linearGradient id="opsOrange10" x1="0" x2="1"><stop stop-color="#FB923C"/><stop offset="1" stop-color="#EA580C"/></linearGradient>
-            <filter id="opsShadow10"><feDropShadow dx="0" dy="10" stdDeviation="8" flood-opacity=".32"/></filter>
+            <linearGradient id="opsBg11" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#08152B"/><stop offset="1" stop-color="#0A1D34"/></linearGradient>
+            <linearGradient id="opsCont11" x1="0" x2="1"><stop stop-color="#FB923C"/><stop offset="1" stop-color="#EA580C"/></linearGradient>
+            <filter id="opsShadow11"><feDropShadow dx="0" dy="10" stdDeviation="8" flood-opacity=".26"/></filter>
           </defs>
-          <rect width="620" height="320" fill="url(#opsSky10)"/>
-          <path d="M0 246H620V320H0z" fill="#10254A"/>
-          <path d="M24 272H596M24 300H596" stroke="rgba(255,255,255,.16)" stroke-width="2" stroke-dasharray="12 14"/>
-
-          <!-- stacked containers in the yard -->
-          <g opacity=".96" filter="url(#opsShadow10)">
-            <g transform="translate(34 176)"><rect width="112" height="42" rx="6" fill="#2563EB"/><path d="M14 7v28m18-28v28m18-28v28m18-28v28m18-28v28" stroke="rgba(255,255,255,.34)"/><rect y="-48" width="112" height="42" rx="6" fill="#0EA5E9"/><path d="M14-41v28m18-28v28m18-28v28m18-28v28m18-28v28" stroke="rgba(255,255,255,.34)"/></g>
-            <g transform="translate(472 176)"><rect width="112" height="42" rx="6" fill="#14B8A6"/><path d="M14 7v28m18-28v28m18-28v28m18-28v28m18-28v28" stroke="rgba(255,255,255,.34)"/><rect y="-48" width="112" height="42" rx="6" fill="#0891B2"/><path d="M14-41v28m18-28v28m18-28v28m18-28v28m18-28v28" stroke="rgba(255,255,255,.34)"/></g>
-          </g>
-
-          <!-- gantry crane -->
-          <g class="gantry-v10" opacity=".98">
-            <path d="M176 54H452M198 54v188M430 54v188" stroke="#E2E8F0" stroke-width="12" stroke-linecap="round"/>
-            <path d="M166 68h298" stroke="#CBD5E1" stroke-width="8" stroke-linecap="round"/>
-            <path d="M194 86h240" stroke="rgba(255,255,255,.24)" stroke-width="3" stroke-dasharray="8 10"/>
-          </g>
-
-          <!-- lifted laden container + spreader move together -->
-          <g class="ops-lift-v10" filter="url(#opsShadow10)">
-            <g transform="translate(252 154)"><rect width="132" height="52" rx="7" fill="url(#opsOrange10)"/><path d="M16 8v36m20-36v36m20-36v36m20-36v36m20-36v36" stroke="rgba(255,255,255,.42)" stroke-width="2"/><circle cx="118" cy="11" r="5" fill="#FDE68A"/></g>
-            <g transform="translate(258 126)"><rect width="120" height="10" rx="5" fill="#F8FAFC"/><path d="M8 10v16m104-16v16" stroke="#F8FAFC" stroke-width="4"/></g>
-            <path d="M318 70v56" stroke="#F8FAFC" stroke-width="3"/>
-          </g>
-
-          <!-- yard tractor -->
-          <g class="yard-truck-v10" transform="translate(88 252)" filter="url(#opsShadow10)">
-            <rect x="0" y="5" width="122" height="28" rx="8" fill="#F8FAFC"/><rect x="84" y="-18" width="38" height="25" rx="7" fill="#38BDF8"/><circle cx="26" cy="37" r="12" fill="#020617"/><circle cx="96" cy="37" r="12" fill="#020617"/>
-          </g>
-
-          <!-- movement cue -->
-          <path class="ops-route-v10" d="M176 238C224 238 228 212 270 212H388C428 212 432 238 474 238" fill="none" stroke="#7DD3FC" stroke-width="4" stroke-linecap="round" stroke-dasharray="8 12"/>
-          <circle class="ops-beacon-v10" cx="544" cy="84" r="8" fill="#FDE047"/>
+          <rect width="620" height="292" fill="url(#opsBg11)"/>
+          <path d="M0 222H620V292H0z" fill="#122645"/>
+          <path d="M26 246H594" stroke="rgba(255,255,255,.12)" stroke-width="2" stroke-dasharray="12 12"/>
+          <path d="M26 270H594" stroke="rgba(255,255,255,.08)" stroke-width="2" stroke-dasharray="10 14"/>
+          <g filter="url(#opsShadow11)" opacity=".95"><g transform="translate(42 146)"><rect width="108" height="40" rx="7" fill="#2563EB"/><path d="M14 6v28m16-28v28m16-28v28m16-28v28m16-28v28" stroke="rgba(255,255,255,.36)"/><rect y="-46" width="108" height="40" rx="7" fill="#0EA5E9"/><path d="M14-40v28m16-28v28m16-28v28m16-28v28m16-28v28" stroke="rgba(255,255,255,.36)"/></g></g>
+          <g opacity=".98"><path d="M180 48h240" stroke="#E2E8F0" stroke-width="12" stroke-linecap="round"/><path d="M198 48v158M402 48v158" stroke="#E2E8F0" stroke-width="10" stroke-linecap="round"/><path d="M176 60h248" stroke="#CBD5E1" stroke-width="6" stroke-linecap="round"/></g>
+          <g class="ops11-hook"><path d="M290 60v62" stroke="#F8FAFC" stroke-width="3"/><rect x="250" y="122" width="80" height="8" rx="4" fill="#F8FAFC"/></g>
+          <g class="ops11-container" filter="url(#opsShadow11)"><rect x="232" y="134" width="116" height="48" rx="7" fill="url(#opsCont11)"/><path d="M248 142v32m18-32v32m18-32v32m18-32v32m18-32v32" stroke="rgba(255,255,255,.42)" stroke-width="2"/></g>
+          <g class="ops11-tractor" transform="translate(196 206)" filter="url(#opsShadow11)"><rect x="0" y="4" width="96" height="22" rx="7" fill="#F8FAFC"/><rect x="62" y="-14" width="28" height="18" rx="5" fill="#38BDF8"/><circle cx="20" cy="28" r="9" fill="#020617"/><circle cx="72" cy="28" r="9" fill="#020617"/></g>
+          <g filter="url(#opsShadow11)" opacity=".95"><g transform="translate(454 146)"><rect width="108" height="40" rx="7" fill="#14B8A6"/><path d="M14 6v28m16-28v28m16-28v28m16-28v28m16-28v28" stroke="rgba(255,255,255,.36)"/><rect y="-46" width="108" height="40" rx="7" fill="#0891B2"/><path d="M14-40v28m16-28v28m16-28v28m16-28v28m16-28v28" stroke="rgba(255,255,255,.36)"/></g></g>
+          <g opacity=".95"><rect x="532" y="76" width="50" height="44" rx="16" fill="rgba(253,230,138,.08)" stroke="rgba(253,230,138,.2)"/><text x="557" y="103" fill="#FDE68A" font-size="13" font-family="Segoe UI, Arial" font-weight="700" text-anchor="middle">ĐC</text><rect x="532" y="136" width="50" height="44" rx="16" fill="rgba(253,230,138,.08)" stroke="rgba(253,230,138,.2)"/><text x="557" y="163" fill="#FDE68A" font-size="13" font-family="Segoe UI, Arial" font-weight="700" text-anchor="middle">LR</text><rect x="532" y="196" width="50" height="44" rx="16" fill="rgba(253,230,138,.08)" stroke="rgba(253,230,138,.2)"/><text x="557" y="223" fill="#FDE68A" font-size="13" font-family="Segoe UI, Arial" font-weight="700" text-anchor="middle">LH</text></g>
+          <circle class="ops11-beacon" cx="518" cy="56" r="7" fill="#FDE047"/>
         </svg>
       </div>
     </div>
@@ -1944,51 +1827,243 @@ Không tự sửa hộ. Không thêm nội dung mới.</pre></div>
   </div>`
 },
 
+/* ============================== TRỰC BAN SẢN XUẤT ============================== */
+trucban: {
+  crumb: "Trực ban sản xuất",
+  html: `
+  <div class="dept-page prod-page">
+    <div class="hero dept-hero">
+      <div class="hero-copy">
+        <div class="kick">Workshop ứng dụng AI · Trực ban sản xuất · sáng Thứ Sáu, ngày 07/08</div>
+        <h2 class="big">Trực ban sản xuất</h2>
+        
+        <div class="meta"><span class="pill">60 phút</span><span class="pill ok">Tài liệu sau workshop</span><span class="pill hot">Build → Test → Fix</span></div>
+              </div>
+      <div class="motion-stage prod-stage prod-v11" aria-hidden="true">
+        <div class="stage-cap">TBSX · PRODUCTION / BARGE FLOW</div>
+        <svg class="prod-svg" viewBox="0 0 620 292" role="img" aria-label="Minh họa trực ban sản xuất điều phối toàn tuyến và xuất nhập xà lan">
+          <defs>
+            <linearGradient id="prodBg11" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#2A120F"/><stop offset=".6" stop-color="#563125"/><stop offset="1" stop-color="#0F2E51"/></linearGradient>
+            <linearGradient id="prodWater11" x1="0" y1="0" x2="1" y2="0"><stop stop-color="#0284C7"/><stop offset="1" stop-color="#1D4ED8"/></linearGradient>
+            <filter id="prodShadow11"><feDropShadow dx="0" dy="10" stdDeviation="8" flood-opacity=".28"/></filter>
+          </defs>
+          <rect width="620" height="292" fill="url(#prodBg11)"/>
+          <g filter="url(#prodShadow11)"><rect x="34" y="42" width="234" height="136" rx="22" fill="#111827" stroke="rgba(255,255,255,.14)"/><rect x="52" y="62" width="196" height="18" rx="9" fill="#1F2937"/><circle class="prod11-signal" cx="68" cy="71" r="6" fill="#22C55E"/><circle class="prod11-signal" cx="88" cy="71" r="6" fill="#F59E0B"/><circle class="prod11-signal" cx="108" cy="71" r="6" fill="#38BDF8"/><path d="M60 116H124C148 116 154 94 174 94h24c20 0 26 22 46 22" fill="none" stroke="#FB923C" stroke-width="4" stroke-linecap="round" stroke-dasharray="8 9"/><rect x="58" y="128" width="78" height="10" rx="5" fill="rgba(255,255,255,.24)"/><rect x="150" y="128" width="56" height="10" rx="5" fill="rgba(255,255,255,.18)"/><rect x="60" y="98" width="36" height="22" rx="6" fill="#F8FAFC"/><rect x="84" y="82" width="12" height="14" rx="3" fill="#38BDF8"/><rect x="164" y="88" width="44" height="30" rx="6" fill="#F97316"/></g>
+          <g filter="url(#prodShadow11)"><path d="M332 54h8v110M408 54h8v110M328 62h92" stroke="#E5E7EB" stroke-width="8" stroke-linecap="round"/><g class="prod11-hook"><path d="M374 64v48" stroke="#F8FAFC" stroke-width="3"/><rect x="350" y="112" width="48" height="8" rx="4" fill="#F8FAFC"/></g><rect x="336" y="132" width="52" height="28" rx="6" fill="#F97316"/><rect x="392" y="132" width="52" height="28" rx="6" fill="#F59E0B"/></g>
+          <path d="M0 220H620V292H0z" fill="url(#prodWater11)"/>
+          <path class="prod11-wave" d="M0 240c30-12 60 12 90 0s60 12 90 0 60 12 90 0 60 12 90 0 60 12 90 0 60 12 90 0 60 12 90 0" fill="none" stroke="rgba(255,255,255,.34)" stroke-width="3"/>
+          <g class="prod11-barge" transform="translate(168 226)" filter="url(#prodShadow11)"><path d="M0 16h270l-24 40H28z" fill="#111827"/><rect x="28" y="-20" width="62" height="36" rx="5" fill="#F97316"/><rect x="94" y="-20" width="62" height="36" rx="5" fill="#F59E0B"/><rect x="160" y="-20" width="62" height="36" rx="5" fill="#FB7185"/><rect x="230" y="-14" width="24" height="30" rx="5" fill="#E2E8F0"/></g>
+          <g opacity=".95"><rect x="532" y="78" width="52" height="44" rx="16" fill="rgba(253,230,138,.08)" stroke="rgba(253,230,138,.2)"/><text x="558" y="105" fill="#FDE68A" font-size="12" font-family="Segoe UI, Arial" font-weight="700" text-anchor="middle">CA</text><rect x="532" y="138" width="52" height="44" rx="16" fill="rgba(253,230,138,.08)" stroke="rgba(253,230,138,.2)"/><text x="558" y="165" fill="#FDE68A" font-size="12" font-family="Segoe UI, Arial" font-weight="700" text-anchor="middle">SX</text><rect x="532" y="198" width="52" height="44" rx="16" fill="rgba(253,230,138,.08)" stroke="rgba(253,230,138,.2)"/><text x="558" y="225" fill="#FDE68A" font-size="12" font-family="Segoe UI, Arial" font-weight="700" text-anchor="middle">XL</text></g>
+        </svg>
+      </div>
+    </div>
+
+    <section>
+      <div class="snum">01 · CHỈ CẦN NHỚ 3 VIỆC</div>
+      <h3>Vẽ đầu ra trước · Xây từng vòng · Thử trên máy mình</h3>
+      <div class="grid g3">
+        <div class="card sig"><div class="k">01</div><h4>Vẽ đầu ra trước</h4><p>Muốn file kết quả trông thế nào thì vẽ ra trước. Chưa vẽ được thì chưa xây được.</p></div>
+        <div class="card sig"><div class="k">02</div><h4>Xây từng vòng</h4><p>Không ra ngay lần đầu. Làm → thử → báo lỗi → sửa. Vòng thứ ba mới dùng được.</p></div>
+        <div class="card yes"><div class="k">03</div><h4>Thử trên máy mình</h4><p>AI báo chạy được là chạy trên máy của nó. Máy mình phải tự thử.</p></div>
+      </div>
+      <div class="callout-big">“Xây công cụ không phải việc của dân IT nữa. Nhưng cũng không phải bấm một cái là xong. Nó là mấy vòng làm đi làm lại.”</div>
+    </section>
+
+    <section>
+      <div class="snum">02 · TRƯỚC KHI GÕ CHỮ ĐẦU TIÊN</div>
+      <h3>Đưa cái khung, đừng đưa cái ruột</h3>
+      <p class="lede">Xây công cụ càng phải giữ dữ liệu, vì mình đang đưa cả cấu trúc dữ liệu cho AI.</p>
+      <div class="grid g2">
+        <div class="card no"><div class="k">✕ KHÔNG ĐƯA LÊN AI</div><ul class="b no">
+          <li>Số container, số booking, tên sà lan thật</li>
+          <li>Tên khách hàng, tên hãng tàu kèm sản lượng</li>
+          <li>File tồn bãi, file sản lượng nguyên bản</li>
+          <li>Tên người lao động trong checklist an toàn</li>
+        </ul><p>Checklist an toàn có tên người chịu trách nhiệm. Đó là dữ liệu cá nhân, không đưa ra ngoài.</p></div>
+        <div class="card yes"><div class="k">✓ ĐƯA ĐƯỢC</div><ul class="b ok">
+          <li>Tên cột, tên sheet, cấu trúc bảng</li>
+          <li>Quy tắc tính: TEU, tỷ lệ, ngày quá hạn</li>
+          <li>Vài dòng giả lập đã thay hết số thật</li>
+          <li>Mô tả file kết quả mình muốn có</li>
+        </ul><p>Xây công cụ chỉ cần cấu trúc và quy tắc. Không cần một dòng dữ liệu thật nào.</p></div>
+      </div>
+    </section>
+
+    <section>
+      <div class="snum">03 · VIỆC 1 VÀ 2 · ĐÃ XONG</div>
+      <h3>Công cụ đã có — mở bằng trình duyệt là chạy</h3>
+      <p class="lede">Một file duy nhất. Không cài gì, không cần mạng, không cần Excel để nhập liệu.</p>
+      <div class="grid g2">
+        <div class="card yes"><div class="k">CHECKLIST AN TOÀN</div><h4>Đủ 25 hạng mục từ sổ tự kiểm</h4><ul class="b ok">
+          <li>Ba trạng thái: Đạt · Không đạt · Không áp dụng</li>
+          <li>Chọn Không đạt thì bắt buộc nhập hiện trạng, hành động, người chịu trách nhiệm và thời hạn</li>
+          <li>Thiếu là không cho xuất</li>
+        </ul></div>
+        <div class="card yes"><div class="k">BÁO CÁO SẢN XUẤT CA</div><h4>Năm nhóm thông tin</h4><ul class="b ok">
+          <li>Nhân sự · phương tiện · sà lan · xuất nhập cổng · phát sinh</li>
+          <li>Tự tính số container và TEU</li>
+          <li>Xuất ra file Excel đúng các sheet của form cũ</li>
+        </ul></div>
+      </div>
+      <div class="note"><span class="lbl">Làm ngay tại lớp</span>Mỗi người mở file, tick thử 5 hạng mục, cố tình bỏ trống một ô rồi bấm xuất để xem tool chặn thế nào.</div>
+    </section>
+
+    <section>
+      <div class="snum">04 · CÔNG CỤ NÀY SUÝT BỎ ĐI</div>
+      <h3>AI báo PASS — nhưng Excel mở ra trắng trơn</h3>
+      <div class="grid g2">
+        <div class="card sig"><div class="k">AI BÁO</div><p>Kiểm thử xong hết. Xuất Excel: PASS. Đọc lại file: được. Lỗi công thức: 0.</p></div>
+        <div class="card no"><div class="k">THỰC TẾ</div><p>Nhập đủ số liệu, bấm xuất, mở bằng Excel — trắng trơn, không có gì.</p></div>
+      </div>
+      <div class="mini-grid">
+        <div class="mini"><b>Nguyên nhân</b><span>Bản đầu tự dựng file Excel từ con số không. Excel không nhận, tự sửa file, rồi xoá sạch dữ liệu.</span></div>
+        <div class="mini"><b>Cách sửa</b><span>Không dựng từ đầu nữa. Lấy một file Excel hợp lệ làm nền, chỉ thay phần dữ liệu bên trong.</span></div>
+      </div>
+      <div class="note warn"><span class="lbl">Điểm chặn</span>Nếu không tự mở file ra xem, tool đã có thể được mang đi dùng thật — và mất hết số liệu của cả ca.</div>
+    </section>
+
+    <section>
+      <div class="snum">05 · BÀI HỌC ĐẮT NHẤT</div>
+      <h3>Ba câu áp cho mọi công cụ</h3>
+      <div class="memory-strip">
+        <div><b>01 · AI báo PASS ≠ máy mình PASS</b><span>Không phải máy mình. Không phải Excel mình. Không phải Windows mình.</span></div>
+        <div><b>02 · Phải tự mở file kết quả ra xem</b><span>Tool báo xuất thành công vẫn có thể ra file rỗng.</span></div>
+        <div><b>03 · Thử với dữ liệu thật</b><span>Gõ tiếng Việt có dấu, để ô trống, gõ ký tự lạ. Chỗ gãy nằm ở đó.</span></div>
+      </div>
+      <div class="callout-big"><b>Cách thử đúng:</b> nhập một ca thật đã làm xong, xuất file, mở bằng Excel và so từng số với bản làm tay. Khớp mới được dùng.</div>
+    </section>
+
+    <section>
+      <div class="snum">06 · BÁO LỖI CHO AI THẾ NÀO</div>
+      <h3>Tả đúng điều nhìn thấy — đừng đoán nguyên nhân</h3>
+      <div class="grid g2">
+        <div class="card no"><div class="k">BÁO NHƯ THẾ NÀY THÌ HỎNG</div><p>“Tool bị lỗi rồi.”<br>“Không chạy được.”<br>“Sửa giúp tôi.”</p></div>
+        <div class="card yes"><div class="k">BÁO NHƯ THẾ NÀY THÌ ĐƯỢC</div><p>Tôi nhập đủ số liệu ở mục Báo cáo ca. Bấm nút xuất Excel, tải được file về. Nhưng mở file bằng Excel thì trắng trơn, không có dòng nào. Excel có hiện thông báo hỏi sửa file.</p></div>
+      </div>
+      <div class="callout-big"><b>Công thức báo lỗi:</b> Tôi làm gì → tôi thấy gì → tôi mong đợi gì.</div>
+    </section>
+
+    <section>
+      <div class="snum">07 · SÁU CÂU PHẢI NÓI TRƯỚC KHI XÂY</div>
+      <h3>Câu 4 — đầu ra — là câu quan trọng nhất</h3>
+      <div class="grid g3">
+        <div class="card sig"><div class="k">01</div><h4>Công cụ để làm gì?</h4><p>Ví dụ: thay việc gõ tay checklist an toàn mỗi ca.</p></div>
+        <div class="card sig"><div class="k">02</div><h4>Ai sẽ dùng?</h4><p>Trực ban sản xuất — người thao tác hằng ngày.</p></div>
+        <div class="card sig"><div class="k">03</div><h4>Đầu vào là gì?</h4><p>Gõ tay trên giao diện hay đọc từ file. Ví dụ: chưa có file nguồn.</p></div>
+        <div class="card"><div class="k">04</div><h4>Đầu ra trông thế nào?</h4><p>File kết quả có mấy sheet, cột nào. Ví dụ: CHECKLIST và TỔNG HỢP.</p></div>
+        <div class="card"><div class="k">05</div><h4>Máy chạy ra sao?</h4><p>Windows 7, không cài phần mềm, không có mạng.</p></div>
+        <div class="card yes"><div class="k">06</div><h4>Thế nào là đạt?</h4><p>Mở file kết quả bằng Excel, số phải khớp bản tay.</p></div>
+      </div>
+      <div class="note warn"><span class="lbl">Quan trọng nhất</span>Câu 4 là câu quan trọng nhất. Chưa vẽ được đầu ra thì đừng bắt đầu xây.</div>
+    </section>
+
+    <section>
+      <div class="snum">08 · CÂU 4 · QUAN TRỌNG NHẤT</div>
+      <h3>Vẽ đầu ra trước khi xây</h3>
+      <p class="lede">Không cần biết code. Chỉ cần vẽ ra file kết quả mình muốn — trên giấy cũng được.</p>
+      <div class="tw"><table>
+        <tr><th colspan="4">Ví dụ checklist an toàn</th></tr>
+        <tr><td><b>File kết quả</b></td><td colspan="3"><span class="m">CHECKLIST_TBSX_&lt;ngay&gt;_&lt;ca&gt;.xlsx</span></td></tr>
+        <tr><td><b>Sheet 1</b></td><td>CHECKLIST</td><td><b>Cột</b></td><td>STT | Hạng mục | Kết quả | Ghi chú | Người phụ trách | Thời hạn</td></tr>
+        <tr><td><b>Sheet 2</b></td><td>TỔNG HỢP</td><td><b>Nội dung</b></td><td>Tổng số mục 25 · Đạt 22 · Không đạt 2 · Không áp dụng 1 · danh sách việc cần khắc phục</td></tr>
+      </table></div>
+      <div class="grid g2">
+        <div class="card no"><div class="k">KHÔNG VẼ ĐƯỢC THÌ SAO</div><p>Nghĩa là mình chưa rõ mình muốn gì. Đi hỏi người sẽ dùng file đó trước, đừng hỏi AI.</p></div>
+        <div class="card yes"><div class="k">MẸO NHANH</div><p>Lấy file kết quả cũ đang làm tay, chụp lại rồi gõ mô tả theo đúng nó. Xong câu 4.</p></div>
+      </div>
+    </section>
+
+    <section>
+      <div class="snum">09 · XÂY CÔNG CỤ LÀ NHIỀU VÒNG</div>
+      <h3>Không phải một lần</h3>
+      <ol class="steps coral">
+        <li><b>Mô tả sáu câu, nhờ AI làm bản đầu</b><span>Xin một file duy nhất, mở bằng trình duyệt là chạy.</span></li>
+        <li><b>Mở ra bấm thử, cố tình làm sai</b><span>Bỏ trống ô, gõ tiếng Việt có dấu, gõ chữ vào ô số.</span></li>
+        <li><b>Xuất file kết quả, mở bằng Excel</b><span>Bước hay bị bỏ nhất — và là bước phát hiện lỗi nặng nhất.</span></li>
+        <li><b>Báo lỗi theo công thức ba câu</b><span>Tôi làm gì · tôi thấy gì · tôi mong đợi gì.</span></li>
+        <li><b>Lặp lại bước 2 đến bước 4</b><span>Thường vòng thứ ba mới dùng được thật.</span></li>
+      </ol>
+      <div class="note ok"><span class="lbl">Thực tế workshop</span>Công cụ checklist các anh chị vừa dùng phải chạy tới vòng thứ ba mới xuất file được.</div>
+    </section>
+
+    <section>
+      <div class="snum">10 · MẪU NHỜ AI XÂY CÔNG CỤ</div>
+      <h3>Chép nguyên khối</h3>
+      <div class="prompt rv"><div class="bar"><span>PROMPT · NHỜ AI XÂY CÔNG CỤ</span><button class="copy" onclick="cp(this)">Sao chép</button></div><pre>Tôi làm trực ban sản xuất ở một depot container, cần một công cụ
+nhỏ thay việc ghi tay hằng ngày.
+
+1. CÔNG CỤ ĐỂ LÀM GÌ
+[Ví dụ: thay việc ghi tay bảng KPI theo ca]
+
+2. AI SẼ DÙNG
+Trực ban sản xuất, dùng để quản lý các bộ phận liên quan (giao nhận, điều độ, xe nâng,vv).
+
+3. ĐẦU VÀO
+Tôi sẽ gõ tay trên giao diện. Chưa có file nguồn.
+Các mục cần nhập: [liệt kê]
+
+4. ĐẦU RA
+File Excel tên [...], gồm các sheet và cột: [liệt kê]
+
+5. MÁY CHẠY
+Windows 7, Excel bản cũ, KHÔNG cài thêm phần mềm,
+KHÔNG có mạng khi dùng.
+
+6. THẾ NÀO LÀ ĐẠT
+Mở file kết quả bằng Excel phải thấy đủ dữ liệu, số khớp
+với bản làm tay.
+
+YÊU CẦU KỸ THUẬT
+- MỘT file HTML duy nhất, mở bằng trình duyệt là chạy.
+- Không gọi Internet. Thư viện nhúng thẳng vào file.
+- Xuất Excel: ĐỪNG tự dựng file từ đầu. Dùng thư viện xuất
+  xlsx chuẩn để Excel không phải sửa file.
+- Giao diện trực quan, dễ thao tác. Thiếu dữ liệu thì chặn và báo rõ.
+
+AI PHẢI TRẢ VỀ
+A. Một file HTML tải về được.
+B. Hướng dẫn dùng ngắn, 5 bước.
+C. Danh sách việc tôi phải tự kiểm.
+D. Phần nào bạn chưa chắc chắn.
+
+CÂU CUỐI PHẢI CÓ
+Nói rõ chỗ nào bạn chưa kiểm chứng được
+và tôi phải tự thử.</pre></div>
+    </section>
+
+    <section>
+      <div class="snum">11 · TÓM LẠI</div>
+      <h3>Vẽ đầu ra trước. Xây sau.</h3>
+      <div class="callout-big">Để làm gì · Ai dùng · Đầu vào · Đầu ra · Máy nào · Kiểm sao</div>
+      <p class="lede">Công cụ checklist các anh chị vừa dùng phải sửa tới vòng thứ ba mới xuất file được. Không ai làm đúng ngay lần đầu — quan trọng là biết cách thử và biết cách báo lỗi.</p>
+      <div class="note ok"><span class="lbl">Sau workshop</span>Vướng gì trong tuần — nhắn trực tiếp Zalo. Nghiêm Tử Long · M&amp;R Team · 0367 164 613</div>
+    </section>
+  </div>`
+},
+
+
 /* ============================== KỸ THUẬT · VẬT TƯ ============================== */
 kythuat: {
   crumb: "Kỹ thuật · Vật tư",
   html: `
   <div class="dept-page tech-page">
     <div class="hero dept-hero"><div class="hero-copy"><div class="kick">Workshop ứng dụng AI · Kỹ thuật – Vật tư · sáng Thứ Tư, ngày 12/08</div><h2 class="big">Kỹ thuật · Vật tư</h2><div class="meta"><span class="pill">08h00–09h00</span><span class="pill ok">Tài liệu sau workshop</span><span class="pill hot">An toàn kỹ thuật là chốt cuối</span></div></div>
-      <div class="motion-stage tech-stage tech-v10" aria-hidden="true">
-        <div class="stage-cap">KTVT · REACHSTACKER MAINTENANCE BAY</div>
-        <svg class="tech-svg" viewBox="0 0 620 320" role="img" aria-label="Minh họa xe nâng reachstacker đang được bảo dưỡng">
+      <div class="motion-stage tech-stage tech-v11" aria-hidden="true">
+        <div class="stage-cap">KTVT · REACHSTACKER / PM PANEL</div>
+        <svg class="tech-svg" viewBox="0 0 620 292" role="img" aria-label="Minh họa reachstacker được bảo dưỡng trong xưởng">
           <defs>
-            <linearGradient id="techBg10" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#062B2B"/><stop offset="1" stop-color="#0B1720"/></linearGradient>
-            <linearGradient id="techYellow10" x1="0" x2="1"><stop stop-color="#FBBF24"/><stop offset="1" stop-color="#F59E0B"/></linearGradient>
-            <filter id="techShadow10"><feDropShadow dx="0" dy="12" stdDeviation="9" flood-opacity=".34"/></filter>
+            <linearGradient id="techBg11" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#06201F"/><stop offset="1" stop-color="#10262B"/></linearGradient>
+            <linearGradient id="techMachine11" x1="0" x2="1"><stop stop-color="#FBBF24"/><stop offset="1" stop-color="#F59E0B"/></linearGradient>
+            <filter id="techShadow11"><feDropShadow dx="0" dy="10" stdDeviation="8" flood-opacity=".28"/></filter>
           </defs>
-          <rect width="620" height="320" fill="url(#techBg10)"/>
-          <path d="M0 244H620V320H0z" fill="#0F2A28"/>
-          <path d="M34 270H586M70 244v76m120-76v76m120-76v76m120-76v76" stroke="rgba(94,234,212,.14)" stroke-width="2"/>
-          <path d="M28 294H592" stroke="#F59E0B" stroke-width="4" stroke-dasharray="28 14" opacity=".7"/>
-
-          <!-- maintenance light -->
-          <g><rect x="64" y="54" width="136" height="42" rx="12" fill="rgba(255,255,255,.08)" stroke="rgba(255,255,255,.15)"/><circle class="service-light-v10" cx="88" cy="75" r="7" fill="#5EEAD4"/><path d="M108 70h64M108 82h46" stroke="rgba(255,255,255,.64)" stroke-width="6" stroke-linecap="round"/></g>
-
-          <!-- reachstacker: large recognizable silhouette -->
-          <g class="reach-v10" filter="url(#techShadow10)">
-            <g transform="translate(58 126)">
-              <rect x="22" y="64" width="246" height="62" rx="18" fill="url(#techYellow10)"/>
-              <path d="M186 64h84l32 50h-106z" fill="#FDE68A"/>
-              <path d="M198 73h55l20 31h-68z" fill="#0F766E" opacity=".88"/>
-              <rect x="40" y="78" width="92" height="34" rx="9" fill="#D97706" opacity=".5"/>
-              <circle cx="78" cy="132" r="31" fill="#020617"/><circle cx="78" cy="132" r="13" fill="#64748B"/>
-              <circle cx="222" cy="132" r="31" fill="#020617"/><circle cx="222" cy="132" r="13" fill="#64748B"/>
-              <!-- boom and spreader -->
-              <g class="boom-v10"><rect x="250" y="38" width="230" height="22" rx="11" fill="#E2E8F0" transform="rotate(-16 250 38)"/><rect x="454" y="-30" width="18" height="98" rx="8" fill="#CBD5E1" transform="rotate(-16 454 -30)"/><rect x="452" y="58" width="92" height="12" rx="5" fill="#F8FAFC" transform="rotate(-16 452 58)"/></g>
-            </g>
-          </g>
-
-          <!-- open service panel -->
-          <g class="panel-v10" transform="translate(92 164)"><rect width="92" height="50" rx="8" fill="#713F12"/><rect x="10" y="10" width="72" height="8" rx="4" fill="#FDE68A" opacity=".55"/><rect x="10" y="27" width="54" height="8" rx="4" fill="#FDE68A" opacity=".34"/></g>
-
-          <!-- maintenance cart + tool -->
-          <g transform="translate(476 170)"><rect width="92" height="76" rx="14" fill="#173A38" stroke="rgba(94,234,212,.24)"/><rect x="14" y="16" width="64" height="8" rx="4" fill="#5EEAD4" opacity=".55"/><rect x="14" y="34" width="50" height="8" rx="4" fill="#5EEAD4" opacity=".3"/><circle cx="20" cy="82" r="8" fill="#020617"/><circle cx="70" cy="82" r="8" fill="#020617"/></g>
-          <g class="wrench-v10" transform="translate(476 78)"><path d="M18 8a28 28 0 0 0 29 42l42 42 18-18-42-42A28 28 0 0 0 18 8z" fill="#FDE68A"/><circle cx="93" cy="79" r="9" fill="#0F766E"/></g>
-
-          <!-- scan beam -->
-          <path class="tech-scan-v10" d="M34 116H586" stroke="#5EEAD4" stroke-width="2"/>
+          <rect width="620" height="292" fill="url(#techBg11)"/>
+          <path d="M0 226H620V292H0z" fill="#11302C"/>
+          <path d="M32 246H588" stroke="rgba(255,255,255,.12)" stroke-width="2" stroke-dasharray="12 12"/>
+          <g filter="url(#techShadow11)"><rect x="76" y="62" width="94" height="144" rx="18" fill="rgba(255,255,255,.16)"/><rect x="92" y="44" width="170" height="208" rx="18" fill="#F3EFE6"/><rect x="116" y="78" width="122" height="8" rx="4" fill="#0F766E"/><rect x="116" y="102" width="110" height="8" rx="4" fill="#D6CFBB"/><rect x="116" y="126" width="110" height="8" rx="4" fill="#D6CFBB"/><rect x="116" y="150" width="84" height="8" rx="4" fill="#FCD34D"/><rect x="116" y="174" width="110" height="8" rx="4" fill="#D6CFBB"/></g>
+          <g filter="url(#techShadow11)"><g transform="translate(242 158)"><rect x="0" y="34" width="164" height="44" rx="16" fill="url(#techMachine11)"/><path d="M104 34h56l28 38h-76z" fill="#FDE68A"/><path d="M108 42h36l16 22h-44z" fill="#115E59" opacity=".88"/><circle class="tech11-wheel" cx="40" cy="82" r="24" fill="#020617"/><circle cx="40" cy="82" r="10" fill="#64748B"/><circle class="tech11-wheel" cx="126" cy="82" r="24" fill="#020617"/><circle cx="126" cy="82" r="10" fill="#64748B"/><g transform="translate(110 -10)"><rect width="140" height="16" rx="8" fill="#E2E8F0" transform="rotate(-15 0 0)"/><rect x="126" y="-30" width="14" height="72" rx="6" fill="#CBD5E1" transform="rotate(-15 126 -30)"/></g></g></g>
+          <path class="tech11-scan" d="M280 78H560" stroke="#5EEAD4" stroke-width="2"/>
+          <g class="tech11-wrench" transform="translate(484 70)"><path d="M18 8a28 28 0 0 0 29 42l42 42 18-18-42-42A28 28 0 0 0 18 8z" fill="#FDE68A"/></g>
+          <g opacity=".95"><rect x="528" y="82" width="52" height="44" rx="16" fill="rgba(253,230,138,.08)" stroke="rgba(253,230,138,.2)"/><text x="554" y="109" fill="#FDE68A" font-size="12" font-family="Segoe UI, Arial" font-weight="700" text-anchor="middle">PM</text><rect x="528" y="142" width="52" height="44" rx="16" fill="rgba(253,230,138,.08)" stroke="rgba(253,230,138,.2)"/><text x="554" y="169" fill="#FDE68A" font-size="12" font-family="Segoe UI, Arial" font-weight="700" text-anchor="middle">LỊCH</text><rect x="528" y="202" width="52" height="44" rx="16" fill="rgba(253,230,138,.08)" stroke="rgba(253,230,138,.2)"/><text x="554" y="229" fill="#FDE68A" font-size="12" font-family="Segoe UI, Arial" font-weight="700" text-anchor="middle">VT</text></g>
         </svg>
       </div></div>
 
@@ -2085,251 +2160,6 @@ B5. Cuối cùng, liệt kê riêng những gì thuộc nhãn thứ ba để tô
   </div>`
 },
 
-/* ============================== TRỰC BAN SẢN XUẤT ============================== */
-trucban: {
-  crumb: "Trực ban sản xuất",
-  html: `
-  <div class="dept-page prod-page">
-    <div class="hero dept-hero">
-      <div class="hero-copy">
-        <div class="kick">Workshop ứng dụng AI · Trực ban sản xuất · sáng Thứ Sáu, ngày 07/08</div>
-        <h2 class="big">Trực ban sản xuất</h2>
-        
-        <div class="meta"><span class="pill">60 phút</span><span class="pill ok">Tài liệu ôn bài sau workshop</span><span class="pill hot">Build → Test → Fix</span></div>
-        <div class="memory-strip">
-          <div><b>Vẽ đầu ra trước</b><span>Chưa mô tả được file kết quả thì chưa bắt đầu xây.</span></div>
-          <div><b>Xây từng vòng</b><span>Làm → thử → báo lỗi → sửa. Không kỳ vọng bản đầu dùng ngay.</span></div>
-          <div><b>Thử trên máy mình</b><span>AI báo PASS không thay cho việc mở file thật trên Windows/Excel thật.</span></div>
-        </div>
-      </div>
-      <div class="motion-stage prod-stage prod-v10" aria-hidden="true">
-        <div class="stage-cap">TBSX · PRODUCTION CONTROL / BARGE FLOW</div>
-        <svg class="prod-svg" viewBox="0 0 620 320" role="img" aria-label="Minh họa trực ban điều phối toàn tuyến sản xuất và xuất nhập xà lan">
-          <defs>
-            <linearGradient id="prodBg10" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#2B1110"/><stop offset=".58" stop-color="#5C1E16"/><stop offset="1" stop-color="#1C1720"/></linearGradient>
-            <linearGradient id="prodWater10" x1="0" y1="0" x2="1" y2="0"><stop stop-color="#0284C7"/><stop offset="1" stop-color="#1D4ED8"/></linearGradient>
-            <filter id="prodShadow10"><feDropShadow dx="0" dy="10" stdDeviation="7" flood-opacity=".32"/></filter>
-          </defs>
-          <rect width="620" height="320" fill="url(#prodBg10)"/>
-
-          <!-- control board -->
-          <g transform="translate(34 48)" filter="url(#prodShadow10)">
-            <rect width="248" height="148" rx="20" fill="#111827" stroke="rgba(255,255,255,.14)"/>
-            <rect x="18" y="18" width="212" height="20" rx="8" fill="#1F2937"/>
-            <circle class="signal-v10 s1" cx="32" cy="28" r="6" fill="#22C55E"/><circle class="signal-v10 s2" cx="52" cy="28" r="6" fill="#F59E0B"/><circle class="signal-v10 s3" cx="72" cy="28" r="6" fill="#38BDF8"/>
-            <path class="route-v10" d="M28 96H74C104 96 102 62 132 62h38c32 0 30 34 60 34" fill="none" stroke="#FB923C" stroke-width="4" stroke-linecap="round" stroke-dasharray="8 9"/>
-            <g transform="translate(26 58)"><rect width="42" height="26" rx="6" fill="#F8FAFC"/><rect x="28" y="-14" width="14" height="16" rx="4" fill="#38BDF8"/></g>
-            <g transform="translate(106 51)"><rect width="56" height="36" rx="6" fill="#F97316"/><path d="M10 7v22m12-22v22m12-22v22" stroke="rgba(255,255,255,.35)"/></g>
-            <g transform="translate(186 62)"><path d="M0 16h36l10 18H8z" fill="#0EA5E9"/><rect x="8" y="0" width="14" height="18" rx="3" fill="#F8FAFC"/></g>
-            <path d="M28 124h82M128 124h62M202 124h28" stroke="rgba(255,255,255,.25)" stroke-width="8" stroke-linecap="round"/>
-          </g>
-
-          <!-- yard / crane in the middle -->
-          <g transform="translate(318 62)" filter="url(#prodShadow10)">
-            <path d="M0 134H170" stroke="rgba(255,255,255,.16)" stroke-width="2"/>
-            <rect x="18" y="92" width="72" height="34" rx="6" fill="#F97316"/><rect x="92" y="92" width="72" height="34" rx="6" fill="#F59E0B"/>
-            <path d="M42 4h8v120M138 4h8v120M38 12h112" stroke="#E5E7EB" stroke-width="8" stroke-linecap="round"/>
-            <g class="hook-v10"><path d="M94 14v52" stroke="#F8FAFC" stroke-width="3"/><rect x="64" y="66" width="60" height="8" rx="4" fill="#F8FAFC"/></g>
-          </g>
-
-          <!-- water + barge across entire bottom -->
-          <path d="M0 232H620V320H0z" fill="url(#prodWater10)"/>
-          <path class="wave-v10" d="M0 252c30-12 60 12 90 0s60 12 90 0 60 12 90 0 60 12 90 0 60 12 90 0 60 12 90 0 60 12 90 0" fill="none" stroke="rgba(255,255,255,.35)" stroke-width="3"/>
-          <g class="barge-v10" transform="translate(166 238)" filter="url(#prodShadow10)">
-            <path d="M0 18h284l-24 46H34z" fill="#111827"/>
-            <rect x="34" y="-26" width="66" height="44" rx="5" fill="#F97316"/><rect x="104" y="-26" width="66" height="44" rx="5" fill="#F59E0B"/><rect x="174" y="-26" width="66" height="44" rx="5" fill="#FB7185"/>
-            <rect x="246" y="-18" width="26" height="36" rx="5" fill="#E2E8F0"/>
-          </g>
-
-          <!-- truck from control to berth -->
-          <g class="prod-truck-v10" transform="translate(36 210)"><rect width="86" height="24" rx="7" fill="#F8FAFC"/><rect x="58" y="-18" width="28" height="20" rx="5" fill="#F97316"/><circle cx="20" cy="28" r="9" fill="#020617"/><circle cx="66" cy="28" r="9" fill="#020617"/></g>
-        </svg>
-      </div>
-    </div>
-
-    <section>
-      <div class="snum">01 · CHỈ CẦN NHỚ 3 VIỆC</div>
-      <h3>Vẽ đầu ra trước · Xây từng vòng · Thử trên máy mình</h3>
-      <div class="grid g3">
-        <div class="card sig"><div class="k">01</div><h4>Vẽ đầu ra trước</h4><p>Muốn file kết quả trông thế nào thì vẽ ra trước. Chưa vẽ được thì chưa xây được.</p></div>
-        <div class="card sig"><div class="k">02</div><h4>Xây từng vòng</h4><p>Không ra ngay lần đầu. Làm → thử → báo lỗi → sửa. Vòng thứ ba mới dùng được.</p></div>
-        <div class="card yes"><div class="k">03</div><h4>Thử trên máy mình</h4><p>AI báo chạy được là chạy trên máy của nó. Máy mình phải tự thử.</p></div>
-      </div>
-      <div class="callout-big">“Xây công cụ không phải việc của dân IT nữa. Nhưng cũng không phải bấm một cái là xong. Nó là mấy vòng làm đi làm lại.”</div>
-    </section>
-
-    <section>
-      <div class="snum">02 · TRƯỚC KHI GÕ CHỮ ĐẦU TIÊN</div>
-      <h3>Đưa cái khung, đừng đưa cái ruột</h3>
-      <p class="lede">Xây công cụ càng phải giữ dữ liệu, vì mình đang đưa cả cấu trúc dữ liệu cho AI.</p>
-      <div class="grid g2">
-        <div class="card no"><div class="k">✕ KHÔNG ĐƯA LÊN AI</div><ul class="b no">
-          <li>Số container, số booking, tên sà lan thật</li>
-          <li>Tên khách hàng, tên hãng tàu kèm sản lượng</li>
-          <li>File tồn bãi, file sản lượng nguyên bản</li>
-          <li>Tên người lao động trong checklist an toàn</li>
-        </ul><p>Checklist an toàn có tên người chịu trách nhiệm. Đó là dữ liệu cá nhân, không đưa ra ngoài.</p></div>
-        <div class="card yes"><div class="k">✓ ĐƯA ĐƯỢC</div><ul class="b ok">
-          <li>Tên cột, tên sheet, cấu trúc bảng</li>
-          <li>Quy tắc tính: TEU, tỷ lệ, ngày quá hạn</li>
-          <li>Vài dòng giả lập đã thay hết số thật</li>
-          <li>Mô tả file kết quả mình muốn có</li>
-        </ul><p>Xây công cụ chỉ cần cấu trúc và quy tắc. Không cần một dòng dữ liệu thật nào.</p></div>
-      </div>
-    </section>
-
-    <section>
-      <div class="snum">03 · VIỆC 1 VÀ 2 · ĐÃ XONG</div>
-      <h3>Công cụ đã có — mở bằng trình duyệt là chạy</h3>
-      <p class="lede">Một file duy nhất. Không cài gì, không cần mạng, không cần Excel để nhập liệu.</p>
-      <div class="grid g2">
-        <div class="card yes"><div class="k">CHECKLIST AN TOÀN</div><h4>Đủ 25 hạng mục từ sổ tự kiểm</h4><ul class="b ok">
-          <li>Ba trạng thái: Đạt · Không đạt · Không áp dụng</li>
-          <li>Chọn Không đạt thì bắt buộc nhập hiện trạng, hành động, người chịu trách nhiệm và thời hạn</li>
-          <li>Thiếu là không cho xuất</li>
-        </ul></div>
-        <div class="card yes"><div class="k">BÁO CÁO SẢN XUẤT CA</div><h4>Năm nhóm thông tin</h4><ul class="b ok">
-          <li>Nhân sự · phương tiện · sà lan · xuất nhập cổng · phát sinh</li>
-          <li>Tự tính số container và TEU</li>
-          <li>Xuất ra file Excel đúng các sheet của form cũ</li>
-        </ul></div>
-      </div>
-      <div class="note"><span class="lbl">Làm ngay tại lớp</span>Mỗi người mở file, tick thử 5 hạng mục, cố tình bỏ trống một ô rồi bấm xuất để xem tool chặn thế nào.</div>
-    </section>
-
-    <section>
-      <div class="snum">05 · CÔNG CỤ NÀY SUÝT BỎ ĐI</div>
-      <h3>AI báo PASS — nhưng Excel mở ra trắng trơn</h3>
-      <div class="grid g2">
-        <div class="card sig"><div class="k">AI BÁO</div><p>Kiểm thử xong hết. Xuất Excel: PASS. Đọc lại file: được. Lỗi công thức: 0.</p></div>
-        <div class="card no"><div class="k">THỰC TẾ</div><p>Nhập đủ số liệu, bấm xuất, mở bằng Excel — trắng trơn, không có gì.</p></div>
-      </div>
-      <div class="mini-grid">
-        <div class="mini"><b>Nguyên nhân</b><span>Bản đầu tự dựng file Excel từ con số không. Excel không nhận, tự sửa file, rồi xoá sạch dữ liệu.</span></div>
-        <div class="mini"><b>Cách sửa</b><span>Không dựng từ đầu nữa. Lấy một file Excel hợp lệ làm nền, chỉ thay phần dữ liệu bên trong.</span></div>
-      </div>
-      <div class="note warn"><span class="lbl">Điểm chặn</span>Nếu không tự mở file ra xem, tool đã có thể được mang đi dùng thật — và mất hết số liệu của cả ca.</div>
-    </section>
-
-    <section>
-      <div class="snum">06 · BÀI HỌC ĐẮT NHẤT</div>
-      <h3>Ba câu áp cho mọi công cụ</h3>
-      <div class="memory-strip">
-        <div><b>01 · AI báo PASS ≠ máy mình PASS</b><span>Không phải máy mình. Không phải Excel mình. Không phải Windows mình.</span></div>
-        <div><b>02 · Phải tự mở file kết quả ra xem</b><span>Tool báo xuất thành công vẫn có thể ra file rỗng.</span></div>
-        <div><b>03 · Thử với dữ liệu thật</b><span>Gõ tiếng Việt có dấu, để ô trống, gõ ký tự lạ. Chỗ gãy nằm ở đó.</span></div>
-      </div>
-      <div class="callout-big"><b>Cách thử đúng:</b> nhập một ca thật đã làm xong, xuất file, mở bằng Excel và so từng số với bản làm tay. Khớp mới được dùng.</div>
-    </section>
-
-    <section>
-      <div class="snum">07 · BÁO LỖI CHO AI THẾ NÀO</div>
-      <h3>Tả đúng điều nhìn thấy — đừng đoán nguyên nhân</h3>
-      <div class="grid g2">
-        <div class="card no"><div class="k">BÁO NHƯ THẾ NÀY THÌ HỎNG</div><p>“Tool bị lỗi rồi.”<br>“Không chạy được.”<br>“Sửa giúp tôi.”</p></div>
-        <div class="card yes"><div class="k">BÁO NHƯ THẾ NÀY THÌ ĐƯỢC</div><p>Tôi nhập đủ số liệu ở mục Báo cáo ca. Bấm nút xuất Excel, tải được file về. Nhưng mở file bằng Excel thì trắng trơn, không có dòng nào. Excel có hiện thông báo hỏi sửa file.</p></div>
-      </div>
-      <div class="callout-big"><b>Công thức báo lỗi:</b> Tôi làm gì → tôi thấy gì → tôi mong đợi gì.</div>
-    </section>
-
-    <section>
-      <div class="snum">08 · SÁU CÂU PHẢI NÓI TRƯỚC KHI XÂY</div>
-      <h3>Câu 4 — đầu ra — là câu quan trọng nhất</h3>
-      <div class="grid g3">
-        <div class="card sig"><div class="k">01</div><h4>Công cụ để làm gì?</h4><p>Ví dụ: thay việc gõ tay checklist an toàn mỗi ca.</p></div>
-        <div class="card sig"><div class="k">02</div><h4>Ai sẽ dùng?</h4><p>Trực ban sản xuất — người thao tác hằng ngày.</p></div>
-        <div class="card sig"><div class="k">03</div><h4>Đầu vào là gì?</h4><p>Gõ tay trên giao diện hay đọc từ file. Ví dụ: chưa có file nguồn.</p></div>
-        <div class="card"><div class="k">04</div><h4>Đầu ra trông thế nào?</h4><p>File kết quả có mấy sheet, cột nào. Ví dụ: CHECKLIST và TỔNG HỢP.</p></div>
-        <div class="card"><div class="k">05</div><h4>Máy chạy ra sao?</h4><p>Windows 7, không cài phần mềm, không có mạng.</p></div>
-        <div class="card yes"><div class="k">06</div><h4>Thế nào là đạt?</h4><p>Mở file kết quả bằng Excel, số phải khớp bản tay.</p></div>
-      </div>
-      <div class="note warn"><span class="lbl">Quan trọng nhất</span>Câu 4 là câu quan trọng nhất. Chưa vẽ được đầu ra thì đừng bắt đầu xây.</div>
-    </section>
-
-    <section>
-      <div class="snum">09 · CÂU 4 · QUAN TRỌNG NHẤT</div>
-      <h3>Vẽ đầu ra trước khi xây</h3>
-      <p class="lede">Không cần biết code. Chỉ cần vẽ ra file kết quả mình muốn — trên giấy cũng được.</p>
-      <div class="tw"><table>
-        <tr><th colspan="4">Ví dụ checklist an toàn</th></tr>
-        <tr><td><b>File kết quả</b></td><td colspan="3"><span class="m">CHECKLIST_TBSX_&lt;ngay&gt;_&lt;ca&gt;.xlsx</span></td></tr>
-        <tr><td><b>Sheet 1</b></td><td>CHECKLIST</td><td><b>Cột</b></td><td>STT | Hạng mục | Kết quả | Ghi chú | Người phụ trách | Thời hạn</td></tr>
-        <tr><td><b>Sheet 2</b></td><td>TỔNG HỢP</td><td><b>Nội dung</b></td><td>Tổng số mục 25 · Đạt 22 · Không đạt 2 · Không áp dụng 1 · danh sách việc cần khắc phục</td></tr>
-      </table></div>
-      <div class="grid g2">
-        <div class="card no"><div class="k">KHÔNG VẼ ĐƯỢC THÌ SAO</div><p>Nghĩa là mình chưa rõ mình muốn gì. Đi hỏi người sẽ dùng file đó trước, đừng hỏi AI.</p></div>
-        <div class="card yes"><div class="k">MẸO NHANH</div><p>Lấy file kết quả cũ đang làm tay, chụp lại rồi gõ mô tả theo đúng nó. Xong câu 4.</p></div>
-      </div>
-    </section>
-
-    <section>
-      <div class="snum">10 · XÂY CÔNG CỤ LÀ NHIỀU VÒNG</div>
-      <h3>Không phải một lần</h3>
-      <ol class="steps coral">
-        <li><b>Mô tả sáu câu, nhờ AI làm bản đầu</b><span>Xin một file duy nhất, mở bằng trình duyệt là chạy.</span></li>
-        <li><b>Mở ra bấm thử, cố tình làm sai</b><span>Bỏ trống ô, gõ tiếng Việt có dấu, gõ chữ vào ô số.</span></li>
-        <li><b>Xuất file kết quả, mở bằng Excel</b><span>Bước hay bị bỏ nhất — và là bước phát hiện lỗi nặng nhất.</span></li>
-        <li><b>Báo lỗi theo công thức ba câu</b><span>Tôi làm gì · tôi thấy gì · tôi mong đợi gì.</span></li>
-        <li><b>Lặp lại bước 2 đến bước 4</b><span>Thường vòng thứ ba mới dùng được thật.</span></li>
-      </ol>
-      <div class="note ok"><span class="lbl">Thực tế workshop</span>Công cụ checklist các anh chị vừa dùng phải chạy tới vòng thứ ba mới xuất file được.</div>
-    </section>
-
-    <section>
-      <div class="snum">11 · MẪU NHỜ AI XÂY CÔNG CỤ</div>
-      <h3>Chép nguyên khối</h3>
-      <div class="prompt rv"><div class="bar"><span>PROMPT · NHỜ AI XÂY CÔNG CỤ</span><button class="copy" onclick="cp(this)">Sao chép</button></div><pre>Tôi làm trực ban sản xuất ở một depot container, cần một công cụ
-nhỏ thay việc ghi tay hằng ngày.
-
-1. CÔNG CỤ ĐỂ LÀM GÌ
-[Ví dụ: thay việc ghi tay bảng KPI theo ca]
-
-2. AI SẼ DÙNG
-Trực ban sản xuất, dùng để quản lý các bộ phận liên quan (giao nhận, điều độ, xe nâng,vv).
-
-3. ĐẦU VÀO
-Tôi sẽ gõ tay trên giao diện. Chưa có file nguồn.
-Các mục cần nhập: [liệt kê]
-
-4. ĐẦU RA
-File Excel tên [...], gồm các sheet và cột: [liệt kê]
-
-5. MÁY CHẠY
-Windows 7, Excel bản cũ, KHÔNG cài thêm phần mềm,
-KHÔNG có mạng khi dùng.
-
-6. THẾ NÀO LÀ ĐẠT
-Mở file kết quả bằng Excel phải thấy đủ dữ liệu, số khớp
-với bản làm tay.
-
-YÊU CẦU KỸ THUẬT
-- MỘT file HTML duy nhất, mở bằng trình duyệt là chạy.
-- Không gọi Internet. Thư viện nhúng thẳng vào file.
-- Xuất Excel: ĐỪNG tự dựng file từ đầu. Dùng thư viện xuất
-  xlsx chuẩn để Excel không phải sửa file.
-- Giao diện trực quan, dễ thao tác. Thiếu dữ liệu thì chặn và báo rõ.
-
-AI PHẢI TRẢ VỀ
-A. Một file HTML tải về được.
-B. Hướng dẫn dùng ngắn, 5 bước.
-C. Danh sách việc tôi phải tự kiểm.
-D. Phần nào bạn chưa chắc chắn.
-
-CÂU CUỐI PHẢI CÓ
-Nói rõ chỗ nào bạn chưa kiểm chứng được
-và tôi phải tự thử.</pre></div>
-    </section>
-
-    <section>
-      <div class="snum">12 · TÓM LẠI</div>
-      <h3>Vẽ đầu ra trước. Xây sau.</h3>
-      <div class="callout-big">Để làm gì · Ai dùng · Đầu vào · Đầu ra · Máy nào · Kiểm sao</div>
-      <p class="lede">Công cụ checklist các anh chị vừa dùng phải sửa tới vòng thứ ba mới xuất file được. Không ai làm đúng ngay lần đầu — quan trọng là biết cách thử và biết cách báo lỗi.</p>
-      <div class="note ok"><span class="lbl">Sau workshop</span>Vướng gì trong tuần — nhắn trực tiếp Zalo. Nghiêm Tử Long · M&amp;R Team · 0367 164 613</div>
-    </section>
-  </div>`
-},
-
 /* ============================== KẾ TOÁN ============================== */
 
 ketoan: {
@@ -2415,8 +2245,8 @@ qr: {
         <option value="hcns">Hành chính · Nhân sự</option>
         <option value="giaonhan">Giao nhận</option>
         <option value="dieudo">Điều độ</option>
-        <option value="kythuat">Kỹ thuật · Vật tư</option>
         <option value="trucban">Trực ban sản xuất</option>
+        <option value="kythuat">Kỹ thuật · Vật tư</option>
         <option value="ketoan">Kế toán</option>
       </select>
     </div>
@@ -2565,7 +2395,7 @@ function setupPageStructure(key){
   sections.forEach((sec,i)=>{
     const heading=sec.querySelector('h3,h2');
     const snum=sec.querySelector('.snum');
-    const label=(heading?.textContent || snum?.textContent || `Mục ${i+1}`).trim();
+    const label=(snum?.textContent || heading?.textContent || `Mục ${i+1}`).trim();
     const id=`sec-${key}-${i}-${slugify(label)}`;
     sec.id=id; sec.dataset.sectionIndex=String(i);
     const b=document.createElement('button');
@@ -2685,15 +2515,17 @@ function norm(s){return String(s||'').normalize('NFD').replace(/[\u0300-\u036f]/
 function cleanText(s){return String(s||'').replace(/\s+/g,' ').trim();}
 function escapeHtml(s){return String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));}
 
-const SEARCH_INDEX=(()=>{
+const CONTENT_ORDER=['chung','hcns','giaonhan','dieudo','trucban','kythuat','ketoan'];
+SEARCH_INDEX=(()=>{
   const rows=[];
-  Object.entries(DATA).forEach(([key,d])=>{
-    if(key==='qr' || key==='home') return;
+  CONTENT_ORDER.forEach(key=>{
+    const d=DATA[key];
+    if(!d) return;
     const doc=new DOMParser().parseFromString(`<main>${d.html}</main>`,'text/html');
     const sections=[...doc.querySelectorAll('section')];
     if(!sections.length){rows.push({key,section:-1,page:d.crumb,title:d.crumb,text:cleanText(doc.body.textContent)});return;}
     sections.forEach((sec,i)=>{
-      const title=cleanText(sec.querySelector('h3,h2')?.textContent||sec.querySelector('.snum')?.textContent||d.crumb);
+      const title=cleanText(sec.querySelector('.snum')?.textContent||sec.querySelector('h3,h2')?.textContent||d.crumb);
       const body=cleanText(sec.textContent);
       rows.push({key,section:i,page:d.crumb,title,text:body});
     });

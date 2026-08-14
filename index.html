@@ -398,6 +398,71 @@ td b{color:var(--ink);font-weight:600}
 
 
 
+
+/* ══════════════ HOME · 6 DEPARTMENT IDENTITIES ══════════════ */
+.deptcard{
+  --dc1:#C4602F;--dc2:#F59E0B;--dcs:#FFF4EC;
+  padding:26px 26px 24px;
+  border-color:color-mix(in srgb,var(--dc1) 14%,var(--line));
+  background:
+    radial-gradient(circle at 94% 8%,color-mix(in srgb,var(--dc2) 12%,transparent) 0 1px,transparent 46%),
+    linear-gradient(145deg,#fff 0%,color-mix(in srgb,var(--dcs) 54%,#fff) 100%);
+  isolation:isolate;
+}
+.deptcard::before{
+  content:"";position:absolute;z-index:2;left:-16%;right:-16%;top:0;height:5px;
+  background:linear-gradient(90deg,var(--dc1),var(--dc2),var(--dc1));
+  background-size:220% 100%;background-position:0 0;
+  animation:deptStripe 5.8s linear infinite;
+  box-shadow:0 0 20px color-mix(in srgb,var(--dc2) 22%,transparent);
+}
+.deptcard .eyebrow{
+  position:relative;z-index:1;font:700 10px/1.25 var(--mono);letter-spacing:.15em;
+  text-transform:uppercase;color:var(--dc1);margin-bottom:12px;
+  transition:letter-spacing .3s var(--ease),transform .3s var(--ease);
+}
+.deptcard .hd,.deptcard p,.deptcard .sig{position:relative;z-index:1}
+.deptcard .sig{
+  display:inline-flex;align-items:center;gap:8px;margin-top:14px;padding:7px 10px;
+  border-radius:999px;background:color-mix(in srgb,var(--dcs) 88%,#fff);color:var(--dc1);
+  border:1px solid color-mix(in srgb,var(--dc1) 11%,transparent);
+  font-size:12px;font-weight:650;
+  transition:transform .3s var(--ease),box-shadow .3s var(--ease),background .3s var(--ease);
+}
+.deptcard .sig::before{
+  content:"";width:7px;height:7px;flex:0 0 7px;border-radius:50%;background:var(--dc2);
+  box-shadow:0 0 0 0 color-mix(in srgb,var(--dc2) 35%,transparent);
+  animation:deptPulse 2.8s ease-out infinite;
+}
+.deptcard:hover{
+  border-color:color-mix(in srgb,var(--dc1) 44%,var(--line));
+  box-shadow:0 18px 44px -28px color-mix(in srgb,var(--dc1) 44%,rgba(0,0,0,.18)),var(--sh-2);
+}
+.deptcard:hover .eyebrow{letter-spacing:.18em;transform:translateX(2px)}
+.deptcard:hover .sig{transform:translateY(-1px);background:#fff;box-shadow:0 8px 20px -15px var(--dc1)}
+
+.deptcard.hcns{--dc1:#7C3AED;--dc2:#EC4899;--dcs:#F7F0FF}
+.deptcard.giaonhan{--dc1:#0F766E;--dc2:#0284C7;--dcs:#ECF9F7}
+.deptcard.dieudo{--dc1:#2563EB;--dc2:#38BDF8;--dcs:#EAF4FF}
+.deptcard.trucban{--dc1:#D9473F;--dc2:#F97316;--dcs:#FFF0ED}
+.deptcard.kythuat{--dc1:#0F766E;--dc2:#F59E0B;--dcs:#ECF8F5}
+.deptcard.ketoan{--dc1:#13795B;--dc2:#B68A2B;--dcs:#EDF8F2}
+
+/* each card gets a faint department-specific motif without adding editorial text */
+.deptcard.hcns{background-image:radial-gradient(circle at 92% 14%,rgba(236,72,153,.11),transparent 25%),linear-gradient(145deg,#fff,#FBF7FF)}
+.deptcard.giaonhan{background-image:radial-gradient(circle at 92% 14%,rgba(2,132,199,.10),transparent 25%),linear-gradient(145deg,#fff,#F3FBFA)}
+.deptcard.dieudo{background-image:radial-gradient(circle at 92% 14%,rgba(56,189,248,.12),transparent 25%),linear-gradient(145deg,#fff,#F5FAFF)}
+.deptcard.trucban{background-image:radial-gradient(circle at 92% 14%,rgba(249,115,22,.11),transparent 25%),linear-gradient(145deg,#fff,#FFF8F5)}
+.deptcard.kythuat{background-image:radial-gradient(circle at 92% 14%,rgba(245,158,11,.10),transparent 25%),linear-gradient(145deg,#fff,#F4FBF9)}
+.deptcard.ketoan{background-image:radial-gradient(circle at 92% 14%,rgba(182,138,43,.11),transparent 25%),linear-gradient(145deg,#fff,#F5FBF7)}
+
+@keyframes deptStripe{to{background-position:220% 0}}
+@keyframes deptPulse{0%{box-shadow:0 0 0 0 color-mix(in srgb,var(--dc2) 34%,transparent)}70%,100%{box-shadow:0 0 0 8px transparent}}
+
+@media (prefers-reduced-motion:reduce){
+  .deptcard::before,.deptcard .sig::before{animation:none!important}
+}
+
 /* ══════════════ WORKSHOP COMPLETE · DEPARTMENT DESIGN SYSTEM ══════════════ */
 body[data-dept="dieudo"]{--coral:#2563EB;--coral-2:#38BDF8;--coral-w:#EAF4FF}
 body[data-dept="kythuat"]{--coral:#0F766E;--coral-2:#F59E0B;--coral-w:#ECF8F5}

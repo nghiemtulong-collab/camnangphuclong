@@ -743,7 +743,7 @@ home: {
       <button class="dcard deptcard trucban" onclick="go('trucban')">
         <div class="eyebrow">TBSX · Tool nội bộ · Checklist · Báo cáo ca</div>
         <div class="hd"><h4>Trực ban sản xuất</h4><span class="tag g">Đã có</span></div>
-        <p>Vẽ đầu ra, tự xây tool, test trên máy thật, báo lỗi và lặp vòng sửa.</p>
+        <p>Checklist, Báo cáo ca, 6 câu giao việc cho AI và vòng lặp Build → Test → Fix.</p>
         <span class="sig">Vẽ đầu ra trước · xây sau</span>
       </button>
       <button class="dcard deptcard ketoan" onclick="go('ketoan')">
@@ -1716,43 +1716,200 @@ trucban: {
   crumb: "Trực ban sản xuất",
   html: `
   <div class="dept-page prod-page">
-    <div class="hero dept-hero"><div class="hero-copy"><div class="kick">Workshop ứng dụng AI · Trực ban sản xuất · sáng Thứ Sáu, ngày 07/08</div><h2 class="big">Điều phối toàn tuyến.<br>Nắm xuất nhập xà lan.</h2><p class="sub">TBSX dùng AI để điều phối toàn tuyến liên quan sản xuất, chuẩn hóa báo cáo ca và theo dõi xuất nhập xà lan; khi xây tool vẫn phải đi theo vòng Build → Test → Fix và tự test trên máy thật.</p><div class="meta"><span class="pill">60 phút</span><span class="pill ok">Tài liệu sau workshop</span><span class="pill hot">Build → Test → Fix</span></div></div>
-      <div class="motion-stage prod-stage" aria-hidden="true"><div class="stage-cap">Line coordination / barge flow</div><span class="loop"></span><span class="hub">CA</span><span class="node n1">TOÀN TUYẾN</span><span class="node n2">SẢN XUẤT</span><span class="node n3">XUẤT NHẬP XÀ LAN</span></div></div>
+    <div class="hero dept-hero">
+      <div class="hero-copy">
+        <div class="kick">Workshop ứng dụng AI · Trực ban sản xuất · sáng Thứ Sáu, ngày 07/08</div>
+        <h2 class="big">Tự xây công cụ<br>cho việc của mình.</h2>
+        <p class="sub">Không chỉ nhờ AI viết. Buổi này tập trung vào cách dùng AI để làm ra công cụ nhỏ phục vụ công việc hằng ngày — bắt đầu từ đầu ra, test trên máy thật và sửa qua nhiều vòng.</p>
+        <div class="meta"><span class="pill">60 phút</span><span class="pill ok">Tài liệu ôn bài sau workshop</span><span class="pill hot">Build → Test → Fix</span></div>
+        <div class="memory-strip">
+          <div><b>Vẽ đầu ra trước</b><span>Chưa mô tả được file kết quả thì chưa bắt đầu xây.</span></div>
+          <div><b>Xây từng vòng</b><span>Làm → thử → báo lỗi → sửa. Không kỳ vọng bản đầu dùng ngay.</span></div>
+          <div><b>Thử trên máy mình</b><span>AI báo PASS không thay cho việc mở file thật trên Windows/Excel thật.</span></div>
+        </div>
+      </div>
+      <div class="motion-stage prod-stage" aria-hidden="true">
+        <div class="stage-cap">Build / test / fix loop</div>
+        <span class="loop"></span><span class="hub">TOOL</span>
+        <span class="node n1">BUILD</span><span class="node n2">TEST</span><span class="node n3">FIX</span>
+      </div>
+    </div>
 
-    <section><div class="snum">01 · CHỈ CẦN NHỚ 3 VIỆC</div><h3>Xây tool là một chu kỳ, không phải một cú bấm</h3><div class="grid g3"><div class="card sig"><div class="k">01</div><h4>Vẽ đầu ra trước</h4><p>Muốn file kết quả trông thế nào thì vẽ ra trước. Chưa vẽ được thì chưa xây được.</p></div><div class="card sig"><div class="k">02</div><h4>Xây từng vòng</h4><p>Làm → thử → báo lỗi → sửa. Không kỳ vọng bản đầu dùng ngay.</p></div><div class="card yes"><div class="k">03</div><h4>Thử trên máy mình</h4><p>AI báo chạy được là trên môi trường của nó. Máy thật phải tự test.</p></div></div><div class="callout-big">“Xây công cụ không phải việc riêng của dân IT nữa. Nhưng cũng không phải bấm một cái là xong.”</div></section>
-
-    <section><div class="snum">02 · AN TOÀN DỮ LIỆU</div><h3>Đưa cái khung, đừng đưa cái ruột</h3><div class="grid g2"><div class="card no"><div class="k">✕ KHÔNG ĐƯA</div><ul class="b no"><li>Số cont, booking, tên sà lan thật</li><li>Tên khách / hãng tàu kèm sản lượng</li><li>File tồn bãi, file sản lượng nguyên bản</li><li>Tên NLĐ trong checklist an toàn</li></ul></div><div class="card yes"><div class="k">✓ ĐƯA ĐƯỢC</div><ul class="b ok"><li>Tên cột, tên sheet, cấu trúc bảng</li><li>Quy tắc TEU, tỷ lệ, ngày quá hạn</li><li>Vài dòng giả lập đã thay số</li><li>Mô tả file kết quả mong muốn</li></ul></div></div></section>
-
-    <section><div class="snum">03 · CÔNG CỤ ĐÃ CÓ</div><h3>Checklist an toàn + Báo cáo sản xuất ca</h3><div class="grid g2"><div class="card yes"><div class="k">CHECKLIST AN TOÀN</div><h4>25 hạng mục</h4><p>Ba trạng thái: Đạt · Không đạt · Không áp dụng. Chọn Không đạt thì bắt buộc hiện trạng, hành động, người phụ trách và thời hạn.</p></div><div class="card yes"><div class="k">BÁO CÁO CA</div><h4>5 nhóm thông tin</h4><p>Nhân sự · phương tiện · sà lan · xuất nhập cổng · phát sinh. Tự tính cont/TEU và xuất Excel theo form cũ.</p></div></div>
-      <div class="note warn"><span class="lbl">Bài học đắt nhất từ bản đầu</span>Tool báo PASS nhưng file Excel thực tế mở ra trắng. Chỉ phát hiện khi mở bằng Excel thật. Cách sửa là dùng file Excel hợp lệ làm nền thay vì tự dựng sai chuẩn.</div></section>
-
-    <section><div class="snum">04 · TEST THẬT</div><h3>Ba câu áp cho mọi công cụ</h3><div class="memory-strip"><div><b>PASS ≠ máy mình PASS</b><span>Không phải Windows mình, không phải Excel mình.</span></div><div><b>Mở file kết quả ra xem</b><span>Tool báo xuất thành công vẫn có thể ra file rỗng.</span></div><div><b>Thử dữ liệu xấu</b><span>Tiếng Việt, ô trống, ký tự lạ mới lộ chỗ gãy.</span></div></div>
-      <div class="callout-big"><b>Công thức báo lỗi:</b> Tôi làm gì → tôi thấy gì → tôi mong đợi gì.</div></section>
-
-    <section><div class="snum">05 · SÁU CÂU PHẢI NÓI</div><h3>Câu 4 — đầu ra — là câu quan trọng nhất</h3><div class="grid g3"><div class="card sig"><div class="k">01</div><h4>Để làm gì?</h4><p>Công cụ thay việc gì.</p></div><div class="card sig"><div class="k">02</div><h4>Ai dùng?</h4><p>Người thao tác hằng ngày.</p></div><div class="card sig"><div class="k">03</div><h4>Đầu vào?</h4><p>Gõ tay hay đọc từ file.</p></div><div class="card"><div class="k">04</div><h4>Đầu ra?</h4><p>File, sheet, cột nào. Chưa vẽ được thì chưa xây.</p></div><div class="card"><div class="k">05</div><h4>Máy chạy?</h4><p>Windows, Excel, có mạng hay không.</p></div><div class="card yes"><div class="k">06</div><h4>Thế nào là đạt?</h4><p>Mở Excel thật, số khớp bản tay.</p></div></div>
-      <div class="tw"><table><tr><th colspan="4">Ví dụ vẽ đầu ra — Checklist an toàn</th></tr><tr><td><b>File</b></td><td>CHECKLIST_TBSX_&lt;ngay&gt;_&lt;ca&gt;.xlsx</td><td><b>Sheet 1</b></td><td>CHECKLIST</td></tr><tr><td><b>Cột</b></td><td colspan="3">STT | Hạng mục | Kết quả | Ghi chú | Người phụ trách | Thời hạn</td></tr><tr><td><b>Sheet 2</b></td><td>TỔNG HỢP</td><td><b>Hiển thị</b></td><td>25 mục · Đạt · Không đạt · Không áp dụng + việc cần khắc phục</td></tr></table></div>
+    <section>
+      <div class="snum">01 · CHỈ CẦN NHỚ 3 VIỆC</div>
+      <h3>Vẽ đầu ra trước · Xây từng vòng · Thử trên máy mình</h3>
+      <div class="grid g3">
+        <div class="card sig"><div class="k">01</div><h4>Vẽ đầu ra trước</h4><p>Muốn file kết quả trông thế nào thì vẽ ra trước. Chưa vẽ được thì chưa xây được.</p></div>
+        <div class="card sig"><div class="k">02</div><h4>Xây từng vòng</h4><p>Không ra ngay lần đầu. Làm → thử → báo lỗi → sửa. Vòng thứ ba mới dùng được.</p></div>
+        <div class="card yes"><div class="k">03</div><h4>Thử trên máy mình</h4><p>AI báo chạy được là chạy trên máy của nó. Máy mình phải tự thử.</p></div>
+      </div>
+      <div class="callout-big">“Xây công cụ không phải việc của dân IT nữa. Nhưng cũng không phải bấm một cái là xong. Nó là mấy vòng làm đi làm lại.”</div>
     </section>
 
-    <section><div class="snum">06 · VÒNG LẶP XÂY TOOL</div><h3>Làm — thử — báo lỗi — sửa</h3><ol class="steps coral"><li><b>Mô tả đủ 6 câu</b><span>Nhờ AI làm bản đầu, ưu tiên một file duy nhất.</span></li><li><b>Mở ra và cố tình làm sai</b><span>Bỏ trống, gõ chữ vào ô số, gõ tiếng Việt.</span></li><li><b>Xuất file và mở bằng Excel</b><span>Bước hay bị bỏ nhất.</span></li><li><b>Báo lỗi theo 3 câu</b><span>Tôi làm gì · thấy gì · mong gì.</span></li><li><b>Lặp bước 2–4</b><span>Cho đến khi khớp bản làm tay.</span></li></ol><div class="prompt rv"><div class="bar"><span>PROMPT · NHỜ AI XÂY CÔNG CỤ</span><button class="copy" onclick="cp(this)">Sao chép</button></div><pre>Tôi làm trực ban sản xuất ở một depot container, cần một công cụ nhỏ thay việc ghi tay hằng ngày.
+    <section>
+      <div class="snum">02 · MỘT TIẾNG NÀY ĐI THẾ NÀO</div>
+      <h3>Lịch 60 phút của buổi workshop</h3>
+      <div class="tw"><table>
+        <tr><th>Thời gian</th><th>Nội dung</th><th>Trọng tâm</th></tr>
+        <tr><td class="m">00–05</td><td><b>Mở đầu</b></td><td>Ba việc cần nhớ, luật an toàn dữ liệu</td></tr>
+        <tr><td class="m">05–14</td><td><b>Công cụ đã có</b></td><td>Checklist và Báo cáo ca — chạy thử ngay tại lớp</td></tr>
+        <tr><td class="m">14–24</td><td><b>Chuyện công cụ này suýt hỏng</b></td><td>Bài học đắt nhất của buổi hôm nay</td></tr>
+        <tr><td class="m">24–34</td><td><b>Sáu câu phải nói với AI</b></td><td>Trước khi nhờ nó xây bất cứ thứ gì</td></tr>
+        <tr><td class="m">34–42</td><td><b>Vòng lặp xây công cụ</b></td><td>Làm → thử → báo lỗi → sửa</td></tr>
+        <tr><td class="m">42–50</td><td><b>Ba việc còn lại: 3, 4, 5</b></td><td>Việc nào làm được ngay, việc nào phải chốt trước</td></tr>
+        <tr><td class="m">50–60</td><td><b>Bài tập về nhà và cách chấm</b></td><td>Mỗi người vẽ đầu ra cho một việc</td></tr>
+      </table></div>
+    </section>
+
+    <section>
+      <div class="snum">03 · TRƯỚC KHI GÕ CHỮ ĐẦU TIÊN</div>
+      <h3>Đưa cái khung, đừng đưa cái ruột</h3>
+      <p class="lede">Xây công cụ càng phải giữ dữ liệu, vì mình đang đưa cả cấu trúc dữ liệu cho AI.</p>
+      <div class="grid g2">
+        <div class="card no"><div class="k">✕ KHÔNG ĐƯA LÊN AI</div><ul class="b no">
+          <li>Số container, số booking, tên sà lan thật</li>
+          <li>Tên khách hàng, tên hãng tàu kèm sản lượng</li>
+          <li>File tồn bãi, file sản lượng nguyên bản</li>
+          <li>Tên người lao động trong checklist an toàn</li>
+        </ul><p>Checklist an toàn có tên người chịu trách nhiệm. Đó là dữ liệu cá nhân, không đưa ra ngoài.</p></div>
+        <div class="card yes"><div class="k">✓ ĐƯA ĐƯỢC</div><ul class="b ok">
+          <li>Tên cột, tên sheet, cấu trúc bảng</li>
+          <li>Quy tắc tính: TEU, tỷ lệ, ngày quá hạn</li>
+          <li>Vài dòng giả lập đã thay hết số thật</li>
+          <li>Mô tả file kết quả mình muốn có</li>
+        </ul><p>Xây công cụ chỉ cần cấu trúc và quy tắc. Không cần một dòng dữ liệu thật nào.</p></div>
+      </div>
+    </section>
+
+    <section>
+      <div class="snum">04 · VIỆC 1 VÀ 2 · ĐÃ XONG</div>
+      <h3>Công cụ đã có — mở bằng trình duyệt là chạy</h3>
+      <p class="lede">Một file duy nhất. Không cài gì, không cần mạng, không cần Excel để nhập liệu.</p>
+      <div class="grid g2">
+        <div class="card yes"><div class="k">CHECKLIST AN TOÀN</div><h4>Đủ 25 hạng mục từ sổ tự kiểm</h4><ul class="b ok">
+          <li>Ba trạng thái: Đạt · Không đạt · Không áp dụng</li>
+          <li>Chọn Không đạt thì bắt buộc nhập hiện trạng, hành động, người chịu trách nhiệm và thời hạn</li>
+          <li>Thiếu là không cho xuất</li>
+        </ul></div>
+        <div class="card yes"><div class="k">BÁO CÁO SẢN XUẤT CA</div><h4>Năm nhóm thông tin</h4><ul class="b ok">
+          <li>Nhân sự · phương tiện · sà lan · xuất nhập cổng · phát sinh</li>
+          <li>Tự tính số container và TEU</li>
+          <li>Xuất ra file Excel đúng các sheet của form cũ</li>
+        </ul></div>
+      </div>
+      <div class="note"><span class="lbl">Làm ngay tại lớp</span>Mỗi người mở file, tick thử 5 hạng mục, cố tình bỏ trống một ô rồi bấm xuất để xem tool chặn thế nào.</div>
+    </section>
+
+    <section>
+      <div class="snum">05 · CÔNG CỤ NÀY SUÝT BỎ ĐI</div>
+      <h3>AI báo PASS — nhưng Excel mở ra trắng trơn</h3>
+      <div class="grid g2">
+        <div class="card sig"><div class="k">AI BÁO</div><p>Kiểm thử xong hết. Xuất Excel: PASS. Đọc lại file: được. Lỗi công thức: 0.</p></div>
+        <div class="card no"><div class="k">THỰC TẾ</div><p>Nhập đủ số liệu, bấm xuất, mở bằng Excel — trắng trơn, không có gì.</p></div>
+      </div>
+      <div class="mini-grid">
+        <div class="mini"><b>Nguyên nhân</b><span>Bản đầu tự dựng file Excel từ con số không. Excel không nhận, tự sửa file, rồi xoá sạch dữ liệu.</span></div>
+        <div class="mini"><b>Cách sửa</b><span>Không dựng từ đầu nữa. Lấy một file Excel hợp lệ làm nền, chỉ thay phần dữ liệu bên trong.</span></div>
+      </div>
+      <div class="note warn"><span class="lbl">Điểm chặn</span>Nếu không tự mở file ra xem, tool đã có thể được mang đi dùng thật — và mất hết số liệu của cả ca.</div>
+    </section>
+
+    <section>
+      <div class="snum">06 · BÀI HỌC ĐẮT NHẤT</div>
+      <h3>Ba câu áp cho mọi công cụ</h3>
+      <div class="memory-strip">
+        <div><b>01 · AI báo PASS ≠ máy mình PASS</b><span>Không phải máy mình. Không phải Excel mình. Không phải Windows mình.</span></div>
+        <div><b>02 · Phải tự mở file kết quả ra xem</b><span>Tool báo xuất thành công vẫn có thể ra file rỗng.</span></div>
+        <div><b>03 · Thử với dữ liệu thật</b><span>Gõ tiếng Việt có dấu, để ô trống, gõ ký tự lạ. Chỗ gãy nằm ở đó.</span></div>
+      </div>
+      <div class="callout-big"><b>Cách thử đúng:</b> nhập một ca thật đã làm xong, xuất file, mở bằng Excel và so từng số với bản làm tay. Khớp mới được dùng.</div>
+    </section>
+
+    <section>
+      <div class="snum">07 · BÁO LỖI CHO AI THẾ NÀO</div>
+      <h3>Tả đúng điều nhìn thấy — đừng đoán nguyên nhân</h3>
+      <div class="grid g2">
+        <div class="card no"><div class="k">BÁO NHƯ THẾ NÀY THÌ HỎNG</div><p>“Tool bị lỗi rồi.”<br>“Không chạy được.”<br>“Sửa giúp tôi.”</p></div>
+        <div class="card yes"><div class="k">BÁO NHƯ THẾ NÀY THÌ ĐƯỢC</div><p>Tôi nhập đủ số liệu ở mục Báo cáo ca. Bấm nút xuất Excel, tải được file về. Nhưng mở file bằng Excel thì trắng trơn, không có dòng nào. Excel có hiện thông báo hỏi sửa file.</p></div>
+      </div>
+      <div class="callout-big"><b>Công thức báo lỗi:</b> Tôi làm gì → tôi thấy gì → tôi mong đợi gì.</div>
+    </section>
+
+    <section>
+      <div class="snum">08 · SÁU CÂU PHẢI NÓI TRƯỚC KHI XÂY</div>
+      <h3>Câu 4 — đầu ra — là câu quan trọng nhất</h3>
+      <div class="grid g3">
+        <div class="card sig"><div class="k">01</div><h4>Công cụ để làm gì?</h4><p>Ví dụ: thay việc gõ tay checklist an toàn mỗi ca.</p></div>
+        <div class="card sig"><div class="k">02</div><h4>Ai sẽ dùng?</h4><p>Trực ban sản xuất — người thao tác hằng ngày.</p></div>
+        <div class="card sig"><div class="k">03</div><h4>Đầu vào là gì?</h4><p>Gõ tay trên giao diện hay đọc từ file. Ví dụ: chưa có file nguồn.</p></div>
+        <div class="card"><div class="k">04</div><h4>Đầu ra trông thế nào?</h4><p>File kết quả có mấy sheet, cột nào. Ví dụ: CHECKLIST và TỔNG HỢP.</p></div>
+        <div class="card"><div class="k">05</div><h4>Máy chạy ra sao?</h4><p>Windows 7, không cài phần mềm, không có mạng.</p></div>
+        <div class="card yes"><div class="k">06</div><h4>Thế nào là đạt?</h4><p>Mở file kết quả bằng Excel, số phải khớp bản tay.</p></div>
+      </div>
+      <div class="note warn"><span class="lbl">Quan trọng nhất</span>Câu 4 là câu quan trọng nhất. Chưa vẽ được đầu ra thì đừng bắt đầu xây.</div>
+    </section>
+
+    <section>
+      <div class="snum">09 · CÂU 4 · QUAN TRỌNG NHẤT</div>
+      <h3>Vẽ đầu ra trước khi xây</h3>
+      <p class="lede">Không cần biết code. Chỉ cần vẽ ra file kết quả mình muốn — trên giấy cũng được.</p>
+      <div class="tw"><table>
+        <tr><th colspan="4">Ví dụ checklist an toàn</th></tr>
+        <tr><td><b>File kết quả</b></td><td colspan="3"><span class="m">CHECKLIST_TBSX_&lt;ngay&gt;_&lt;ca&gt;.xlsx</span></td></tr>
+        <tr><td><b>Sheet 1</b></td><td>CHECKLIST</td><td><b>Cột</b></td><td>STT | Hạng mục | Kết quả | Ghi chú | Người phụ trách | Thời hạn</td></tr>
+        <tr><td><b>Sheet 2</b></td><td>TỔNG HỢP</td><td><b>Nội dung</b></td><td>Tổng số mục 25 · Đạt 22 · Không đạt 2 · Không áp dụng 1 · danh sách việc cần khắc phục</td></tr>
+      </table></div>
+      <div class="grid g2">
+        <div class="card no"><div class="k">KHÔNG VẼ ĐƯỢC THÌ SAO</div><p>Nghĩa là mình chưa rõ mình muốn gì. Đi hỏi người sẽ dùng file đó trước, đừng hỏi AI.</p></div>
+        <div class="card yes"><div class="k">MẸO NHANH</div><p>Lấy file kết quả cũ đang làm tay, chụp lại rồi gõ mô tả theo đúng nó. Xong câu 4.</p></div>
+      </div>
+    </section>
+
+    <section>
+      <div class="snum">10 · XÂY CÔNG CỤ LÀ NHIỀU VÒNG</div>
+      <h3>Không phải một lần</h3>
+      <ol class="steps coral">
+        <li><b>Mô tả sáu câu, nhờ AI làm bản đầu</b><span>Xin một file duy nhất, mở bằng trình duyệt là chạy.</span></li>
+        <li><b>Mở ra bấm thử, cố tình làm sai</b><span>Bỏ trống ô, gõ tiếng Việt có dấu, gõ chữ vào ô số.</span></li>
+        <li><b>Xuất file kết quả, mở bằng Excel</b><span>Bước hay bị bỏ nhất — và là bước phát hiện lỗi nặng nhất.</span></li>
+        <li><b>Báo lỗi theo công thức ba câu</b><span>Tôi làm gì · tôi thấy gì · tôi mong đợi gì.</span></li>
+        <li><b>Lặp lại bước 2 đến bước 4</b><span>Thường vòng thứ ba mới dùng được thật.</span></li>
+      </ol>
+      <div class="note ok"><span class="lbl">Thực tế workshop</span>Công cụ checklist các anh chị vừa dùng phải chạy tới vòng thứ ba mới xuất file được.</div>
+    </section>
+
+    <section>
+      <div class="snum">11 · MẪU NHỜ AI XÂY CÔNG CỤ</div>
+      <h3>Chép nguyên khối</h3>
+      <div class="prompt rv"><div class="bar"><span>PROMPT · NHỜ AI XÂY CÔNG CỤ</span><button class="copy" onclick="cp(this)">Sao chép</button></div><pre>Tôi làm trực ban sản xuất ở một depot container, cần một công cụ
+nhỏ thay việc ghi tay hằng ngày.
 
 1. CÔNG CỤ ĐỂ LÀM GÌ
 [Ví dụ: thay việc ghi tay bảng KPI theo ca]
+
 2. AI SẼ DÙNG
-Trực ban sản xuất, dùng để quản lý các bộ phận liên quan (giao nhận, điều độ, xe nâng, ...).
+Trực ban sản xuất, dùng để quản lý các bộ phận liên quan (giao nhận, điều độ, xe nâng,vv).
+
 3. ĐẦU VÀO
 Tôi sẽ gõ tay trên giao diện. Chưa có file nguồn.
 Các mục cần nhập: [liệt kê]
+
 4. ĐẦU RA
 File Excel tên [...], gồm các sheet và cột: [liệt kê]
+
 5. MÁY CHẠY
-Windows 7, Excel bản cũ, KHÔNG cài thêm phần mềm, KHÔNG có mạng khi dùng.
+Windows 7, Excel bản cũ, KHÔNG cài thêm phần mềm,
+KHÔNG có mạng khi dùng.
+
 6. THẾ NÀO LÀ ĐẠT
-Mở file kết quả bằng Excel phải thấy đủ dữ liệu, số khớp với bản làm tay.
+Mở file kết quả bằng Excel phải thấy đủ dữ liệu, số khớp
+với bản làm tay.
 
 YÊU CẦU KỸ THUẬT
 - MỘT file HTML duy nhất, mở bằng trình duyệt là chạy.
 - Không gọi Internet. Thư viện nhúng thẳng vào file.
-- Xuất Excel: đừng tự dựng file từ đầu; dùng thư viện xuất xlsx chuẩn để Excel không phải sửa file.
+- Xuất Excel: ĐỪNG tự dựng file từ đầu. Dùng thư viện xuất
+  xlsx chuẩn để Excel không phải sửa file.
 - Giao diện trực quan, dễ thao tác. Thiếu dữ liệu thì chặn và báo rõ.
 
 AI PHẢI TRẢ VỀ
@@ -1762,19 +1919,22 @@ C. Danh sách việc tôi phải tự kiểm.
 D. Phần nào bạn chưa chắc chắn.
 
 CÂU CUỐI PHẢI CÓ
-Nói rõ chỗ nào bạn chưa kiểm chứng được và tôi phải tự thử.</pre></div></section>
-
-    <section><div class="snum">07 · BA VIỆC CÒN LẠI</div><h3>Biết tắc ở đâu cũng là kết quả</h3><div class="tw"><table><tr><th>Việc</th><th>Trạng thái workshop</th><th>Điểm chặn</th></tr><tr><td><b>Báo cáo overdue DP3</b></td><td><span class="tag g">Làm được ngay</span></td><td>Đã có file tồn + rule hãng; còn cần biết cột ngày hạ bãi và định dạng ngày</td></tr><tr><td><b>Tính hiệu suất MNR</b></td><td><span class="tag c">Chốt đầu ra trước</span></td><td>Chưa có form mẫu</td></tr><tr><td><b>File KPI theo ngày</b></td><td><span class="tag c">Chốt người duyệt</span></td><td>Phải chốt ai duyệt và số dùng làm gì</td></tr></table></div>
-      <div class="tw"><table><tr><th>Hãng</th><th>Rule overdue trong slide</th></tr><tr><td>ZIM</td><td>dưới 12 ngày</td></tr><tr><td>COSCO</td><td>dưới 14 ngày</td></tr><tr><td>HPL</td><td>dưới 15 ngày</td></tr><tr><td>CMA</td><td>21 ngày</td></tr><tr><td>MSC</td><td>dưới 30 ngày</td></tr></table></div>
+Nói rõ chỗ nào bạn chưa kiểm chứng được
+và tôi phải tự thử.</pre></div>
     </section>
 
-    <section><div class="snum">08 · BÀI TẬP SAU WORKSHOP</div><h3>Hai bậc sản phẩm</h3><div class="grid g2"><div class="card sig"><div class="k">BẬC 1 · ĐẠT</div><h4>Mô tả đủ 6 câu</h4><p>Kèm hình vẽ đầu ra và ảnh đoạn đã dán lên AI. Không cần ra tool.</p></div><div class="card yes"><div class="k">BẬC 2 · ĐẠT TỐT</div><h4>Một công cụ chạy được</h4><p>Mở browser chạy, xuất Excel có dữ liệu, ghi lại các vòng lỗi/sửa.</p></div></div><div class="note warn"><span class="lbl">Dữ liệu sạch</span>Không nộp ảnh hay file có số container, tên khách hàng hoặc tên người lao động.</div></section>
-
-    <section><div class="snum">09 · BA MỐC</div><h3>Đừng dồn tới ngày cuối</h3><div class="grid g3"><div class="card"><div class="k">3 NGÀY</div><h4>Trả lời 6 câu + vẽ đầu ra</h4><p>Chưa cần đụng AI.</p></div><div class="card"><div class="k">1 TUẦN</div><h4>Làm bản đầu + ít nhất 1 vòng sửa</h4><p>Test trên máy thật.</p></div><div class="card yes"><div class="k">10 NGÀY</div><h4>Nộp trưởng ca chấm và ký</h4><p>Bậc 1 hay bậc 2 đều nộp.</p></div></div></section>
+    <section>
+      <div class="snum">12 · TÓM LẠI</div>
+      <h3>Vẽ đầu ra trước. Xây sau.</h3>
+      <div class="callout-big">Để làm gì · Ai dùng · Đầu vào · Đầu ra · Máy nào · Kiểm sao</div>
+      <p class="lede">Công cụ checklist các anh chị vừa dùng phải sửa tới vòng thứ ba mới xuất file được. Không ai làm đúng ngay lần đầu — quan trọng là biết cách thử và biết cách báo lỗi.</p>
+      <div class="note ok"><span class="lbl">Sau workshop</span>Vướng gì trong tuần — nhắn trực tiếp Zalo. Nghiêm Tử Long · M&amp;R Team · 0367 164 613</div>
+    </section>
   </div>`
 },
 
 /* ============================== KẾ TOÁN ============================== */
+
 ketoan: {
   crumb: "Kế toán",
   html: `
